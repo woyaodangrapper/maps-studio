@@ -31,7 +31,7 @@ Nancy are:
 ## Contributors
 ### Code Contributors
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/restsharp/RestSharp/graphs/contributors"><img src="https://opencollective.com/RestSharp/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/light-come/Cesium-Container/graphs/contributors"><img src="" /></a>
 ## Copyright
 
 Copyright © 2021 Andreas Håkansson, Steven Robbins and contributors
