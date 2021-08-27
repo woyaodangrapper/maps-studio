@@ -6,7 +6,7 @@
 # [铯容器-拓展工具](https://github.com/light-come/Cesium-Container)
 [CesiumJS 友链](https://github.com/CesiumGS/cesium)
 
-铯容器是一款数据处理及围绕Cesium应用程序。它就像CesiumLab一样工作，您可以在自己的PC电脑上运行它。它可用于Linux发行版、macOS和Windows。
+铯容器是一款数据处理及围绕Cesium应用程序。它就像CesiumLab一样工作，您可以在自己的PC电脑上运行它。它可用于Linux发行版、Windows。
 
 ## 👏 资助
 如果您希望支持此项目，不想白嫖请点亮⭐或 [💕 自行进行社会捐赠行动](https://www.fsf.org/).
