@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://github.com/light-come/Cesium-Container/blob/main/logos/Logo_Color.png" width="50%" />
+<img src="https://github.com/light-come/Cesium-Container/blob/main/logos/_Logo_Color.png" width="50%" />
 </p>
 
 
