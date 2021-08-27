@@ -37,6 +37,3 @@ This project exists thanks to all the people who contribute. [[Contribute](CONTR
 Copyright © 2021 Andreas Håkansson, Steven Robbins and contributors
 
 ### License: Apache License 2.0
-
-
-
