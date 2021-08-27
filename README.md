@@ -39,4 +39,5 @@
 ##版权所有
 版权所有©2021 Andreas 作者和贡献者 以及你 :)
 
-### 开源协议: Apache License 2.0
+### 开源协议: 
+[Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html). CesiumJS is free for both commercial and non-commercial use.
