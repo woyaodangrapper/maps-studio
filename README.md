@@ -1,12 +1,6 @@
 <p align="center">
 <img src="https://github.com/CesiumGS/cesium/wiki/logos/Cesium_Logo_Color.jpg" width="50%" />
 </p>
-## 集成构建
-
-| Platform                    | Status                                                                                                                                  |
-|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-|  (.NET & .NET Core) | [![Build Status](https://docs.microsoft.com/zh-cn/aspnet/core/?view=aspnetcore-3.1) |
-|  (CesiumJS) | [![Build Status](https://github.com/CesiumGS/cesium) |
 
 
 # [铯容器](https://github.com/light-come/Cesium-Container)
@@ -33,8 +27,16 @@
 ###代码贡献者
 这个项目的存在要感谢所有做出贡献的人[[贡献]（contribution.md）]。
 <a href=”https://github.com/light-come/Cesium-Container/graphs/contributors“><img src=”“/></a>
-##版权所有
 
+## 集成索引
+
+| 名称                  | 友链                                                                                                                                  |
+|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+|  (.NET & .NET Core) | [!(https://docs.microsoft.com/zh-cn/aspnet/core/?view=aspnetcore-3.1) |
+|  (CesiumJS) | [!(https://github.com/CesiumGS/cesium) |
+
+
+##版权所有
 版权所有©2021 Andreas 作者和贡献者 以及你 :)
 
 ### 开源协议: Apache License 2.0
