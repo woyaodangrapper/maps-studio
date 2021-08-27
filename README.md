@@ -2,13 +2,13 @@
 <img src="https://github.com/CesiumGS/cesium/wiki/logos/Cesium_Logo_Color.jpg" width="50%" />
 </p>
 ## Continuous integration builds
-[CesiumJS 友链](https://github.com/CesiumGS/cesium)
+
 | Platform                    | Status                                                                                                                                  |
 |-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | AppVeyor (.NET & .NET Core) | [![Build Status](https://ci.appveyor.com/api/projects/status/mpd9lbxvithu16vg/branch/master?svg=true)](https://ci.appveyor.com/project/NancyFx/nancy) |
 
 # [SparkleShare](https://www.sparkleshare.org/)
-
+[CesiumJS 友链](https://github.com/CesiumGS/cesium)
 parkleShare is a file sharing and collaboration app. It works just like Dropbox, and you can run it on your own server. It's available for Linux distributions, macOS, and Windows.
 
 如果您希望支持此项目，不想白嫖请点亮⭐或 [💕 自行进行社会捐赠行动](https://www.fsf.org/).
