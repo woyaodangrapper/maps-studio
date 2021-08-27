@@ -8,9 +8,9 @@
 
 铯容器是一款数据处理及围绕Cesium应用程序。它就像CesiumLab一样工作，您可以在自己的PC电脑上运行它。它可用于Linux发行版、macOS和Windows。
 
-如果您希望支持此项目，不想白嫖请点亮⭐或 [💕 自行进行社会捐赠行动](https://www.fsf.org/).
-## 帮助
+# 如果您希望支持此项目，不想白嫖请点亮⭐或 [💕 自行进行社会捐赠行动](https://www.fsf.org/).
 
+## 帮助
 你可以通过很多方式做贡献。就像对待大多数开源软件一样,贡献代码:
 
 * 文档（代码和功能）
@@ -23,10 +23,10 @@
 * 示例应用程序
 
 
-##贡献者
-###代码贡献者
-这个项目的存在要感谢所有做出贡献的人[[贡献]（contribution.md）]。
-<a href=”https://github.com/light-come/Cesium-Container/graphs/contributors“><img src=”“/></a>
+## 贡献者
+### 代码贡献者
+这个项目的存在要感谢所有做出贡献的人.
+<a href=”https://github.com/light-come/Cesium-Container/graphs/contributors“>
 
 ## 集成索引
 
