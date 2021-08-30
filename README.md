@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://github.com/light-come/Cesium-OpticalCore/logos/_LogoColor.png" width="60%" />
+<img src="https://github.com/light-come/Cesium-OpticalCore/blob/main/logos/Logo_Color.png" width="60%" />
 </p>
 
 
