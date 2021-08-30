@@ -1,9 +1,9 @@
 <p align="center">
-<img src="https://github.com/light-come/Cesium-Container/logos/_LogoColor.png" width="60%" />
+<img src="https://github.com/light-come/Cesium-OpticalCore/logos/_LogoColor.png" width="60%" />
 </p>
 
 
-# [铯容器-拓展工具](https://github.com/light-come/Cesium-Container)
+# [铯 - 拓展工具](https://github.com/light-come/Cesium-Container)
 [CesiumJS 友链](https://github.com/CesiumGS/cesium)
 
 铯容器是一款数据处理及围绕Cesium应用程序。它就像CesiumLab一样工作，您可以在自己的PC电脑上运行它。它可用于Linux发行版、Windows。
@@ -27,7 +27,7 @@
 ## 贡献者
 ### 代码贡献者
 这个项目的存在要感谢所有做出贡献的人.
-<a href=”https://github.com/light-come/Cesium-Container/graphs/contributors“>
+<a href=”https://github.com/light-come/Cesium-OpticalCore/graphs/contributors“>
 
 ## 集成索引
 
