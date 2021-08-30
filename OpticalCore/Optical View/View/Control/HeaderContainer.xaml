@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="Optical_View.View.Control.HeaderContainer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Optical_View.View.Control" 
+             xmlns:Optical_View="clr-namespace:Optical_View.View"
+             xmlns:Optical_View_Control="clr-namespace:Optical_View.View.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1700">
+    <UserControl.Resources>
+        <Storyboard x:Key="ClosedStoryboard" Storyboard.TargetName="ICON">
+            <DoubleAnimation From="1" To="0" Duration="0:0:2" Storyboard.TargetProperty="OpacityMask.(GradientBrush.GradientStops)[1].Offset"/>
+            <DoubleAnimation From="1" To="0" Duration="0:0:1.5" BeginTime="0:0:0.5" Storyboard.TargetProperty="OpacityMask.(GradientBrush.GradientStops)[2].Offset"/>
+            <ColorAnimation To="#00000000" Duration="0" Storyboard.TargetProperty="OpacityMask.(GradientBrush.GradientStops)[2].Color"/>
+        </Storyboard>
+        <LinearGradientBrush x:Key="ClosedBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientStop Color="#FF000000" Offset="0"/>
+            <GradientStop Color="#FF000000" Offset="1"/>
+            <GradientStop Color="#FF000000" Offset="1"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="Brush" StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientStop Color="#FF000000" Offset="1"/>
+            <GradientStop Color="#FF000000" Offset="0"/>
+            <GradientStop Color="#FF000000" Offset="0"/>
+        </LinearGradientBrush>
+    </UserControl.Resources>
+
+    <Grid  Margin="1,1,1,1">
+
+
+        <!--<Optical_View_Control:GoogleCore x:Name="Browser" Margin="0,102,0,0"/>-->
+        <Optical_View_Control:MicrosoftEdgeView x:Name="_Browser" Margin="0,102,0,0"/>
+
+
+        <Grid x:Name="我来组成头部">
+            <Border  BorderThickness="2" Background="#FF2D2D30" Height="102" VerticalAlignment="Top" BorderBrush="#FF007ACC"/>
+            <Border x:Name="TopBder" BorderThickness="2" Background="#FF2D2D30" Height="104" VerticalAlignment="Top" Margin="-2,-2,-2,0">
+                <Optical_View:Earth3D x:Name="TopEarth3D" VerticalAlignment="Top" Height="42" Width="55" Margin="10,8,0,0" HorizontalAlignment="Left"/>
+            </Border>
+            <Border  MouseDown="TitleLabel_MouseUp" x:Name="titleBorder" BorderThickness="1" BorderBrush="#FF252526" Margin="0,13,331,0" Background="#FF252526" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Width="202">
+                <Label x:Name="titleLabel" Content="" VerticalAlignment="Center" Foreground="#DDFFFFFF" HorizontalContentAlignment="Center" Margin="11,0,9,0" MouseUp="TitleLabel_MouseUp"/>
+            </Border>
+            <Label MouseUp="MainTitle_MouseUp" Content="Optical View or Cesium" HorizontalAlignment="Left" Margin="6,58,0,0" VerticalAlignment="Top" Width="316" Height="42" Foreground="White" FontSize="22" FontWeight="Bold" Cursor="Hand"/>
+            <Image  HorizontalAlignment="Left" Height="32" Margin="22,16,0,0" VerticalAlignment="Top" Width="32" x:Name="ICON" MouseUp="ICON_MouseUp" Cursor="Hand"/>
+        </Grid>
+
+        <!--<Optical_View_Control:GoogleCore x:Name="Browser" Margin="0,102,0,0"/>-->
+    </Grid>
+</UserControl>
