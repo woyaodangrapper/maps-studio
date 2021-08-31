@@ -11,11 +11,13 @@ namespace Optical_View.Model
         //MainWindow
         public partial class MainForm
         {
-            public MainForm(ref Window e)
-            {
-                control = e;
-            }
             public static Window control { get; set; }
+        }
+
+        //MainWindow
+        public partial class BrowserContainer
+        {
+            public static View.Control.MicrosoftEdgeView control { get; set; }
         }
     }
 }

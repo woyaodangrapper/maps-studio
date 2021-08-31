@@ -95,21 +95,25 @@
         
         }
         //初始化地球
-        example_Init(e) {
+        example_Init() {
             if (this.webglReport()) {//判断浏览器是否支持WebGL
                 OpticalCore.initialization({
                     id: 'mapBox',
                     success: function (_viewer) {
                         window.GIS = _viewer;
-                        e(_viewer)
                         _viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
                         //do something...
                         // 访问球体对象（viewer.scene.globe） 并设置颜色
-                        // window.VMSDS.GIS.scene.globe.baseColor = new Cesium.Color.fromBytes(9, 21, 30, 1);
-                        // // window.VMSDS.GIS.scene.sun.show = false; //在Cesium1.6(不确定)之后的版本会显示太阳和月亮，不关闭会影响展示
-                        // window.VMSDS.GIS.scene.moon.show = false;
-                        // window.VMSDS.GIS.scene.skyBox.show = false;//关闭天空盒，否则会显示天空颜色
-                        //window.VMSDS.GIS.scene.backgroundColor = new Cesium.Color.fromCssColorString("#fff0");
+                        // _viewer.scene.globe.baseColor = new Cesium.Color.fromBytes(9, 21, 30, 1);
+                        //_viewer.scene.backgroundColor = new Cesium.Color.fromCssColorString("#fff0");
+
+                        _viewer.scene.sun.show = false; //在Cesium1.6(不确定)之后的版本会显示太阳和月亮，不关闭会影响展示
+                        _viewer.scene.moon.show = false;
+                        _viewer.scene.skyBox.show = false;//关闭天空盒，否则会显示天空颜色
+                        _viewer.scene.backgroundColor = new Cesium.Color.fromCssColorString("#2D2D30");
+                        _viewer.scene.globe.show = false; //不显示地球，这条和地球透明度选一个就可以
+
+
                     }
                 });
             } else {
@@ -190,7 +194,7 @@
                     requestWaterMask : true,//开启法向量
                     requestVertexNormals : true//开启水面特效
                 });
-                window.VMSDS.GIS.terrainProvider =provider;
+                window.GIS.terrainProvider =provider;
                 break;
             default:
              
@@ -199,11 +203,10 @@
         if(Number(type) !== 2)
             if(config !== null)
             {
-                VMSDS.core.removeBaseLayer(window.VMSDS.GIS, '影像底图');
-                VMSDS.core.addBaseLayer(window.VMSDS.GIS, config);
+
             }
-                else
-                console.warn("无法查找到对应地图底图配置",{type,url})
+            else
+            console.warn("无法查找到对应地图底图配置",{type,url})
                
     }
        

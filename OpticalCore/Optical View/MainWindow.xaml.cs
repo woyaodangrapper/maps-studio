@@ -25,13 +25,43 @@ namespace Optical_View
         public MainWindow()
         {
             #region 初始化用户控件 扔入公共控件类
-            {
                 Window w = this;
                 MainForm.control = w;
-            }
             #endregion
             InitializeComponent();
+
+            #region 初始化用户控件 扔入公共控件类
+                BrowserContainer.control = PaddingContainer._Browser;
+            #endregion
+
+            Min.MouseMove += new MouseEventHandler(TopBder_MouseMove);
+            void TopBder_MouseMove(object sender, MouseEventArgs e)
+            {
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    //处理win10 边框磁吸效果
+                    if (this != null && WindowState == WindowState.Maximized)
+                    {
+                        // Gets the absolute mouse position, relative to screen
+                        Point GetMousePos()
+                        {
+                            return PointToScreen(Mouse.GetPosition(this));
+                        }
+                        Point T = GetMousePos();
+                        Top = T.Y - Mouse.GetPosition(this).Y;
+                        Left /= 2;
+                        WindowState = WindowState.Normal;
+
+                    }
+                    if (this != null)
+                    {
+                        DragMove();
+                    }
+                }
+            }
         }
+
+       
 
         #region 关闭按钮，最大化按钮鼠标悬浮事件
         //关闭按钮，最大化按钮鼠标悬浮事件

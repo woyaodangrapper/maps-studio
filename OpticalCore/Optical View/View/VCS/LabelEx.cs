@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 
 
-namespace DeploymentTools
+namespace Optical_View.View.VCS
 {
     public class LabelEx : Label
     {

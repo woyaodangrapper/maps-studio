@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Interop;
 using static Optical_View.Model.View_static_control;
 
 namespace Optical_View.View.Control
@@ -38,5 +30,25 @@ namespace Optical_View.View.Control
 
             #endregion
         }
+        private void BackgroundMongolia_Style(int type)
+        {
+            switch (type)
+            {
+                case 0:
+                    HwndSource hwndSource = PresentationSource.FromVisual(MainForm.control) as HwndSource;
+                    if (hwndSource != null)
+                    {
+                        var handle = hwndSource.Handle;
+                        new Class.GroundGlass().EnableBlur(handle);
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
+
+
     }
 }

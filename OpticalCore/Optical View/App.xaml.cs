@@ -1,6 +1,7 @@
 ﻿
 //using CefSharp;
 //using CefSharp.Wpf;
+using Optical_View.View.Form;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -42,9 +43,10 @@ namespace Optical_View
         {
             Timeline.DesiredFrameRateProperty.OverrideMetadata(
                 typeof(Timeline),
-                new FrameworkPropertyMetadata { DefaultValue = 60 }//60、90、100 
+                new FrameworkPropertyMetadata { DefaultValue = 20 }//60、90、100 
                 );
-        }
+        } 
+        
         private static Object ExitFrame(Object state)
         {
          
@@ -69,8 +71,7 @@ namespace Optical_View
                 .CreateLogger();
             }
             #endregion
-
-
+     
             // Add Custom assembly resolver
             AppDomain.CurrentDomain.AssemblyResolve += Resolver;
             //Any CefSharp references have to be in another method with NonInlining
@@ -122,5 +123,7 @@ namespace Optical_View
 
             return null;
         }
+
+       
     }
 }

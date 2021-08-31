@@ -3,49 +3,84 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Optical_View.View.Control" 
-             xmlns:Optical_View="clr-namespace:Optical_View.View"
-             xmlns:Optical_View_Control="clr-namespace:Optical_View.View.Control"
-             mc:Ignorable="d" 
-             d:DesignHeight="900" d:DesignWidth="1700">
+             xmlns:local="clr-namespace:Optical_View.View.Control"
+             mc:Ignorable="d" d:DesignWidth="800" Height="27">
     <UserControl.Resources>
-        <Storyboard x:Key="ClosedStoryboard" Storyboard.TargetName="ICON">
-            <DoubleAnimation From="1" To="0" Duration="0:0:2" Storyboard.TargetProperty="OpacityMask.(GradientBrush.GradientStops)[1].Offset"/>
-            <DoubleAnimation From="1" To="0" Duration="0:0:1.5" BeginTime="0:0:0.5" Storyboard.TargetProperty="OpacityMask.(GradientBrush.GradientStops)[2].Offset"/>
-            <ColorAnimation To="#00000000" Duration="0" Storyboard.TargetProperty="OpacityMask.(GradientBrush.GradientStops)[2].Color"/>
-        </Storyboard>
-        <LinearGradientBrush x:Key="ClosedBrush" StartPoint="0.5,0" EndPoint="0.5,1">
-            <GradientStop Color="#FF000000" Offset="0"/>
-            <GradientStop Color="#FF000000" Offset="1"/>
-            <GradientStop Color="#FF000000" Offset="1"/>
-        </LinearGradientBrush>
+        <Style  x:Key="MenuItemStyleTop" TargetType="{x:Type MenuItem}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate  TargetType="{x:Type MenuItem}">
+                        <DockPanel >
+                            <ContentPresenter x:Name="Icon" Content="{TemplateBinding Icon}" ContentSource="Icon" Margin="4,0,6,0" VerticalAlignment="Center" OpacityMask="Black" />
+                            <Path x:Name="GlyphPanel" Data="M0,2 L0,4.8 L2.5,7.4 L7.1,2.8 L7.1,0 L2.5,4.6 z" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Margin="4,0,6,0" Visibility="Collapsed" VerticalAlignment="Center" />
+                            <!--显示内容-->
+                            <Border x:Name="B_MenuItem" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="0" Width="90" Height="60"  >
+                                <TextBlock Text="{TemplateBinding Header}" Padding="19,5,0,0"/>
+                            </Border>
+                            <Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False" HorizontalOffset="-1" VerticalOffset="0" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Bottom" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxHeight="150" OpacityMask="{x:Null}" >
+                                <Border x:Name="B"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF333337">
+                                    <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}" Foreground="{x:Null}">
+                                        <Grid RenderOptions.ClearTypeHint="Enabled">
+                                            <!--阴影矩形-->
+                                            <Rectangle x:Name="OpaqueRect" Fill="{Binding Background, ElementName=SubMenuBorder}"/>
+                                            <Border BorderBrush="{x:Null}" BorderThickness="1" Background="#FF1B1B1C">
+                                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Cycle" Grid.IsSharedSizeScope="True" KeyboardNavigation.TabNavigation="Cycle"/>
+                                            </Border>
+                                        </Grid>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
 
-        <LinearGradientBrush x:Key="Brush" StartPoint="0.5,0" EndPoint="0.5,1">
-            <GradientStop Color="#FF000000" Offset="1"/>
-            <GradientStop Color="#FF000000" Offset="0"/>
-            <GradientStop Color="#FF000000" Offset="0"/>
-        </LinearGradientBrush>
+                        </DockPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSuspendingPopupAnimation" Value="True">
+                                <Setter Property="PopupAnimation" TargetName="PART_Popup" Value="None"/>
+                            </Trigger>
+                            <Trigger Property="Icon" Value="{x:Null}">
+                                <Setter Property="Visibility" TargetName="Icon" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Visibility" TargetName="GlyphPanel" Value="Visible"/>
+                                <Setter Property="Visibility" TargetName="Icon" Value="Collapsed"/>
+                            </Trigger>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="B_MenuItem" Value="#FF3F3F46"/>
+                                <!--<Setter Property="IsOpen" TargetName="PART_Popup" Value="True"/>-->
+                            </Trigger>
+                            <Trigger Property="IsHighlighted" Value="True"/>
+                            <Trigger Property="IsKeyboardFocused" Value="True"/>
+                            <Trigger Property="IsSubmenuOpen" Value="True"/>
+                            <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="True">
+                                <Setter Property="Background" TargetName="B" Value="Gray"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="CanContentScroll" SourceName="SubMenuScrollViewer" Value="False">
+                                <Setter Property="Canvas.Top" TargetName="OpaqueRect" Value="{Binding VerticalOffset, ElementName=SubMenuScrollViewer}"/>
+                                <Setter Property="Canvas.Left" TargetName="OpaqueRect" Value="{Binding HorizontalOffset, ElementName=SubMenuScrollViewer}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
     </UserControl.Resources>
+    <Grid>
+        <Grid x:Name="MenuGrid">
+            <Menu x:Name="menu" Height="27" VerticalAlignment="Center" Background="{x:Null}" Foreground="{x:Null}" >
+                <MenuItem Header="  文件"  x:Name="systemConfig" Foreground="#FFF1F1F1" Width="78"  Style="{StaticResource MenuItemStyleTop}"  FontFamily="Microsoft YaHei UI Light" FontSize="12" Height="27">
+                    <MenuItem Header="设置" x:Name="ServicPanel" Foreground="#FFF1F1F1" Height="25" Width="85" Style="{StaticResource MenuItemStyleTop}" FontFamily="Microsoft YaHei UI Light" FontSize="12"/>
+                </MenuItem>
+                <MenuItem Header="数据服务"  x:Name="DataService" Foreground="#FFF1F1F1" Width="78"  Style="{StaticResource MenuItemStyleTop}"  FontFamily="Microsoft YaHei UI Light" FontSize="12" Height="27">
+                    <MenuItem Header="数据转换 " x:Name="DataConversion" Foreground="#FFF1F1F1" Height="25" Width="85" Style="{StaticResource MenuItemStyleTop}" FontFamily="Microsoft YaHei UI Light" FontSize="12" />
+                </MenuItem>
+            </Menu>
 
-    <Grid  Margin="1,1,1,1">
-
-
-        <!--<Optical_View_Control:GoogleCore x:Name="Browser" Margin="0,102,0,0"/>-->
-        <Optical_View_Control:MicrosoftEdgeView x:Name="_Browser" Margin="0,102,0,0"/>
-
-
-        <Grid x:Name="我来组成头部">
-            <Border  BorderThickness="2" Background="#FF2D2D30" Height="102" VerticalAlignment="Top" BorderBrush="#FF007ACC"/>
-            <Border x:Name="TopBder" BorderThickness="2" Background="#FF2D2D30" Height="104" VerticalAlignment="Top" Margin="-2,-2,-2,0">
-                <Optical_View:Earth3D x:Name="TopEarth3D" VerticalAlignment="Top" Height="42" Width="55" Margin="10,8,0,0" HorizontalAlignment="Left"/>
-            </Border>
-            <Border  MouseDown="TitleLabel_MouseUp" x:Name="titleBorder" BorderThickness="1" BorderBrush="#FF252526" Margin="0,13,331,0" Background="#FF252526" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Width="202">
-                <Label x:Name="titleLabel" Content="" VerticalAlignment="Center" Foreground="#DDFFFFFF" HorizontalContentAlignment="Center" Margin="11,0,9,0" MouseUp="TitleLabel_MouseUp"/>
-            </Border>
-            <Label MouseUp="MainTitle_MouseUp" Content="Optical View or Cesium" HorizontalAlignment="Left" Margin="6,58,0,0" VerticalAlignment="Top" Width="316" Height="42" Foreground="White" FontSize="22" FontWeight="Bold" Cursor="Hand"/>
-            <Image  HorizontalAlignment="Left" Height="32" Margin="22,16,0,0" VerticalAlignment="Top" Width="32" x:Name="ICON" MouseUp="ICON_MouseUp" Cursor="Hand"/>
         </Grid>
-
-        <!--<Optical_View_Control:GoogleCore x:Name="Browser" Margin="0,102,0,0"/>-->
     </Grid>
 </UserControl>

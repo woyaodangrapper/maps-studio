@@ -23,6 +23,7 @@ namespace Optical_View.View.Control
         {
             InitializeComponent();
             InitializeAsync();
+            webView.Visibility = Visibility.Hidden;
         }
         async void InitializeAsync()
         {
@@ -33,7 +34,22 @@ namespace Optical_View.View.Control
         {
             if (webView != null && webView.CoreWebView2 != null)
             {
-                webView.Source = new Uri("http://127.0.0.1:" + Model.Web_Server_Config.Port.ToString());
+                TimeSpan ts = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                webView.Source = new Uri("http://127.0.0.1:" + Model.Web_Server_Config.Port.ToString() + "/index.html?time:" + Convert.ToInt64(ts.TotalSeconds).ToString());
+                _ = System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    int i = 0;
+                    while (i <= 1)
+                    {
+                        i++;
+                        System.Threading.Thread.Sleep(1000);
+                    }
+                    _ = Dispatcher.BeginInvoke(new Action(delegate
+                    {
+                        webView.Visibility = Visibility.Visible;
+                    }));
+                });
+             
                 //webView.CoreWebView2.Navigate("http://127.0.0.1:" + Model.Web_Server_Config.Port.ToString());
             }
         }

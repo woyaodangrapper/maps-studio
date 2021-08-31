@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800" >
     
     <Grid>
-        <DockPanel Margin="3,3,3,3" >
+        <DockPanel x:Name="dockPanel"  Opacity="0.2">
             <wv2:WebView2 Name="webView" ></wv2:WebView2>
         </DockPanel>
     </Grid>

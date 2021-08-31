@@ -10,10 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="View\Form\5b7a4ee4478b6f648fdfcafaa0cc8015_720w.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignColors" Version="2.0.1" />
     <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
     <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.1.7" />
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.902.49" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.955-prerelease" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="106.12.0" />
     <PackageReference Include="Serilog" Version="2.10.0" />
@@ -23,7 +27,10 @@
 
   <ItemGroup>
     <Folder Include="WebGL\" />
-    <Folder Include="View\Form\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\Form\5b7a4ee4478b6f648fdfcafaa0cc8015_720w.jpg" />
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
