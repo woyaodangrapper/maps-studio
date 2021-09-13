@@ -47,12 +47,13 @@
                     <BlurEffect Radius="2" KernelType="Box"  RenderingBias="Quality"/>
                 </Border.Effect>
             </Border>
-            <Border Background="#7F2C2C2C"  CornerRadius="0" BorderBrush="#FF004370" BorderThickness="1"/>
+            <Border Background="#FF2D2D30"  CornerRadius="0" BorderBrush="#FF004370" BorderThickness="1"/>
 
         </Grid>
 
         <ViewBottom:FooterContainer x:Name="FooterContainer"  Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,-1,0" />
         <ViewBottom:PaddingContainer x:Name="PaddingContainer" Margin="0,1,0,25" />
+
         <!--关闭放大缩小按钮-->
         <Border x:Name="QuickControl" BorderThickness="1" HorizontalAlignment="Right" Width="158" Height="28" VerticalAlignment="Top" Margin="0,4,2,0">
             <Grid Margin="-1,-1,-1,-1"  >
@@ -68,6 +69,5 @@
 
             </Grid>
         </Border>
-
     </Grid>
 </Window>

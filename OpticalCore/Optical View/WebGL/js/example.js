@@ -1,10 +1,21 @@
 'use strict';
 (function (window) {
+    window.mousePosition = function(ev) {
+        if (ev.pageX || ev.pageY) {//firefox、chrome等浏览器
+            return { x: ev.pageX, y: ev.pageY };
+        }
+        return {// IE浏览器
+            x: ev.clientX + document.body.scrollLeft - document.body.clientLeft,
+            y: ev.clientY + document.body.scrollTop - document.body.clientTop
+        };
+    }
     class  OpticalCor_Logic{
         constructor() {
-           
+            this.socket; this.begin; 
       
         }
+        
+      
         //检测浏览器webgl支持
         webglReport() {
             //获取浏览器类型及版本
@@ -61,38 +72,52 @@
             return true;
         }
 
-        //抛出全部方法
-        findProperties(obj,...arg){
-        
-            function getProperty(new_obj){
-        
-            if(new_obj.__proto__ === null){ //说明该对象已经是最顶层的对象
-                return [];
+        //socket通信 
+        WebSocketint(port) {
+           var socket;
+            try {
+                socket = new WebSocket('ws://127.0.0.1:' + port); 
+            } catch (e) {
+            
+                console.log('error' + e);
+                return;
             }
-        
-            let properties = Object.getOwnPropertyNames(new_obj);
-        
-            let arr = [];  
-            
-            arg.forEach((v)=>{
-            
-                const newValue = properties.filter((property)=>{
-                    return property.startsWith(v);
-                })
-            
-                if(newValue.length>0){
-                    arr = arr.concat(newValue);
-                }
-            
-            })
-        
-            return [...arr,...getProperty(new_obj.__proto__)];
-        
+            socket.onopen = sOpen;
+            socket.onerror = sError;
+            socket.onmessage = sMessage;
+            socket.onclose = sClose;
+            function sOpen() {
+                console.log('connect success!');
+
+                socket.send(JSON.stringify({
+                    type:"client",
+                    msg:"success"
+                }));
             }
-        
-            return getProperty(obj);   
-        
-        
+            function sError(e) {
+                console.log("error ", e);
+            }
+            function sMessage(messageEvent) {
+                //messageEvent:MessageEvent 对象			
+                var data = messageEvent.data;//来自服务器的数据
+                var origin = messageEvent.origin;//服务器的地址
+
+                console.log(data, origin);
+            }
+            function sClose(e) {
+                console.log("connect closed:" + e.code);
+            }
+            this.socket = socket;
+            return true;
+        }
+        //通信发送信息
+        SocketintSend(str) {
+            console.log(str,'<=【】' )
+            socket.send(str);
+        }
+        //结束通信
+        SocketintClose() {
+            socket.close();
         }
         //初始化地球
         example_Init() {
@@ -106,6 +131,10 @@
                         // 访问球体对象（viewer.scene.globe） 并设置颜色
                         // _viewer.scene.globe.baseColor = new Cesium.Color.fromBytes(9, 21, 30, 1);
                         //_viewer.scene.backgroundColor = new Cesium.Color.fromCssColorString("#fff0");
+                        //开启hdr
+                        _viewer.scene.highDynamicRange = true;
+
+                        _viewer.scene.globe.enableLighting = true;
 
                         _viewer.scene.sun.show = false; //在Cesium1.6(不确定)之后的版本会显示太阳和月亮，不关闭会影响展示
                         _viewer.scene.moon.show = false;
@@ -120,98 +149,333 @@
                 //提示用户浏览器不支持WebGL，需更换浏览器
             }
         }
-     //加载底图
-    example_addBaseLayer(type,url) {
-        var config = null;
-        switch (Number(type)) {
-            case 1:
-
-                var urlStr = url;
-                var index = Number(urlStr);
-                if (!isNaN(index))//如果url是默认数字的话 调用内置的在线地图资源
-                {
-                    // alert("是数字");
-                    switch (index) {
-                        case 1:
-                            config = {
-                                name: '影像底图',
-                                type: 'mapbox',//www_google sl_geoq
-                                layer: 'satellite',
-                                // crs: '4326',
-                                brightness: 1
-                            }  
-                            break;
-                        case 2:
-                            config = {
-                                name: '影像底图',
-                                type: 'mapbox',//www_google sl_geoq
-                                layer: 'navigation',
-                                // crs: '4326',
-                                brightness: 0
-                            } 
-                            break;
-                        case 3:
-                            config = {
-                                name: '影像底图',
-                                type: 'mapbox',//www_google sl_geoq
-                                layer: 'blue',
-                                // crs: '4326',
-                                brightness: 0
-                            } 
-                            break; 
-                        case 4:
-                            config = {
-                                name: '影像底图',
-                                type: 'tdt',//www_google sl_geoq
-                                layer: 'blue',
-                                brightness: 0
-                            } 
-                            break; 
-                        case 5:
-                            config = {
-                                name: '影像底图',
-                                type: 'tdt',//www_google sl_geoq
-                                layer: 'satellite',
-                                brightness: 0
-                            } 
-                            break; 
-                        default:
-                            break;
-                    }
-                }else{
-                    config = {
-                        name: '影像底图',
-                        type: 'arcgis_cache',
-                        url: url + '/L{arc_z}/R{arc_y}/C{arc_x}.png'
-                    }
-                }
-
-               
-                break;  
-            case 2:
-                var provider = new Cesium.CesiumTerrainProvider({
-                    url: url,
-                    requestWaterMask : true,//开启法向量
-                    requestVertexNormals : true//开启水面特效
-                });
-                window.GIS.terrainProvider =provider;
-                break;
-            default:
-             
-                break;
+   
+        //加载底图
+        example_addBaseLayer() {
+            OpticalCore.addBaseLayer(window.GIS, {
+                name: '影像底图',
+                type: 'mapbox',//www_google sl_geoq // 被墙了暂时无法使用
+                layer: 'blue',//satellite
+                cn: true,
+                brightness: 1
+            });
         }
-        if(Number(type) !== 2)
-            if(config !== null)
-            {
+        //建筑分层
+        example_BuildingStratification(path){
+            var socket = this.socket
+            $("#mapBox").append(`<div class="tree well infoview" style="max-height: 666px;overflow: auto;-ms-overflow-style: none;scrollbar-width: none;">
+                <ul>
+                    <li id="tree_ul">
+                        <span><i class="icon-folder-open"></i> `+path+`</span> 
+                    </li>
+                </ul>
+            </div>`)
+            var data;
+            //#region 加载建筑信息
+            var settings = {
+                "url": "http://127.0.0.1:7776/GIS/Folder/GDM",
+                "method": "POST",
+                "timeout": 0,
+                async:false, 
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": JSON.stringify({
+                    "path": path
+                }),
+            };
+            var _this = this;
+            $.ajax(settings).done(function (response) {
+                data = response.data.list;
+                console.log(response)
+                _this.build_build(data)
+            }).fail(function (response) {
+                console.log(socket)
+                socket.send(JSON.stringify({
+                    type:"error",
+                    msg:"初始化 建筑。行为在请求接口时意外终止。"
+                }));
+            })
+            // socket.send('client success');
 
-            }
-            else
-            console.warn("无法查找到对应地图底图配置",{type,url})
+        }
+        build_build(data) {
+            
+            data = data.datas
+            window.GIS.Building = data;
+            data.forEach(element => {
+                console.log(element.Routefile.file3Dtiles)
+                var data = element.Routefile.file3Dtiles;
+                var px = []
+                for (let index = 0; index < data.length; index++) {
+                    const element = data[index];
+                    if(element.site != null  && element.site != "")
+                    {
+                        var mod =  OpticalCore.add3DTiles(window.GIS, {
+                            // name: "模型",
+                            id:element.id,
+                            url:  element.site,//gis.crcr.top:9732
+                            flyTo: true,//视野转跳
+                            height:10
+                        },{
+                            color: "color('white', 1)",
+                            show: true
+                        });
+                        mod.name = "build_build"
+                        mod.element = element;
+                    }
+
+                }
+                var n1 = []; var n2 = [];
+                function  px_() {
+                    for (let index = 0; index < px.length; index++) {
+                        const e = px[index];
+                        if(e.name1 == 1){
+                            n1.push(e)
+                        }
+                        if(e.name1 == 2){
+                            n2.push(e)
+                        }
+                    
+                    }
+                }px_()
+                var compare = function (prop) {
+                    return function (obj1, obj2) {
+                        var val1 = obj1[prop];
+                        var val2 = obj2[prop];if (val1 < val2) {
+                            return -1;
+                        } else if (val1 > val2) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }            
+                    } 
+                }
+                n1=(n1.sort(compare("name2")));
+                n2=(n2.sort(compare("name2")));
+
+                var n1_min = Math.min.apply(Math, n1.map(function(o) {return o.index}))
+                for (let i = 0; i < n1.length; i++) {
+                    n1[i].index = n1_min + i;
+                }
+                var n2_min = Math.min.apply(Math, n2.map(function(o) {return o.index}))
+                for (let i = 0; i < n2.length; i++) {
+                    n2[i].index = n2_min + i;
+                }
+                n1.forEach(element => {
+                    data[element.index] = element.data
+                });
+                n2.forEach(element => {
+                    data[element.index] = element.data
+                });
+
+                //#endregion
+                    
+                function makeTree(parentObj, treeJson) {
+                    var ulObj = $(`<ul></ul>`);
+                    for (var i = 0; i < treeJson.length; i++) {
+                        var childHtml = `<li style="display: none;">`;
+                        var aHtml;
+
+                        var str = treeJson[i].name;
+                
+                        if(treeJson[i].site != ""){
+                            aHtml = `<span><i  class="icon-minus-sign" data-id="` + treeJson[i].id + `"></i> `+ str +`</span>  <a id="`+treeJson[i].id+`" onclick="treeOnclick(this)"  href="#">可视</a>`
+                        }else{
+                            aHtml = `<span><i  class="icon-minus-sign" data-id="` + treeJson[i].id + `"></i> `+ str +`</span>`
+                        }
+                        childHtml += aHtml;
+                        childHtml += "</li>";
+
+                        if(treeJson[i].id != null && treeJson[i].id != '5')  {
+                            var childObj = $(childHtml);
+                            if (treeJson[i].children != null && treeJson[i].children.length > 0) {
+                                makeTree(childObj, treeJson[i].children);
+                            }
+                            $(ulObj).append(childObj);
+                        }  
+                    }
+                    $(parentObj).append($(ulObj));
+
+                };
+                
+                
+                function toTree(data) {
+                    let result = []
+                    if (!Array.isArray(data)) {
+                    return result
+                    }
+                    data.forEach(item => {
+                        delete item.children;
+                    });
+                    let map = {};
+                    data.forEach(item => {
+                        map[item.id] = item;
+                    });
+                    data.forEach(item => {
+                    let parent = map[item.pId];
+                    if (parent) {
+                        (parent.children || (parent.children = [])).push(item);
+                    } else {
+                        result.push(item);
+                    }
+                    });
+                    return result;
+                }
+                var tree = toTree(data);
+                makeTree($("#tree_ul"),tree)
+            
+                $(function(){
+                    $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+                    $('.tree li.parent_li > span').on('click', function (e) {
+                        var children = $(this).parent('li.parent_li').find(' > ul > li');
+                        if (children.is(":visible")) {
+                            children.hide('fast');
+                            $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+                        } else {
+                            children.show('fast');
+                            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+                        }
+                        e.stopPropagation();
+                    });
+                });
+
+                
+            });
+         
+         
+            return  data;
+        }
+        //移动高亮模型
+        MobileDetection(_viewer){
+            var viewer = _viewer == null ? window.GIS :_viewer;
+            
+            function mouseMove(ev) {
+                ev = ev || window.event;
+                var mousePos = mousePosition(ev);
+                var pick = new Cesium.Cartesian2(mousePos.x, mousePos.y);
+                    
+                var mod = viewer.scene.pick(pick);//选取当前的entity
+                if (mod && Cesium.defined(mod.primitive))
+                { 
+                    mod = mod.primitive
+                       
+                    for (var i = 0; i < viewer.scene.primitives.length; i++) {
+                        var model = viewer.scene.primitives.get(i)
+                        if(model.style_ != null){
+                            if(!model.show_){
+                                model.style = model.style_;
+                            }
+                        }
+                    }
+                   
+                    mod.style_ = mod.style;
+                      
+                    var defaultStyle = new Cesium.Cesium3DTileStyle({
+                        color: "color('white', 0.5)"
+                    });
+                    mod.style = defaultStyle
+
+                }
                
-    }
+            }
+            document.onmousemove = mouseMove;
+        }
+        BuildPull_out() {
+            this.MobileDetection()
+            var handlers = new Cesium.ScreenSpaceEventHandler( window.GIS.scene.canvas);
+          
+            handlers.setInputAction(function (movement) {
+                var modle = window.GIS.scene.pick(movement.position);//选取当前的entity;
+                if(modle && Cesium.defined(modle.tileset))
+                { 
+                    modle = modle.tileset
+                    // var modle = VMSDS.core.QueryModel_Scene(window.VMSDS.GIS,mod.id)
+                    if(Cesium.defined(modle))
+                    { 
+                        var viewer = app_viewer()
+                        add_mod(viewer,modle.element)
+                        function add_mod(viewer,e) {
+                            var model = OpticalCore.add3DTiles(viewer, {
+                                name:"Overview_model",
+                                id:e.id,
+                                url: e.site,//gis.crcr.top:9732
+                                duration: 0,
+                                flyTo:true,//视野转跳
+                                height:10
+                            },{
+                                color: "color('white', 1)",
+                                show: true
+                            });
+                            model.element = e;
+                        }
+
+                        window.mousePosition = function(){
+                            return {// IE浏览器
+                                x: 0,
+                                y: 0
+                            };
+                        } 
+                    }
+                   
+                }
+            }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+            
+
+            function app_viewer() {
+                var viewer = control.addOverview("Overview");
+                $(".overview-div").append(`
+                <div class="btn-group mb-2" style="position: absolute;bottom: 10%;left: 50%;z-index: 999;">
+                    <button type="button" class="btn btn-light">复位</button>
+                </div>
+                `);
+            
+                viewer.scene.globe.show = false;
+                $($($("#Overview").find(".btn-group")[0]).find("button")[0]).click(function () {
+                    
+                    var model = OpticalCore.QueryModel_Scene_x(viewer,{"name":"Overview_model"});
+                    if(model.length <= 0){return;}
+                    viewer.flyTo(model[0], {
+                        offset : {
+                            heading : Cesium.Math.toRadians(0.0),
+                            pitch : Cesium.Math.toRadians(-25),
+                            range : 0
+                        },
+                        duration: 0
+                    });
+                
+                })
+                var btn = $($($("#Overview").find(".btn-group")[0]).find("button")[0]);
+                $(btn).html("正在转跳中..");
+                $(btn).attr('disabled',true);
+                setTimeout(() => {
+                    setTimeout(() => {
+                        $(btn).attr('disabled',false);
+                        $(btn).html("复位")
+                    }, (1 * 1000 + 500));
+                
+                }, 1000);
+                return viewer;
+            }
+            
        
-        
+        }
+
+        add3DTiles(url){
+
+            var model = OpticalCore.add3DTiles(window.GIS, {
+                // name : "七堡",
+                // id:e.id,
+                url:url,
+                duration: 3,
+                flyTo:  true ,//视野转跳
+                height:10
+            },{
+                color: "color('white', 1)",
+                show: true
+            });
+        }
     }
-    window.OpticalCor_Logic = OpticalCor_Logic;
+    window.Logic = OpticalCor_Logic;
 
 })(window);

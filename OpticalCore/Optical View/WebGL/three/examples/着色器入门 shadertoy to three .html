@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            height: 100%;
+        }
+
+        canvas {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+	<div id="container" tabindex="0" style="width: 100%;height: 100%;"></div>
+</body>
+<script src="/build/three.js"></script>
+<script src="../examples/js/controls/OrbitControls.js"></script>
+<script src="../examples/js/libs/stats.min.js"></script>
+<script src="../examples/js/libs/dat.gui.min.js"></script>
+
+<script>
+    var camera, scene, renderer;
+	var material;
+	var uniforms;
+
+	function init() {
+		var a = `
+		varying vec2 vUv;
+		uniform vec3      iResolution;           // 视口分辨率（像素）
+		uniform float     iTime;                 // 着色器播放时间（秒）
+		void main(){
+			// Normalized pixel coordinates (from 0 to 1)
+			// vec2 uv = fragCoord/iResolution.xy;
+
+			// Time varying pixel color
+			//vec3 col = 0.5 + 0.5*cos(iTime+uv.xyx+vec3(0,2,4));
+			vec3 col = 0.5 + 0.5*cos(iTime+vUv.xyx+vec3(0,2,4));
+			// Output to screen
+			gl_FragColor = vec4(col,1.0);
+		}
+		`
+		const fragmentShader = `
+		varying vec2 vUv;
+
+
+		// 时间
+		uniform float iTime;
+		// 分辨率
+		uniform vec2 iResolution;
+		// 鼠标位置
+		uniform vec2 iMouse;
+		
+		void main(){
+			vec3 c;
+			float l,z=iTime;
+			for(int i=0;i<3;i++) {
+				vec2 uv,p=vUv.xy/iResolution.xy;
+				float aspect = iResolution.x/iResolution.y;
+				uv=p;
+				p-=.5;
+				p.x*=aspect;
+				z+=.07;
+				l=length(p);
+				uv+=p/l*(sin(z)+1.)*abs(sin(l*9.-z*2.));
+				c[i]=.01/length(abs(mod(uv,1.)-.5));
+			}
+			gl_FragColor=vec4(c/l,iTime);
+		}
+		`
+		const vertexShader = `
+			varying vec2 vUv;
+			void main(){
+				vUv = uv;
+				gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+			}
+		`
+        container = document.getElementById('container');
+		var width = window.innerWidth + 1; // 画布的宽度
+        var height = window.innerHeight - 3; // 画布的高度
+		console.log(width,height)
+        renderer = new THREE.WebGLRenderer();
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+        scene = new THREE.Scene();
+          
+ 
+        camera = new THREE.PerspectiveCamera(45, width/height, 1, 2000);;
+        camera.position.set(0,0,360);
+        scene.add(camera);
+ 
+         
+ 
+        var geometry = new THREE.PlaneBufferGeometry(width, height);
+ 
+        // var imouse = new THREE.Vector2();
+        // window.addEventListener("touchmove", function(evt) {
+		// 	imouse.x = evt["touches"][0].clientX;
+		// 	imouse.y = evt["touches"][0].clientY;
+        // })
+ 
+        // uniforms = {
+        //    iTime: { value: 1.0 },
+        //    iResolution: { value: new THREE.Vector2(width * 1.0, height * 1.0)},
+        //    iMouse: { value: new THREE.Vector2(0.0, 0.0) }
+        // };
+		uniforms = {
+			iTime:{value:0},
+			iResolution:  { value: new THREE.Vector3( 1,1,1) },
+		};
+        material = new THREE.ShaderMaterial({
+			uniforms: uniforms,
+			vertexShader: vertexShader,
+			fragmentShader: fragmentShader
+		});
+		// var plane = new THREE.Mesh(new THREE.BoxGeometry(100,100,100), shadertoy);//new THREE.Mesh(planeGeo, shadertoy);
+		
+		setInterval(()=>{
+			uniforms.iTime.value += 0.1;
+		},200);
+
+        var geom = new THREE.PlaneBufferGeometry(width, height);
+ 
+        var mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+ 
+        var clock = new THREE.Clock(); // 时钟
+        (function animate() {
+            requestAnimationFrame( animate );
+ 
+            var delta = clock.getDelta(); // 获取本次和上次的时间间隔
+            uniforms.iTime.value += delta; // 设置着色器使用的 iTime 参数
+            renderer.render( scene, camera ); // 重新渲染
+        })();
+ 
+         var mouseStartPosition = null; // 鼠标起始位置
+
+		 // onresize 事件会在窗口被调整大小时发生
+		window.onresize=function(){
+			// 重置渲染器输出画布canvas尺寸
+			renderer.setSize(window.innerWidth,window.innerHeight - 3);
+		};
+
+        // window.addEventListener("mousemove", function (event) {
+        //     if (!mouseStartPosition) {
+        //             mouseStartPosition = {x: event.clientX, y: event.clientY}
+        //     } else {
+        //             uniforms.iMouse.value.x = event.clientX - mouseStartPosition.x;
+        //             uniforms.iMouse.value.y = event.clientY - mouseStartPosition.y;
+        // 	}
+        // })
+
+	}
+
+	function start() {
+		init();
+	}
+	start();
+</script>
+</html>

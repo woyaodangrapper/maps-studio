@@ -7,30 +7,34 @@
     <UseWPF>true</UseWPF>
     <Platforms>AnyCPU;x64</Platforms>
     <RunPostBuildEvent></RunPostBuildEvent>
+    <ApplicationIcon>OBCIO.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="View\Form\5b7a4ee4478b6f648fdfcafaa0cc8015_720w.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="Fleck" Version="1.2.0" />
+    <PackageReference Include="HelixToolkit" Version="2.18.0" />
+    <PackageReference Include="HelixToolkit.Wpf" Version="2.18.0" />
     <PackageReference Include="MaterialDesignColors" Version="2.0.1" />
     <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
     <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.1.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.955-prerelease" />
+    <PackageReference Include="MQTTnet" Version="3.0.16" />
+    <PackageReference Include="MQTTnet.AspNetCore" Version="3.0.16" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="106.12.0" />
     <PackageReference Include="Serilog" Version="2.10.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="WindowsAPICodePack" Version="1.1.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="WebGL\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="View\Form\5b7a4ee4478b6f648fdfcafaa0cc8015_720w.jpg" />
+    <ProjectReference Include="..\Obj2Gltf\src\Obj23dTiles\Obj23dTiles.csproj" />
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">

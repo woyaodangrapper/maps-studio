@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Serilog;
+using System;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Interop;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using static Optical_View.Model.View_static_control;
 
 namespace Optical_View
@@ -24,48 +15,26 @@ namespace Optical_View
     {
         public MainWindow()
         {
+        
+
             #region 初始化用户控件 扔入公共控件类
-                Window w = this;
+            Window w = this;
                 MainForm.control = w;
             #endregion
             InitializeComponent();
 
             #region 初始化用户控件 扔入公共控件类
-                BrowserContainer.control = PaddingContainer._Browser;
+            
             #endregion
 
-            Min.MouseMove += new MouseEventHandler(TopBder_MouseMove);
-            void TopBder_MouseMove(object sender, MouseEventArgs e)
-            {
-                if (e.LeftButton == MouseButtonState.Pressed)
-                {
-                    //处理win10 边框磁吸效果
-                    if (this != null && WindowState == WindowState.Maximized)
-                    {
-                        // Gets the absolute mouse position, relative to screen
-                        Point GetMousePos()
-                        {
-                            return PointToScreen(Mouse.GetPosition(this));
-                        }
-                        Point T = GetMousePos();
-                        Top = T.Y - Mouse.GetPosition(this).Y;
-                        Left /= 2;
-                        WindowState = WindowState.Normal;
-
-                    }
-                    if (this != null)
-                    {
-                        DragMove();
-                    }
-                }
-            }
         }
 
-       
+
+
 
         #region 关闭按钮，最大化按钮鼠标悬浮事件
-        //关闭按钮，最大化按钮鼠标悬浮事件
-        private void ExpandBox_MouseUp(object sender, MouseButtonEventArgs e)
+            //关闭按钮，最大化按钮鼠标悬浮事件
+         private void ExpandBox_MouseUp(object sender, MouseButtonEventArgs e)
         {
 
             if (WindowState == WindowState.Maximized)
@@ -78,11 +47,48 @@ namespace Optical_View
                 WindowState = WindowState.Maximized;
             }
         }
+
         private void CloseBox_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            ClearDirectory(@"WebGL\.cache");
             System.Environment.Exit(0);
         }
-       
+        /// <summary>
+        /// 清空文件夹
+        /// </summary>
+        /// <param name="path">路径</param>
+        /// <returns>是否成功</returns>
+        /// <remarks>删除指定文件夹中所有文件</remarks>
+        public static bool ClearDirectory(string path)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(path)
+                    || !Directory.Exists(path))
+                {
+                    return true;  // 如果参数为空，则视为已成功清空
+                }
+                // 删除当前文件夹下所有文件
+                foreach (string strFile in Directory.GetFiles(path))
+                {
+                    File.Delete(strFile);
+                }
+                // 删除当前文件夹下所有子文件夹(递归)
+                foreach (string strDir in Directory.GetDirectories(path))
+                {
+                    Directory.Delete(strDir, true);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(string.Format("清空 {0} 异常, 消息:{1}, 堆栈:{2}"
+                    , path, ex.Message, ex.StackTrace));
+                return false;
+            }
+        }
+
         private void CloseBox_MouseEnter(object sender, MouseEventArgs e)
         {
             WindowCloseBord.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(180, 224, 100, 100));

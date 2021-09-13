@@ -94,15 +94,19 @@ namespace Optical_View.View.Control
                 SideUnfoldingGrid.Opacity = 0;
                 if (BrowserContainer.control != null)
                 {
-                    double left = BrowserContainer.control.Margin.Left - SideUnfoldingGrid.ActualWidth;
-                    BrowserContainer.control.Margin = new Thickness(left, 102, 0, 0);
+                   
+                   
+                    double left = BrowserContainer.control.Margin.Left - 405;
+                    if (BrowserContainer.control.Name != "_")
+                        BrowserContainer.control.Margin = new Thickness(left, 102, 0, 0);
                 }
             }
             else {
                 if (BrowserContainer.control != null)
                 {
-                    double left = BrowserContainer.control.Margin.Left + SideUnfoldingGrid.ActualWidth;
-                    BrowserContainer.control.Margin = new Thickness(left, 102, 0, 0);
+                    double left = BrowserContainer.control.Margin.Left + 405;
+                    if (BrowserContainer.control.Name != "_")
+                        BrowserContainer.control.Margin = new Thickness(left, 102, 0, 0);
                 }
                 SideUnfoldingGrid.Opacity = 100;
             }
@@ -114,8 +118,9 @@ namespace Optical_View.View.Control
             SideUnfoldingGrid.Opacity = 0;
             if (BrowserContainer.control != null)
             {
-                double left = BrowserContainer.control.Margin.Left - SideUnfoldingGrid.ActualWidth;
-                BrowserContainer.control.Margin = new Thickness(left, 102, 0, 0);
+                double left = BrowserContainer.control.Margin.Left - 405;
+                if (BrowserContainer.control.Name != "_")
+                    BrowserContainer.control.Margin = new Thickness(left, 102, 0, 0);
             }
         }
      

@@ -19,5 +19,11 @@ namespace Optical_View.Model
         {
             public static View.Control.MicrosoftEdgeView control { get; set; }
         }
-    }
+        //MainWindow
+        public partial class ConversionView
+        {
+            public static View.Control.Conversion3DView control { get; set; }
+        }
+    }   
+    
 }

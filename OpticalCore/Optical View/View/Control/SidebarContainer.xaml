@@ -20,7 +20,7 @@
         </Style>
     </UserControl.Resources>
     <Grid x:Name="GridTop1"  Margin="0,0,285,0">
-        <Grid x:Name="SideUnfoldingGrid" Margin="30,0,-285,1">
+        <Grid x:Name="SideUnfoldingGrid" Margin="30,0,-285,1" Background="#991B1B1C">
             <Border x:Name="BB_Border" BorderBrush="#FF464646" BorderThickness="1" Margin="0,0,0,-1"  HorizontalAlignment="Left" Width="285">
                 <Border BorderBrush="#FF007ACC" BorderThickness="1" Background="#FF007ACC" Height="19" VerticalAlignment="Top" HorizontalAlignment="Right" Width="284">
                     <Label x:Name="label" Content="文件大纲" Margin="0,0,212,-2" Foreground="#FFF1F1F1" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="72"/>
@@ -221,7 +221,7 @@
                 </Grid>
 
             </Grid>
-            <Border BorderThickness="1" BorderBrush="#FF007ACC">
+            <Border BorderThickness="1" BorderBrush="#CC007ACC">
                 <Grid>
                     <ProgressBar x:Name="UpdateStatus" IsIndeterminate="True" Height="5" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="285" Margin="0,0,0,-1" />
                 </Grid>
@@ -234,7 +234,7 @@
                     <Style x:Name="TreeViewItemStyle" TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource MaterialDesignTreeViewItem}"></Style>
                 </TreeView.ItemContainerStyle>
             </TreeView>
-            <TextBox  x:Name="textBox" HorizontalAlignment="Center" Height="23" Margin="0,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" Background="#FF3F3F46" BorderBrush="#FF007ACC" Foreground="#FF878787" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="  搜索" TextChanged="textBox_TextChanged" Cursor="IBeam"/>
+            <TextBox  x:Name="textBox" HorizontalAlignment="Center" Height="23" Margin="0,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" Background="#193F3F46" BorderBrush="#FF007ACC" Foreground="#FF878787" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="  搜索" TextChanged="textBox_TextChanged" Cursor="IBeam"/>
         </Grid>
         <Border BorderThickness="0" BorderBrush="#FF007ACC"/>
         <Border x:Name="BorderT1" Margin="0,38,0,0" RenderTransformOrigin="0.5,0.5" Height="143" VerticalAlignment="Top" HorizontalAlignment="Center" Width="28" DragEnter="Border_DragEnter" MouseEnter="BorderT1_MouseEnter" MouseLeave="BorderT1_MouseLeave"  Cursor="Hand">

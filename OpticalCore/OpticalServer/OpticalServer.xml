@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpticalServer</name>
+    </assembly>
+    <members>
+        <member name="T:OpticalServer.Iexpand">
+            <summary>
+            拓展类
+            </summary>
+        </member>
+        <member name="M:OpticalServer.Iexpand.Sends(System.Object,System.String,Microsoft.AspNetCore.Http.HttpResponse,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            拓展obj mqtt发生等待返回数据
+            </summary>
+            <param name="obj">发送的对象</param>
+            <param name="Name">方法名称</param>
+            <param name="Response">返回接口状态码</param>
+            <param name="await">是否等待返回(数据获取加速1)</param>
+            <param name="cache">是否缓存数据(数据获取加速2 必须 1 为 false)</param>
+            <returns></returns>
+        </member>
+        <member name="T:OpticalServer.Controllers.GISFolder">
+            <summary>
+            文件夹配置
+            </summary>
+        </member>
+        <member name="M:OpticalServer.Controllers.GISFolder.GetDataModel(OpticalServer.Model.Object.GetDataModel)">
+            <summary>
+            获取数据模型接口
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:OpticalServer.MQTT.IMTClient">
+            <summary>
+            MQ客户端用于和中间件交互
+            </summary>
+        </member>
+        <member name="T:OpticalServer.MQTT.IMTClient.RunAsyncState">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:OpticalServer.MQTT.IMTClient.RunAsyncState.state">
+            <summary>
+            TCP服务是否开启
+            </summary>
+        </member>
+        <member name="T:OpticalServer.MQTT.IMTClient.RunAsyncData">
+            <summary>
+            返回的消息
+            </summary>
+        </member>
+        <member name="P:OpticalServer.MQTT.IMTClient.RunAsyncData.state">
+            <summary>
+            返回状态
+            </summary>
+        </member>
+        <member name="P:OpticalServer.MQTT.IMTClient.RunAsyncData.errcode">
+            <summary>
+            错误编码
+            </summary>
+        </member>
+        <member name="P:OpticalServer.MQTT.IMTClient.RunAsyncData.top">
+            <summary>
+            消息头
+            </summary>
+        </member>
+        <member name="P:OpticalServer.MQTT.IMTClient.RunAsyncData.Name">
+            <summary>
+            调用方法名称 消息中部
+            </summary>
+        </member>
+        <member name="P:OpticalServer.MQTT.IMTClient.RunAsyncData.WithTopic">
+            <summary>
+            mqttID 消息尾部
+            </summary>
+        </member>
+        <member name="P:OpticalServer.MQTT.IMTClient.RunAsyncData.msg">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="T:OpticalServer.MQTT.IMTClient.RunAsyncDataList">
+            <summary>
+            返回的消息
+            </summary>
+        </member>
+        <member name="M:OpticalServer.MQTT.IMTClient.RunAsync">
+            <summary>
+            初始化客户端
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpticalServer.MQTT.IMTClient.SendMessage(System.String,System.Object,System.Int32@,System.Boolean,System.Boolean)">
+            <summary>
+            发送信息给服务端 System.Reflection.MethodBase.GetCurrentMethod().Name
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:OpticalServer.MQTT.IMTClient.IGB2818">
+            <summary>
+            对回调进行约束
+            </summary>
+        </member>
+        <member name="T:OpticalServer.MQTT.IMTClient.IGB2818.SomeCalculateWay">
+            <summary>
+            回调声明
+            </summary>
+            <param name="RP"></param>
+        </member>
+        <member name="T:OpticalServer.MQTT.IMTClient.IGB2818.IReturnParameters">
+            <summary>
+            回调的数据结构
+            </summary>
+        </member>
+        <member name="P:OpticalServer.MQTT.IMTClient.IGB2818.IReturnParameters.more">
+            <summary>
+            更多
+            </summary>
+        </member>
+        <member name="P:OpticalServer.MQTT.IMTClient.IGB2818.IReturnParameters.declaringType">
+            <summary>
+            类名
+            </summary>
+        </member>
+        <member name="P:OpticalServer.MQTT.IMTClient.IGB2818.IReturnParameters.currentMethod">
+            <summary>
+            方法名
+            </summary>
+        </member>
+        <member name="P:OpticalServer.MQTT.IMTClient.IGB2818.IReturnParameters.msg">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="P:OpticalServer.MQTT.IMTClient.IGB2818.IReturnParameters.data">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="P:OpticalServer.MQTT.IMTClient.IGB2818.IReturnParameters.state">
+            <summary>
+            状态
+            </summary>
+        </member>
+    </members>
+</doc>

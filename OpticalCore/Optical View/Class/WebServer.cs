@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace Optical_View.Class
 {
-    public static class Windows_ImWebServer
+    public class Windows_ImWebServer
     {
         public static bool running = false; // Is it running?
 
@@ -23,6 +23,8 @@ namespace Optical_View.Class
         { 
             //{ "extension", "content type" }
             { "htm", "text/html" },
+            { "mtl", "text/xml" },{ "svg", "image/svg+xml" },
+            { "obj", "application/zip" },
             { "b3dm", "application/zip" },
             { "cmpt", "application/zip" },
             { "js", "application/javascript" },
@@ -33,7 +35,7 @@ namespace Optical_View.Class
             { "css", "text/css" },
             { "png", "image/png" },
             { "gif", "image/gif" },
-            { "jpg", "image/jpg" },
+            { "jpg", "image/jpg" },{ "JPG", "image/jpg" },
             { "jpeg", "image/jpeg" },
             { "zip", "application/zip"}
         };

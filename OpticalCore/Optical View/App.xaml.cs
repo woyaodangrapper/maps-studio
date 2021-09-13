@@ -1,6 +1,7 @@
 ﻿
 //using CefSharp;
 //using CefSharp.Wpf;
+using Optical_View.Class;
 using Optical_View.View.Form;
 using Serilog;
 using System;
@@ -43,7 +44,7 @@ namespace Optical_View
         {
             Timeline.DesiredFrameRateProperty.OverrideMetadata(
                 typeof(Timeline),
-                new FrameworkPropertyMetadata { DefaultValue = 20 }//60、90、100 
+                    new FrameworkPropertyMetadata { DefaultValue = 32 }//60、90、100 
                 );
         } 
         
@@ -71,13 +72,15 @@ namespace Optical_View
                 .CreateLogger();
             }
             #endregion
-     
+
             // Add Custom assembly resolver
             AppDomain.CurrentDomain.AssemblyResolve += Resolver;
             //Any CefSharp references have to be in another method with NonInlining
             // attribute so the assembly rolver has time to do it's thing.
             InitializeCefSharp();//Cef内核 因wpf webgl刷新问题不使用/但无法解决 除win10以下版本使用本工具
             InitializeWebServer(); //初始化内置的代理服务器
+            InitializeWebsocketServer();
+            //new WebsocketServer().WebSocketInit();//WebSocketInit
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
@@ -100,11 +103,14 @@ namespace Optical_View
        
         private static void InitializeWebServer()
         {
-            Model.Web_Server_Config.Port = Class.SystemOperation.PortIsUsed();
-            Log.Debug("Model.Web_Server_Config.Port =>" + Model.Web_Server_Config.Port);
-            _ = Class.Windows_ImWebServer.start(IPAddress.Parse("127.0.0.1"), Model.Web_Server_Config.Port, 1, "WebGL");
+            Model.Web_Server_Config.Web_Server_Port = Class.SystemOperation.PortIsUsed();
+            Log.Debug("Model.Web_Server_Config.Port =>" + Model.Web_Server_Config.Web_Server_Port);
+            _ = Class.Windows_ImWebServer.start(IPAddress.Parse("127.0.0.1"), Model.Web_Server_Config.Web_Server_Port, 1,"WebGL");
         }
 
+        private static void InitializeWebsocketServer() {
+            Browser_execution_method.WebSocketInit();
+        }
         // Will attempt to load missing assembly from either x86 or x64 subdir
         // Required by CefSharp to load the unmanaged dependencies when running using AnyCPU
         private static Assembly Resolver(object sender, ResolveEventArgs args)

@@ -32,23 +32,26 @@
 
 /**导航控件样式*/
 .distance-legend {
-  background-color:rgba(0, 0, 0, 0);
-  bottom: 30px;
+  border: 0px solid black;
+  background-color: rgb(93 24 24 / 0%);
+  bottom: 0px;
   position: fixed;
   pointer-events: auto;
   border-radius: 3px;
   padding-left: 5px;
   padding-right: 5px;
-  right: 208px;
+  right: 332px;
   height: 30px;
   width: 125px;
 }
 
 .navigation-controls {
+  display: none;
 
   background: rgba(47, 53, 60, .8);
   position: absolute;
-  right: 68px;
+  right: 30px;
+  top: 110px;
   width: 30px;
   border: 1px solid rgba(255, 255, 255, .1);
   font-weight: 300;
@@ -108,9 +111,11 @@
 }
 
 .compass {
+  top: 304px;
+  /* top: 114px; */
+  z-index: 107;
   pointer-events: auto;
   right: 37px;
-  top: 114px;
   overflow: hidden
 }
 
@@ -189,16 +194,72 @@
 
 /**鹰眼缩略图*/
 .overview-map {
+  
   position: absolute;
   width: 20%;
   height: 20%;
-  bottom: 0px;
-  left: 0px;
+  bottom: 5%;
+  left: 3%;
   z-index: 999;
-  background: red;
-  border: solid blue 1px;
+  /* background: red;
+  border: solid blue 1px; */
 }
-
+.overview-div {
+  backdrop-filter: blur(20px);
+  position: absolute;
+  font-size: 15px;
+  font-weight: 400;
+  color: #ddd;
+  /* background-color: #333c; */
+  width: 30%;
+  height: 30%;
+  left: 3%;
+  top: 13%;
+  /* padding-bottom: 80px; */
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  /* opacity: .9; */
+  z-index: 100;
+  box-shadow: 0 1px 10px 1px rgb(0 0 0 / 12%);
+}
+.overview-close {
+    background: url('../assets/img/close.png');
+    color: #fff;
+    float: right;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    opacity: 1;
+    cursor: pointer;
+    padding: 15px;
+    z-index: 999;
+}
+.overview-narrow {
+  background: url('../assets/img/narrow.png') no-repeat center;
+  color: #fff;
+  float: right;
+  position: absolute;
+  top: 3px;
+  right: 35px;
+  opacity: 1;
+  cursor: pointer;
+  padding: 15px;
+  z-index: 999;
+}
+.overview-enlarge {
+  background: url('../assets/img/fda.png') no-repeat center;
+  color: #fff;
+  float: right;
+  position: absolute;
+  top: 3px;
+  right: 35px;
+  opacity: 1;
+  cursor: pointer;
+  padding: 15px;
+  display: none;
+  z-index: 999;
+}
 /* debug框 */
 .cesium-performanceDisplay-defaultContainer {
   position: absolute;
@@ -206,3 +267,148 @@
   right: 10px;
   text-align: right;
 }
+/*
+ html 气泡样式1
+*/
+/*leaflet风格气泡窗口样式模板*/
+.cesium-popup {
+	position: absolute;
+	text-align: center;
+}
+
+.cesium-popup-close-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 4px 4px 0 0;
+	text-align: center;
+	width: 18px;
+	height: 14px;
+	font: 16px/14px Tahoma, Verdana, sans-serif;
+	color: #c3c3c3;
+	text-decoration: none;
+	font-weight: bold;
+	background: transparent;
+}
+
+.cesium-popup-content-wrapper {
+	text-align: center;
+	max-height: 200px;
+	overflow-y: auto;
+	background: rgba(63, 72, 84, 0.7);
+	box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+	padding: 1px;
+	text-align: left;
+	border-radius: 4px;
+    padding: 16px;;
+}
+
+.cesium-prompt-content-wrapper {
+	text-align: center;
+	max-height: 200px;
+	overflow-y: auto;
+	box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+	padding: 1px;
+	text-align: left;
+}
+
+.cesium-popup-content {
+	line-height: 1.4;
+}
+
+.cesium-popup-tip-container {
+	margin: 0 auto;
+	width: 40px;
+	height: 20px;
+	position: relative;
+	overflow: hidden;
+}
+
+.cesium-popup-tip {
+	background:  rgba(63, 72, 84, 0.7);
+	box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+	width: 17px;
+	height: 17px;
+	padding: 1px;
+	margin: -10px auto 0;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.popupContent{
+	color: white;
+}
+.promptDiv{
+	background: rgba(0, 0, 0, 0.4);
+	font-size: 10px;
+}
+
+.promptContent{
+	color:white;
+}
+/*
+呼吸灯
+*/
+.breathe-div {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-name: commonly;
+  -webkit-animation-duration: 1500ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+}
+
+@-webkit-keyframes commonly {
+  0% {
+      opacity: .4;
+      border: 1px solid #0093df;
+      box-shadow: 0 1px 1px rgba(0, 149, 223, 0.151), 0 1px 1px rgba(0, 147, 223, 0.1) inset;
+  }
+
+  100% {
+      opacity: 1;
+      border: 1px solid #0095df91;
+      box-shadow: 0 1px 30px #0093df, 0 1px 20px #0093df inset;
+  }
+}
+
+@-webkit-keyframes secondary {
+  0% {
+      opacity: .4;
+      border: 1px solid #ffb324;
+      box-shadow: 0 1px 2px rgba(0, 147, 223, 0.4), 0 1px 1px rgba(0, 147, 223, 0.1) inset;
+  }
+
+  100% {
+      opacity: 1;
+      border: 1px solid #ffb32491;
+      box-shadow: 0 1px 30px #ffb324, 0 1px 20px #ffb324 inset;
+  }
+}
+
+@-webkit-keyframes urgent {
+  0% {
+      opacity: .4;
+      border: 1px solid #ff4e5791;
+      box-shadow: 0 1px 2px rgba(0, 147, 223, 0.4), 0 1px 1px rgba(0, 147, 223, 0.1) inset;
+  }
+
+  100% {
+      opacity: 1;
+      border: 1px solid #ff4e57;
+      box-shadow: 0 1px 30px #ff4e57, 0 1px 20px #ff4e57 inset;
+  }
+}
+/*
+超出隐藏
+*/
+.f-els3_3{overflow: hidden; text-overflow:ellipsis; white-space: nowrap;}

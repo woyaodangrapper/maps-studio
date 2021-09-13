@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Optical_View.View.Control.Conversion3DView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Optical_View.View.Control" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+            d:DesignHeight="900" d:DesignWidth="1700">
+    <Grid>
+        <materialDesign:Card Margin="70,136,43,0"  materialDesign:ShadowAssist.ShadowDepth="Depth1" Padding="12" Background="{x:Null}">
+            <Grid>
+                <ListView x:Name="ListView" Margin="0,146,0,20" Foreground="#FF007ACC" HorizontalAlignment="Left" Width="655"/>
+
+                <materialDesign:Card
+  materialDesign:ShadowAssist.ShadowDepth="Depth1" Margin="685,15,0,0"
+  Padding="12" Background="#0CFFFFFF">
+                    <local:MicrosoftEdgeView x:Name="_"/>
+                </materialDesign:Card>
+                <Grid Margin="0,15,908,0" Background="#FF1E1E1E" Height="108" VerticalAlignment="Top">
+                    <TextBlock x:Name="ConversionText" TextTrimming="CharacterEllipsis"
+                        Style="{StaticResource textBlockStyle}"
+                        Text="文件夹" Margin="97,26,153,54" FontSize="20" />
+                    <TextBlock TextTrimming="CharacterEllipsis"
+                        Style="{StaticResource MaterialDesignOverlineTextBlock}"
+                        Text="更新协议 20210910" Margin="97,66,153,28" FontSize="10" Foreground="#4CFFFFFF" />
+                    <materialDesign:PackIcon  Kind="ElectronFramework" Margin="21,0,0,0" Foreground="#FF007ACC" Height="61" Width="59" FontWeight="Normal" VerticalAlignment="Center" />
+                    <materialDesign:Card
+                        materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                        Padding="32" Foreground="{x:Null}" Background="#FF007ACC" Margin="0,0,648,0" />
+                    <Button
+                        Style="{StaticResource MaterialDesignOutlinedButton}"
+                        ToolTip="转换方向 顶点压缩 双面光等"
+                        Content="修改" Margin="520,22,7,54" Foreground="White" BorderBrush="#33000000" FontSize="12" Cursor="Hand" Background="#19FFFFFF" />
+                    <Button x:Name="ConversionStart_Button"
+                        Style="{StaticResource MaterialDesignOutlinedButton}"
+                        ToolTip="开始数据转换"
+                        Content="启动" Margin="520,57,7,19" Foreground="White" BorderBrush="#33000000" FontSize="12" Cursor="Hand" Background="#19FFFFFF" Click="ConversionStart_Button_Click" />
+                    <TextBlock TextTrimming="CharacterEllipsis"
+                        Style="{StaticResource MaterialDesignOverlineTextBlock}"
+                        Text="" Margin="97,83,153,10" FontSize="10" Foreground="#4CFFFFFF" />
+
+                </Grid>
+            </Grid>
+        </materialDesign:Card>
+
+    </Grid>
+</UserControl>

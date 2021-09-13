@@ -20,12 +20,12 @@
                                 <TextBlock Text="{TemplateBinding Header}" Padding="19,5,0,0"/>
                             </Border>
                             <Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False" HorizontalOffset="-1" VerticalOffset="0" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Bottom" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxHeight="150" OpacityMask="{x:Null}" >
-                                <Border x:Name="B"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF333337">
+                                <Border x:Name="B"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#19000000">
                                     <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}" Foreground="{x:Null}">
                                         <Grid RenderOptions.ClearTypeHint="Enabled">
                                             <!--阴影矩形-->
                                             <Rectangle x:Name="OpaqueRect" Fill="{Binding Background, ElementName=SubMenuBorder}"/>
-                                            <Border BorderBrush="{x:Null}" BorderThickness="1" Background="#FF1B1B1C">
+                                            <Border BorderBrush="{x:Null}" BorderThickness="1" Background="#4C000000">
                                                 <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Cycle" Grid.IsSharedSizeScope="True" KeyboardNavigation.TabNavigation="Cycle"/>
                                             </Border>
                                         </Grid>
@@ -47,14 +47,14 @@
                             </Trigger>
 
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" TargetName="B_MenuItem" Value="#FF3F3F46"/>
+                                <Setter Property="Background" TargetName="B_MenuItem" Value="#33000000"/>
                                 <!--<Setter Property="IsOpen" TargetName="PART_Popup" Value="True"/>-->
                             </Trigger>
                             <Trigger Property="IsHighlighted" Value="True"/>
                             <Trigger Property="IsKeyboardFocused" Value="True"/>
                             <Trigger Property="IsSubmenuOpen" Value="True"/>
                             <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="True">
-                                <Setter Property="Background" TargetName="B" Value="Gray"/>
+                                <Setter Property="Background" TargetName="B" Value="#33000000"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
@@ -74,6 +74,7 @@
         <Grid x:Name="MenuGrid">
             <Menu x:Name="menu" Height="27" VerticalAlignment="Center" Background="{x:Null}" Foreground="{x:Null}" >
                 <MenuItem Header="  文件"  x:Name="systemConfig" Foreground="#FFF1F1F1" Width="78"  Style="{StaticResource MenuItemStyleTop}"  FontFamily="Microsoft YaHei UI Light" FontSize="12" Height="27">
+                    <MenuItem Header="启动窗口" x:Name="LaunchView" Foreground="#FFF1F1F1" Height="25" Width="85" Style="{StaticResource MenuItemStyleTop}" FontFamily="Microsoft YaHei UI Light" FontSize="12" Click="LaunchView_Click"/>
                     <MenuItem Header="设置" x:Name="ServicPanel" Foreground="#FFF1F1F1" Height="25" Width="85" Style="{StaticResource MenuItemStyleTop}" FontFamily="Microsoft YaHei UI Light" FontSize="12"/>
                 </MenuItem>
                 <MenuItem Header="数据服务"  x:Name="DataService" Foreground="#FFF1F1F1" Width="78"  Style="{StaticResource MenuItemStyleTop}"  FontFamily="Microsoft YaHei UI Light" FontSize="12" Height="27">
