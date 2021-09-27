@@ -3,7 +3,6 @@
 </p>
 
 # [官网](https://taoistcore.com/)
-# [铯 - 拓展工具](https://github.com/light-come/Cesium-Container)
 [CesiumJS 友链](https://github.com/CesiumGS/cesium)
 
 铯容器是一款数据处理及围绕Cesium应用程序。它就像Cesium一样工作，您可以在自己的PC电脑上运行它。它可用于Windows 10。
