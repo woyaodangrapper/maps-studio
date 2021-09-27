@@ -28,21 +28,15 @@
     </UserControl.Resources>
 
     <Grid x:Name="Main_Grid">
-
-
         <!--<Optical_View_Control:GoogleCore x:Name="Browser" Margin="0,102,0,0"/>-->
         <!--<Optical_View_Control:MicrosoftEdgeView x:Name="_Browser" Margin="31,104,2,1" />-->
-
-
 
 
         <!--<Optical_View_Control:GoogleCore x:Name="Browser" Margin="0,102,0,0"/>-->
         <Border BorderBrush="#FF007ACC" BorderThickness="1">
             <Grid x:Name="我来组成头部" >
                 <Border  BorderThickness="2"  Height="102" VerticalAlignment="Top" BorderBrush="#FF007ACC"/>
-                <Border x:Name="TopBder" BorderThickness="2" Height="104" VerticalAlignment="Top" Margin="-2,-2,-2,0" Background="#02FFFFFF">
-                    <Optical_View:Earth3D x:Name="TopEarth3D" VerticalAlignment="Top" Height="42" Width="55" Margin="10,8,0,0" HorizontalAlignment="Left"/>
-                </Border>
+                <Border x:Name="TopBder" BorderThickness="2" Height="104" VerticalAlignment="Top" Margin="-2,-2,-2,0" Background="#02FFFFFF"></Border>
 
                 <materialDesign:ColorZone
   Mode="PrimaryMid"
@@ -122,12 +116,13 @@
                     <Label x:Name="titleLabel" Content="" VerticalAlignment="Center" Foreground="#DDFFFFFF" HorizontalContentAlignment="Center" Margin="11,0,9,0" MouseUp="TitleLabel_MouseUp"/>
                 </Border>
                 <Label MouseUp="MainTitle_MouseUp" Content="Optical View or Cesium" HorizontalAlignment="Left" Margin="6,58,0,0" VerticalAlignment="Top" Width="316" Height="42" Foreground="#FFEAEAEA" FontSize="22" FontWeight="Bold" Cursor="Hand"/>
-                <Image  HorizontalAlignment="Left" Height="32" Margin="22,16,0,0" VerticalAlignment="Top" Width="32" x:Name="ICON" MouseUp="ICON_MouseUp" Cursor="Hand"/>
+                <Image  HorizontalAlignment="Left" Height="50" Margin="10,8,0,0" VerticalAlignment="Top" Width="56" x:Name="ICON" MouseUp="ICON_MouseUp" Cursor="Hand" Source="/Resources/ov.png"/>
             </Grid>
         </Border>
         <!--<Optical_View_Control:GoogleCore x:Name="Browser" Margin="0,102,0,0"/>-->
         <Optical_View_Control:HeaderContainer x:Name="Header" Margin="70,14,1009,0" Height="27" VerticalAlignment="Top"/>
-        <Grid x:Name="Control"></Grid> <!--控件页面容器-->
+        <Grid x:Name="Control"></Grid>
+        <!--控件页面容器-->
         <Optical_View_Control:SidebarContainer x:Name="Sidebar" HorizontalAlignment="Left" Margin="0,102,0,0"  />
         <!--<Optical_View_Control:Conversion3DView x:Name="_Conversion3D" HorizontalAlignment="Stretch" Height="Auto" />-->
 

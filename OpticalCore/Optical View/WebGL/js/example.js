@@ -394,12 +394,11 @@
                     if(Cesium.defined(modle))
                     { 
                         var viewer = app_viewer()
-                        add_mod(viewer,modle.element)
+                        add_mod(viewer,modle)
                         function add_mod(viewer,e) {
                             var model = OpticalCore.add3DTiles(viewer, {
                                 name:"Overview_model",
-                                id:e.id,
-                                url: e.site,//gis.crcr.top:9732
+                                url: modle.url,
                                 duration: 0,
                                 flyTo:true,//视野转跳
                                 height:10
@@ -462,12 +461,9 @@
         }
 
         add3DTiles(url){
-
             var model = OpticalCore.add3DTiles(window.GIS, {
-                // name : "七堡",
-                // id:e.id,
                 url:url,
-                duration: 3,
+                duration: 0,
                 flyTo:  true ,//视野转跳
                 height:10
             },{

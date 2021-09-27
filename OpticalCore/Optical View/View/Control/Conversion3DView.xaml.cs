@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAPICodePack.Dialogs;
+﻿using MaterialDesignThemes.Wpf;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using Optical_View.Class;
 using Optical_View.Model;
 using Serilog;
@@ -7,11 +8,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -34,6 +37,7 @@ namespace Optical_View.View.Control
         private void load() {
 
             ConversionText.Text = Launch.Startupz_type.Path.Split("\\")[Launch.Startupz_type.Path.Split("\\").Length - 1];
+            Path_Lab.Text = Launch.Startupz_type.Path;
             void FindFile(string dirPath) //参数dirPath为指定的目录
             {
                 //在指定目录及子目录下查找文件,在listBox1中列出子目录及文件
@@ -145,6 +149,7 @@ namespace Optical_View.View.Control
             FindFile(Launch.Startupz_type.Path);
         }
 
+
         private void ConversionStart_Button_Click(object sender, RoutedEventArgs e)
         {
           
@@ -157,40 +162,31 @@ namespace Optical_View.View.Control
                     foreach (DirectoryInfo d in Dir.GetDirectories())//查找子目录
                     {
                         FindFile(d.ToString() + "\\");
-                        //listBox1.Items.Add(Dir + d.ToString() + "\"); //listBox1中填加目录名
                     }
                     foreach (FileInfo f in Dir.GetFiles("*.*")) //查找文件
                     {
-                        //listBox1.Items.Add(Dir + f.ToString()); //listBox1中填加文件名
                         switch (System.IO.Path.GetExtension(f.FullName).ToLower())
                         {
                             case ".obj":
-                                var pathName = f.FullName.Split("\\")[f.FullName.Split("\\").Length - 2];
-                                if (!Directory.Exists(@"WebGL\.cache\" + pathName))
+                                Task.Factory.StartNew(() =>
                                 {
-                                    Directory.CreateDirectory(@"WebGL\.cache\" + pathName);
-                                }
-                                var copy_path = @"WebGL\.cache\" + pathName + @"\" ;
+                                    string pathName = f.FullName.Split("\\")[f.FullName.Split("\\").Length - 2];
+                                    if (!Directory.Exists(@"WebGL\.cache\" + pathName))
+                                    {
+                                        Directory.CreateDirectory(@"WebGL\.cache\" + pathName);
+                                    }
+                                    string copy_path = @"WebGL\.cache\" + pathName + @"\";
 
+                                    string tileset = new objTob3dm().Obj_WriteTileset(f.FullName, copy_path);
+                                    string b3dm = $"{copy_path}\\{ System.IO.Path.GetFileNameWithoutExtension(f.FullName)}.b3dm";
 
-                                var tileset = new objTob3dm().Obj_WriteTileset(f.FullName, copy_path);
-                                var b3dm = $"{copy_path}\\{ System.IO.Path.GetFileNameWithoutExtension(f.FullName)}.b3dm";
-
-                                try
-                                {
-                                    //var url = cache_Copy(f.FullName, tileset);
-                                    BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"Logic.add3DTiles('..{tileset.Replace("\\", "/").Replace("WebGL", "")}');");
-                                    //cache_Copy(f.FullName, b3dm);
-                                }
-                                catch (Exception)
-                                {
-                                    throw;
-                                }
-                                  
+                                    Dispatcher.BeginInvoke(new Action(delegate
+                                    {
+                                        BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"Logic.add3DTiles('..{tileset.Replace("\\", "/").Replace("WebGL", "")}');");
+                                    }));
+                                });
                                 break;
-                                    
                         }
-
                     }
                 }
                 catch (Exception e)
@@ -218,5 +214,32 @@ namespace Optical_View.View.Control
             return copy_path;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            _.Visibility = Visibility.Hidden;
+            var @this = MainForm.control;
+
+            TopBder.MouseMove += new MouseEventHandler(_MouseMove);
+            void _MouseMove(object sender, MouseEventArgs e)
+            {
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    if (@this != null) @this.DragMove();
+                }
+            }
+            Popup_Close.Click += new RoutedEventHandler(Button_Click);
+
+
+            grid_set_up.Visibility = Visibility.Visible;
+            grid_set_up.Margin = new Thickness(0, 0, 0, 0);
+            void Button_Click(object sender, RoutedEventArgs e)
+            {
+                grid_set_up.Visibility = Visibility.Hidden;
+                grid_set_up.Margin = new Thickness(1906, 0, -1906, 0);
+
+                _.Visibility = Visibility.Visible;
+            }
+
+        }
     }
 }

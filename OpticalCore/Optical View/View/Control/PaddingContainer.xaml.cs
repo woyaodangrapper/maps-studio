@@ -30,7 +30,7 @@ namespace Optical_View.View.Control
     {
         Optical_View.View.Control.MicrosoftEdgeView _Browser = null;
 
-        Optical_View.View.Control.HelixToolkitView _HelixToolkit = null;
+        //Optical_View.View.Control.HelixToolkitView _HelixToolkit = null;
 
         Optical_View.View.Control.Conversion3DView _Conversion3D = null;
 
@@ -81,28 +81,18 @@ namespace Optical_View.View.Control
             ConversionView.control = _Conversion3D;
             #endregion
 
-            #region 地球模型
-            //TopEarth3D.Visibility = Visibility.Visible;
-            //bool moment = true;//线程开关
-            //_ = Task.Factory.StartNew(() =>
-            //  {
-            //      while (moment)
-            //      {
-            //          Thread.Sleep(10);
-            //          Dispatcher.BeginInvoke(new Action(delegate
-            //          {
-            //            #region 球体旋转
-            //            if (TopEarth3D.Rotation3D.Angle >= 360)
-            //              {
-            //                  TopEarth3D.Rotation3D.Angle = 0;
-            //                  moment = false;
-            //              }
-            //              TopEarth3D.Rotation3D.Angle++;
-            //            #endregion
+            #region logo
 
-            //        }));
-            //      }
-            //  });
+            using (var ms = new System.IO.MemoryStream(Properties.Resources.ov))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad; // here
+                image.StreamSource = ms;
+                image.EndInit();
+                image.Freeze();
+                ICON.Source = image;
+            }
             #endregion
             #region 顶部栏设置
             ///鼠标移动
@@ -159,69 +149,7 @@ namespace Optical_View.View.Control
             }
             #endregion
         }
-
-        public static Model3DGroup Load(string path)
-        {
-            if (path == null)
-            {
-                return null;
-            }
-
-            Model3DGroup model = null;
-            string ext = System.IO.Path.GetExtension(path).ToLower();
-            switch (ext)
-            {
-                case ".3ds":
-                    {
-                        var r = new HelixToolkit.Wpf.StudioReader();
-                        model = r.Read(path);
-                        break;
-                    }
-
-                case ".lwo":
-                    {
-                        var r = new HelixToolkit.Wpf.LwoReader();
-                        model = r.Read(path);
-
-                        break;
-                    }
-
-                case ".obj":
-                    {
-                        var r = new HelixToolkit.Wpf.ObjReader();
-                        model = r.Read(path);
-                        break;
-                    }
-
-                case ".objz":
-                    {
-                        var r = new HelixToolkit.Wpf.ObjReader();
-                        model = r.ReadZ(path);
-                        break;
-                    }
-
-                case ".stl":
-                    {
-                        var r = new HelixToolkit.Wpf.StLReader();
-                        model = r.Read(path);
-                        break;
-                    }
-
-                case ".off":
-                    {
-                        var r = new HelixToolkit.Wpf.OffReader();
-                        model = r.Read(path);
-                        break;
-                    }
-
-                default:
-                    throw new InvalidOperationException("File format not supported.");
-            }
-
-            return model;
-        }
-
-       public static string extractLoad(string path)
+        public static string extractLoad(string path)
         {
             if (path == null)
             {
@@ -241,10 +169,6 @@ namespace Optical_View.View.Control
             }
             return null;
         }
-
-
-        
-
         private void ICON_MouseUp(object sender, MouseButtonEventArgs e)
         {
 

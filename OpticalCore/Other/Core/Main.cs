@@ -8,7 +8,7 @@ using System;
 using System.IO;
 using System.Net;
 
-namespace GIS_Folder
+namespace Core
 {
     public class Main : IExpand
     {
@@ -22,11 +22,11 @@ namespace GIS_Folder
                 .MinimumLevel.Information()
                 .WriteTo.Console()
                 .MinimumLevel.Debug()
-                .WriteTo.File(Path.Combine("GIS_Folder", DateTime.Now.ToString("yyyyMMdd") + $".txt"),
+                .WriteTo.File(Path.Combine("Core", DateTime.Now.ToString("yyyyMMdd") + $".txt"),
                     rollingInterval: RollingInterval.Day,
                     rollOnFileSizeLimit: true)
                 .CreateLogger();
-                Log.Debug("GIS_Folder - Init");
+                Log.Debug("Core - Init");
             }
             #endregion
         }

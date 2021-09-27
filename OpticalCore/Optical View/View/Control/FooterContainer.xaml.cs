@@ -30,24 +30,7 @@ namespace Optical_View.View.Control
 
             #endregion
         }
-        private void BackgroundMongolia_Style(int type)
-        {
-            switch (type)
-            {
-                case 0:
-                    HwndSource hwndSource = PresentationSource.FromVisual(MainForm.control) as HwndSource;
-                    if (hwndSource != null)
-                    {
-                        var handle = hwndSource.Handle;
-                        new Class.GroundGlass().EnableBlur(handle);
-                    }
-                    break;
-                default:
-                    break;
-            }
-
-
-        }
+       
 
 
     }

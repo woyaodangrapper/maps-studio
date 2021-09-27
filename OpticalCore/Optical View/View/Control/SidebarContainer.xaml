@@ -223,7 +223,7 @@
             </Grid>
             <Border BorderThickness="1" BorderBrush="#CC007ACC">
                 <Grid>
-                    <ProgressBar x:Name="UpdateStatus" IsIndeterminate="True" Height="5" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="285" Margin="0,0,0,-1" />
+                    <!--<ProgressBar x:Name="UpdateStatus" IsIndeterminate="True" Height="5" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="285" Margin="0,0,0,-1" />-->
                 </Grid>
             </Border>
             <TreeView x:Name="FileTree" Margin="2,45,1,0" Foreground="#FFF1F1F1"  SelectedItemChanged="FileTree_SelectedItemChanged">

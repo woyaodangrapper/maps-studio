@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GIS  Folder\GIS  Folder.csproj" />
     <ProjectReference Include="..\InterFace\InterFace.csproj" />
+    <ProjectReference Include="..\Other\InterFace\InterFace.csproj" />
   </ItemGroup>
 
 </Project>

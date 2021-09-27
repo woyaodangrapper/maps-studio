@@ -47,11 +47,11 @@
                     <BlurEffect Radius="2" KernelType="Box"  RenderingBias="Quality"/>
                 </Border.Effect>
             </Border>
-            <Border Background="#FF2D2D30"  CornerRadius="0" BorderBrush="#FF004370" BorderThickness="1"/>
+            <Border Background="#05FFFFFF"  CornerRadius="0" BorderBrush="#FF004370" BorderThickness="1"/>
 
         </Grid>
 
-        <ViewBottom:FooterContainer x:Name="FooterContainer"  Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,-1,0" />
+        <ViewBottom:FooterContainer x:Name="FooterContainer" VerticalAlignment="Bottom" />
         <ViewBottom:PaddingContainer x:Name="PaddingContainer" Margin="0,1,0,25" />
 
         <!--关闭放大缩小按钮-->
@@ -61,7 +61,7 @@
                 <Border BorderThickness="1" x:Name="CircleExpandBord" Background="#FF2D2D30" HorizontalAlignment="Center" Width="52" MouseEnter="ExpandBox_MouseEnter" MouseLeave="ExpandBox_MouseLeave"   MouseUp="ExpandBox_MouseUp"/>
                 <materialDesign:PackIcon x:Name="ExpandBox" Kind="CircleExpand" Margin="71,0,71,0" Height="18" Foreground="#FFF1F2F7" HorizontalAlignment="Stretch" MouseEnter="ExpandBox_MouseEnter" MouseLeave="ExpandBox_MouseLeave" VerticalAlignment="Center"  MouseUp="ExpandBox_MouseUp" />
                 <Border BorderThickness="1" x:Name="WindowCloseBord" Margin="105,0,0,0" Background="#FF2D2D30" MouseEnter="CloseBox_MouseEnter" MouseLeave="CloseBox_MouseLeave" MouseUp="CloseBox_MouseUp" Width="53" HorizontalAlignment="Right"/>
-                <materialDesign:PackIcon MouseUp="CloseBox_MouseUp" x:Name="CloseBox" Kind="WindowClose" Margin="119,0,0,0" Width="22" Height="18" Foreground="#FFF1F2F7" MouseEnter="CloseBox_MouseEnter" MouseLeave="CloseBox_MouseLeave" VerticalAlignment="Center"/>
+                <materialDesign:PackIcon MouseUp="CloseBox_MouseUp" x:Name="CloseBox" Kind="WindowClose" Margin="121,0,0,0" Width="22" Height="18" Foreground="#FFF1F2F7" MouseEnter="CloseBox_MouseEnter" MouseLeave="CloseBox_MouseLeave" VerticalAlignment="Center"/>
 
 
                 <Border BorderThickness="1" x:Name="MinimizeBord" Background="#FF2D2D30" HorizontalAlignment="Left" Width="53" MouseEnter="MinimizeBox_MouseEnter" MouseLeave="MinimizeBox_MouseLeave"   MouseUp="MinimizeBox_MouseUp"/>
@@ -69,5 +69,6 @@
 
             </Grid>
         </Border>
+    
     </Grid>
 </Window>
