@@ -34,11 +34,11 @@
                     <Button
                         Style="{StaticResource MaterialDesignOutlinedButton}"
                         ToolTip="转换方向 顶点压缩 双面光等"
-                        Content="修改" Margin="519,22,8,54" Foreground="White" BorderBrush="#33000000" FontSize="12" Cursor="Hand" Background="#19FFFFFF" Click="Button_Click" />
+                        Content="配置" Margin="477,22,8,54" Foreground="White" BorderBrush="#33000000" FontSize="10" Cursor="Hand" Background="#19FFFFFF" Click="Button_Click" Height="28" />
                     <Button x:Name="ConversionStart_Button"
                         Style="{StaticResource MaterialDesignOutlinedButton}"
                         ToolTip="开始数据转换"
-                        Content="启动" Margin="520,57,7,19" Foreground="White" BorderBrush="#33000000" FontSize="12" Cursor="Hand" Background="#19FFFFFF" Click="ConversionStart_Button_Click" />
+                        Content="启动" Margin="477,57,7,19" Foreground="White" BorderBrush="#33000000" FontSize="10" Cursor="Hand" Background="#19FFFFFF" Click="ConversionStart_Button_Click" Height="28" />
                     <TextBlock TextTrimming="CharacterEllipsis" x:Name="Path_Lab"
                         Style="{StaticResource MaterialDesignOverlineTextBlock}"
                         Text="" Margin="97,77,153,16" FontSize="10" Foreground="#4CFFFFFF" />
@@ -49,11 +49,14 @@
         <Grid Background="#66000000" x:Name="grid_set_up" Margin="1906, 0, -1906, 0">
             <materialDesign:Card Margin="60,136,60,60" x:Name="Popup" Background="#FF1E1E1E"  >
                 <Grid>
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="578*"/>
                         <ColumnDefinition Width="567*"/>
                         <ColumnDefinition Width="542*"/>
                     </Grid.ColumnDefinitions>
+                    <Label  HorizontalContentAlignment="Center" x:Name="LabelPathcss" Content="转存文件目录" HorizontalAlignment="Left" Margin="49,0,0,10" VerticalAlignment="Bottom" Width="1387" RenderTransformOrigin="0.5,0.5" Foreground="#F2FFFFFF" Background="#B20F0F0F" Grid.ColumnSpan="3"/>
+                    <Button x:Name="CurrentCatalogue" Content="安装目录" Margin="0,0,48,10" BorderBrush="{x:Null}" Background="#FF007ACC" Height="25" FontSize="10" Click="CurrentCatalogue_Click"  Foreground="#DDFFFFFF" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Grid.Column="2"/>
 
                     <Grid x:Name="QuickContro" HorizontalAlignment="Right" Height="31" VerticalAlignment="Top" Grid.Column="2">
 
@@ -62,34 +65,34 @@
                             <materialDesign:PackIcon Kind="WindowClose" Foreground="#FFFF4534"  HorizontalAlignment="Center" BorderBrush="#FFE62B1A"/>
                         </Button>
                     </Grid>
-                    <Grid Height="228" VerticalAlignment="Center" HorizontalAlignment="Center" Width="498" Grid.Column="1">
+                    <Grid Height="228" VerticalAlignment="Center" HorizontalAlignment="Left" Width="460" Grid.Column="1" Margin="38,0,0,0">
                         <Border BorderThickness="1" BorderBrush="#CC2D2D30"/>
                         <CheckBox
   Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}"
   IsChecked="False"
-  Content="纹理压缩" Margin="235,20,0,16" Width="127" Foreground="#DDFFFFFF" />
+  Content="纹理压缩" Margin="252,98,0,98" Width="127" Foreground="#DDFFFFFF" />
 
                         <TextBlock TextAlignment ="Center"
                             Style="{StaticResource textBlockStyle}"
-                            Text=".数据" FontSize="18" Foreground="White"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="230" FontWeight="Bold" TextDecorations="{x:Null}"/>
+                            Text=".数据" FontSize="18" Foreground="White"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="252" FontWeight="Bold" TextDecorations="{x:Null}"/>
                         <CheckBox
                             Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}"
                             IsChecked="False"
-                            Content="顶点压缩" Margin="235,20,0,176" Width="127" Foreground="#DDFFFFFF" />
+                            Content="顶点压缩" Margin="252,18,0,178" Width="127" Foreground="#DDFFFFFF" />
                         <CheckBox
                             Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}"
                             IsChecked="False"
-                            Content="纹理合并" Margin="235,172,0,24" Width="127" Foreground="#DDFFFFFF" />
+                            Content="纹理合并" Margin="252,170,0,26" Width="127" Foreground="#DDFFFFFF" />
 
                     </Grid>
 
-                    <Grid Margin="0,315,0,0" Height="68" VerticalAlignment="Top" HorizontalAlignment="Center" Width="498" Grid.Column="2">
+                    <Grid Margin="32,238,0,0" Height="68" VerticalAlignment="Top" HorizontalAlignment="Left" Width="374" Grid.Column="2">
                         <Border BorderThickness="1" BorderBrush="#CC2D2D30"/>
                         <TextBlock TextTrimming="CharacterEllipsis"
                             Style="{StaticResource MaterialDesignBody2TextBlock}"
-                            Text="多线程" Margin="235,8,0,12" FontSize="16" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Width="255" />
+                            Text="多线程" Margin="121,5,0,15" FontSize="14" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Width="255" />
                         <StackPanel
-                            Orientation="Horizontal" Margin="0,20,8,5" HorizontalAlignment="Right" Width="255">
+                            Orientation="Horizontal" Margin="0,21,0,4" HorizontalAlignment="Right" Width="255">
                             <RadioButton
                                 Style="{StaticResource MaterialDesignTabRadioButton}"
                                 Margin="4"
@@ -109,10 +112,10 @@
 
                         <TextBlock TextAlignment ="Center"
                             Style="{StaticResource textBlockStyle}"
-                            Text=".系统设置" FontSize="18" Foreground="White"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="230" TextDecorations="{x:Null}"/>
+                            Text=".系统设置" FontSize="18" Foreground="White"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="121" TextDecorations="{x:Null}"/>
 
                     </Grid>
-                    <Grid Margin="0,294,0,0" Height="112" VerticalAlignment="Top" HorizontalAlignment="Center" Width="498">
+                    <Grid Margin="0,294,0,0" Height="112" VerticalAlignment="Top" HorizontalAlignment="Center" Width="443">
                         <Border BorderThickness="1" BorderBrush="#CC2D2D30"/>
 
                         <TextBlock TextAlignment ="Center"
@@ -121,16 +124,43 @@
                         <CheckBox
                             Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}"
                             IsChecked="True"
-                            Content="强制双面" Margin="358,40,0,40" Cursor="Hand" Foreground="White" Width="126" />
+                            Content="强制双面" Margin="308,44,0,36" Cursor="Hand" Foreground="White" Width="126" />
                         <CheckBox
   Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}"
   IsChecked="True"
-  Content="光照" Margin="0,40,0,40" Width="126" Foreground="White" Cursor="Hand" HorizontalAlignment="Center" />
+  Content="光照" Margin="136,44,0,36" Width="126" Foreground="White" Cursor="Hand" />
 
                     </Grid>
-                    <TextBlock TextAlignment ="Center"
+                    <TextBlock TextAlignment ="Center" x:Name="ProjectTitle"
                         Style="{StaticResource textBlockStyle}"
-                        Text=".28 08" FontSize="24" Foreground="White"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="230" FontWeight="Bold" TextDecorations="{x:Null}" Margin="22,51,0,0"/>
+                        Text="配置" FontSize="24" Foreground="#FF74747C"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="139" FontWeight="Bold" TextDecorations="{x:Null}" Margin="10,16,0,0"/>
+                    <Grid Margin="32,354,0,0" Height="112" VerticalAlignment="Top" HorizontalAlignment="Left" Width="374" Grid.Column="2">
+                        <Border BorderThickness="1" BorderBrush="#CC2D2D30"/>
+
+                        <TextBlock TextAlignment ="Center"
+                            Style="{StaticResource textBlockStyle}"
+                            Text=".导出" FontSize="18" Foreground="White"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="79" FontWeight="Bold" TextDecorations="{x:Null}"/>
+                        <CheckBox
+                            Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}"
+                            IsChecked="True"
+                            Content="OBJ" Margin="221,18,0,62" Cursor="Hand" Foreground="White" Width="126" />
+                        <CheckBox
+                            Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}"
+                            IsChecked="True"
+                            Content="FBX" Margin="78,18,0,62" Width="126" Foreground="White" Cursor="Hand" />
+                        <CheckBox
+                            Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}"
+                            IsChecked="True"
+                            Content="B3DM" Margin="221,62,0,18" Cursor="Hand" Foreground="White" Width="126" />
+                        <CheckBox
+                            Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}"
+                            IsChecked="True"
+                            Content="GLTF" Margin="78,62,0,18" Width="126" Foreground="White" Cursor="Hand" />
+
+                    </Grid>
+                    <CheckBox
+    Style="{StaticResource MaterialDesignFilterChipAccentCheckBox}"
+    IsChecked="False" Margin="264,0,0,38" Background="#CCFFFFFF" Width="100" Cursor="Hand" Height="32" VerticalAlignment="Bottom" Foreground="White" Grid.Column="2" Content="是否记住？"/>
                 </Grid>
             </materialDesign:Card>
             <Border x:Name="TopBder" BorderThickness="2" Height="104" VerticalAlignment="Top" Margin="-2,-2,0,0" Background="Transparent"></Border>

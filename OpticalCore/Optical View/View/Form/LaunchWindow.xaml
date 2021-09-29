@@ -84,7 +84,7 @@
                         <TextBlock
                                 TextWrapping="Wrap"
                                 Text="导入配置文件" Margin="48,6,0,31" FontSize="11" Foreground="White" />
-                        <materialDesign:PackIcon Kind="Buffer" Margin="14,12,0,0" Foreground="White" Height="24" Width="25" />
+                        <materialDesign:PackIcon Kind="OpenSourceInitiative" Margin="14,12,0,0" Foreground="White" Height="24" Width="25" />
                         <TextBlock
                                 TextWrapping="Wrap"
                                 Text="打开本地的.ov项目" Margin="48,27,1,12" Foreground="#CCFFFFFF" FontSize="9" />

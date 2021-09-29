@@ -47,7 +47,7 @@
                     <BlurEffect Radius="2" KernelType="Box"  RenderingBias="Quality"/>
                 </Border.Effect>
             </Border>
-            <Border Background="#05FFFFFF"  CornerRadius="0" BorderBrush="#FF004370" BorderThickness="1"/>
+            <Border Background="#FF1A1A1A"  CornerRadius="0" BorderBrush="#FF004370" BorderThickness="1"/>
 
         </Grid>
 

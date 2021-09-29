@@ -31,13 +31,19 @@ namespace Optical_View.View.Control
         public Conversion3DView()
         {
             InitializeComponent();
+            if (LabelPathcss.Content.ToString() == "转存文件目录")
+            {
+                ConversionStart_Button.IsEnabled = false;
+
+                ConversionStart_Button.Content = "请设置导出目录";
+            }
             load();
         }
 
         private void load() {
 
             ConversionText.Text = Launch.Startupz_type.Path.Split("\\")[Launch.Startupz_type.Path.Split("\\").Length - 1];
-            Path_Lab.Text = Launch.Startupz_type.Path;
+            Path_Lab.Text = Launch.Startupz_type.Path; int count = 0;
             void FindFile(string dirPath) //参数dirPath为指定的目录
             {
                 //在指定目录及子目录下查找文件,在listBox1中列出子目录及文件
@@ -45,7 +51,7 @@ namespace Optical_View.View.Control
                 try
                 {
                     foreach (DirectoryInfo d in Dir.GetDirectories())//查找子目录
-{
+                    {
                         FindFile(d.ToString() + "\\");
                         //listBox1.Items.Add(Dir + d.ToString() + "\"); //listBox1中填加目录名
                     }
@@ -60,15 +66,16 @@ namespace Optical_View.View.Control
                             case ".gltf":
                             case ".b3dm":
                             case ".osgb":
+                                count++;
                                 ListViewItem lvi = new ListViewItem() {
                                     Height = 69
                                 };
                                 var grid = new Grid()
                                 {
-                                    Width = 621,
+                                    Width = 618,
                                     Height = 29
                                 };
-
+                              
                                 var progressBar = new ProgressBar()
                                 {
                                     //MaterialDesignThemes.Wpf.TransitionAssist.DisableTransitions = true,
@@ -147,6 +154,8 @@ namespace Optical_View.View.Control
 
             }
             FindFile(Launch.Startupz_type.Path);
+            ConversionText.Text += $"({count})";
+
         }
 
 
@@ -195,8 +204,8 @@ namespace Optical_View.View.Control
                 }
 
             }
+           
             FindFile(Launch.Startupz_type.Path);
-
         }
         string cache_Copy(string path,string file) {
 
@@ -237,9 +246,27 @@ namespace Optical_View.View.Control
                 grid_set_up.Visibility = Visibility.Hidden;
                 grid_set_up.Margin = new Thickness(1906, 0, -1906, 0);
 
+                if (LabelPathcss.Content.ToString() != "转存文件目录")
+                {
+                    ConversionStart_Button.IsEnabled = true;
+                    ConversionStart_Button.Content = "启动";
+                }
+
                 _.Visibility = Visibility.Visible;
             }
 
+        }
+
+        private void CurrentCatalogue_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new CommonOpenFileDialog();
+            dialog.IsFolderPicker = true;
+            CommonFileDialogResult result = dialog.ShowDialog();
+            if (result == CommonFileDialogResult.Ok)
+            {
+                var file = dialog.FileName;
+                LabelPathcss.Content = file;
+            }
         }
     }
 }
