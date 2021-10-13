@@ -115,13 +115,18 @@
                 <Border  MouseDown="TitleLabel_MouseUp" x:Name="titleBorder" BorderThickness="1" BorderBrush="#FF252526" Margin="0,13,202,0" Background="#FF252526" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Width="202">
                     <Label x:Name="titleLabel" Content="" VerticalAlignment="Center" Foreground="#DDFFFFFF" HorizontalContentAlignment="Center" Margin="11,0,9,0" MouseUp="TitleLabel_MouseUp"/>
                 </Border>
-                <Label MouseUp="MainTitle_MouseUp" Content="Optical View or Cesium" HorizontalAlignment="Left" Margin="6,58,0,0" VerticalAlignment="Top" Width="316" Height="42" Foreground="#FFEAEAEA" FontSize="22" FontWeight="Bold" Cursor="Hand"/>
+                <Label Content="Optical View or Cesium" HorizontalAlignment="Left" Margin="6,58,0,0" VerticalAlignment="Top" Width="316" Height="42" Foreground="#FFEAEAEA" FontSize="22" FontWeight="Bold" Cursor="Hand"/>
                 <Image  HorizontalAlignment="Left" Height="50" Margin="10,8,0,0" VerticalAlignment="Top" Width="56" x:Name="ICON" MouseUp="ICON_MouseUp" Cursor="Hand" Source="/Resources/ov.png"/>
             </Grid>
         </Border>
         <!--<Optical_View_Control:GoogleCore x:Name="Browser" Margin="0,102,0,0"/>-->
         <Optical_View_Control:HeaderContainer x:Name="Header" Margin="70,14,1009,0" Height="27" VerticalAlignment="Top"/>
-        <Grid x:Name="Control"></Grid>
+        <Grid x:Name="Control">
+            <ProgressBar
+  Style="{StaticResource MaterialDesignCircularProgressBar}"
+  Value="0"
+  IsIndeterminate="True" Width="123" Height="123" Foreground="#FF007ACC" FontWeight="Normal" Name="LoadProgressBar" Visibility="Hidden"/>
+        </Grid>
         <!--控件页面容器-->
         <Optical_View_Control:SidebarContainer x:Name="Sidebar" HorizontalAlignment="Left" Margin="0,102,0,0"  />
         <!--<Optical_View_Control:Conversion3DView x:Name="_Conversion3D" HorizontalAlignment="Stretch" Height="Auto" />-->

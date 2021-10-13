@@ -162,7 +162,7 @@
         }
         //建筑分层
         example_BuildingStratification(path){
-            var socket = this.socket
+            // var socket = this.socket
             $("#mapBox").append(`<div class="tree well infoview" style="max-height: 666px;overflow: auto;-ms-overflow-style: none;scrollbar-width: none;">
                 <ul>
                     <li id="tree_ul">
@@ -170,178 +170,156 @@
                     </li>
                 </ul>
             </div>`)
-            var data;
             //#region 加载建筑信息
-            var settings = {
-                "url": "http://127.0.0.1:7776/GIS/Folder/GDM",
-                "method": "POST",
-                "timeout": 0,
-                async:false, 
-                "headers": {
-                    "Content-Type": "application/json"
-                },
-                "data": JSON.stringify({
-                    "path": path
-                }),
-            };
-            var _this = this;
-            $.ajax(settings).done(function (response) {
-                data = response.data.list;
-                console.log(response)
-                _this.build_build(data)
-            }).fail(function (response) {
-                console.log(socket)
-                socket.send(JSON.stringify({
-                    type:"error",
-                    msg:"初始化 建筑。行为在请求接口时意外终止。"
-                }));
-            })
+            this.build_build()
             // socket.send('client success');
 
         }
-        build_build(data) {
+        build_build() {
             
-            data = data.datas
+            var data = GIS.Socket_Response
+            data = data.list.datas;
+            console.log(data,GIS.Socket_Response)
             window.GIS.Building = data;
-            data.forEach(element => {
-                console.log(element.Routefile.file3Dtiles)
-                var data = element.Routefile.file3Dtiles;
-                var px = []
-                for (let index = 0; index < data.length; index++) {
-                    const element = data[index];
-                    if(element.site != null  && element.site != "")
-                    {
-                        var mod =  OpticalCore.add3DTiles(window.GIS, {
-                            // name: "模型",
-                            id:element.id,
-                            url:  element.site,//gis.crcr.top:9732
-                            flyTo: true,//视野转跳
-                            height:10
-                        },{
-                            color: "color('white', 1)",
-                            show: true
-                        });
-                        mod.name = "build_build"
-                        mod.element = element;
-                    }
-
-                }
-                var n1 = []; var n2 = [];
-                function  px_() {
-                    for (let index = 0; index < px.length; index++) {
-                        const e = px[index];
-                        if(e.name1 == 1){
-                            n1.push(e)
-                        }
-                        if(e.name1 == 2){
-                            n2.push(e)
-                        }
-                    
-                    }
-                }px_()
-                var compare = function (prop) {
-                    return function (obj1, obj2) {
-                        var val1 = obj1[prop];
-                        var val2 = obj2[prop];if (val1 < val2) {
-                            return -1;
-                        } else if (val1 > val2) {
-                            return 1;
-                        } else {
-                            return 0;
-                        }            
-                    } 
-                }
-                n1=(n1.sort(compare("name2")));
-                n2=(n2.sort(compare("name2")));
-
-                var n1_min = Math.min.apply(Math, n1.map(function(o) {return o.index}))
-                for (let i = 0; i < n1.length; i++) {
-                    n1[i].index = n1_min + i;
-                }
-                var n2_min = Math.min.apply(Math, n2.map(function(o) {return o.index}))
-                for (let i = 0; i < n2.length; i++) {
-                    n2[i].index = n2_min + i;
-                }
-                n1.forEach(element => {
-                    data[element.index] = element.data
+            function uuid() {
+                var temp_url = URL.createObjectURL(new Blob());
+                var uuid = temp_url.toString(); // blob:https://xxx.com/b250d159-e1b6-4a87-9002-885d90033be3
+                URL.revokeObjectURL(temp_url);
+                return uuid.substr(uuid.lastIndexOf("/") + 1);
+            }
+            function add3DTiles(element,flyTo,id){
+                var mod =  OpticalCore.add3DTiles(window.GIS, {
+                    name: "模型",
+                    id:id,
+                    url:  element.uri,//gis.crcr.top:9732
+                    flyTo: flyTo,//视野转跳
+                    height:10
+                },{
+                    color: "color('white', 1)",
+                    show: true
                 });
-                n2.forEach(element => {
-                    data[element.index] = element.data
-                });
+                mod.name = "build_build"
+                mod.element = element;
+            }
 
-                //#endregion
-                    
-                function makeTree(parentObj, treeJson) {
-                    var ulObj = $(`<ul></ul>`);
-                    for (var i = 0; i < treeJson.length; i++) {
-                        var childHtml = `<li style="display: none;">`;
-                        var aHtml;
-
-                        var str = treeJson[i].name;
+            var n1 = []; var n2 = [];
+            // function  px_() {
+            //     for (let index = 0; index < px.length; index++) {
+            //         const e = px[index];
+            //         if(e.name1 == 1){
+            //             n1.push(e)
+            //         }
+            //         if(e.name1 == 2){
+            //             n2.push(e)
+            //         }
                 
-                        if(treeJson[i].site != ""){
-                            aHtml = `<span><i  class="icon-minus-sign" data-id="` + treeJson[i].id + `"></i> `+ str +`</span>  <a id="`+treeJson[i].id+`" onclick="treeOnclick(this)"  href="#">可视</a>`
-                        }else{
-                            aHtml = `<span><i  class="icon-minus-sign" data-id="` + treeJson[i].id + `"></i> `+ str +`</span>`
-                        }
-                        childHtml += aHtml;
-                        childHtml += "</li>";
-
-                        if(treeJson[i].id != null && treeJson[i].id != '5')  {
-                            var childObj = $(childHtml);
-                            if (treeJson[i].children != null && treeJson[i].children.length > 0) {
-                                makeTree(childObj, treeJson[i].children);
-                            }
-                            $(ulObj).append(childObj);
-                        }  
-                    }
-                    $(parentObj).append($(ulObj));
-
-                };
-                
-                
-                function toTree(data) {
-                    let result = []
-                    if (!Array.isArray(data)) {
-                    return result
-                    }
-                    data.forEach(item => {
-                        delete item.children;
-                    });
-                    let map = {};
-                    data.forEach(item => {
-                        map[item.id] = item;
-                    });
-                    data.forEach(item => {
-                    let parent = map[item.pId];
-                    if (parent) {
-                        (parent.children || (parent.children = [])).push(item);
+            //     }
+            // }px_()
+            var compare = function (prop) {
+                return function (obj1, obj2) {
+                    var val1 = obj1[prop];
+                    var val2 = obj2[prop];if (val1 < val2) {
+                        return -1;
+                    } else if (val1 > val2) {
+                        return 1;
                     } else {
-                        result.push(item);
-                    }
-                    });
-                    return result;
-                }
-                var tree = toTree(data);
-                makeTree($("#tree_ul"),tree)
+                        return 0;
+                    }            
+                } 
+            }
+            n1=(n1.sort(compare("name2")));
+            n2=(n2.sort(compare("name2")));
+
+            var n1_min = Math.min.apply(Math, n1.map(function(o) {return o.index}))
+            for (let i = 0; i < n1.length; i++) {
+                n1[i].index = n1_min + i;
+            }
+            var n2_min = Math.min.apply(Math, n2.map(function(o) {return o.index}))
+            for (let i = 0; i < n2.length; i++) {
+                n2[i].index = n2_min + i;
+            }
+            n1.forEach(element => {
+                data[element.index] = element.data
+            });
+            n2.forEach(element => {
+                data[element.index] = element.data
+            });
+
+            //#endregion
+                
+            function makeTree(parentObj, treeJson) {
+                var ulObj = $(`<ul></ul>`);
+                for (var i = 0; i < treeJson.length; i++) {
+                    var childHtml = `<li style="display: none;">`;
+                    var aHtml;
+
+                    var str = treeJson[i].text;
+                    var _uuid = uuid();
             
-                $(function(){
-                    $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
-                    $('.tree li.parent_li > span').on('click', function (e) {
-                        var children = $(this).parent('li.parent_li').find(' > ul > li');
-                        if (children.is(":visible")) {
-                            children.hide('fast');
-                            $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
-                        } else {
-                            children.show('fast');
-                            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+                    if(treeJson[i].uri != null){
+                        add3DTiles(treeJson[i],i == 0 ? true : false,_uuid)
+                        aHtml = `<span><i  class="icon-minus-sign" data-id="` + _uuid + `"></i> `+ str +`</span>  <a id="`+_uuid+`" onclick="treeOnclick(this)"  href="#">可视</a>`
+                    }else{
+                        aHtml = `<span><i  class="icon-minus-sign" data-id="` + _uuid + `"></i> `+ str +`</span>`
+                    }
+                    childHtml += aHtml;
+                    childHtml += "</li>";
+
+                    if(treeJson[i].id != null && treeJson[i].id != '5')  {
+                        var childObj = $(childHtml);
+                        if (treeJson[i].children != null && treeJson[i].children.length > 0) {
+                            makeTree(childObj, treeJson[i].children);
                         }
-                        e.stopPropagation();
-                    });
+                        $(ulObj).append(childObj);
+                    }  
+                }
+                $(parentObj).append($(ulObj));
+
+            };
+            
+            
+            function toTree(data) {
+                let result = []
+                if (!Array.isArray(data)) {
+                return result
+                }
+                data.forEach(item => {
+                    delete item.children;
                 });
+                let map = {};
+                data.forEach(item => {
+                    map[item.id] = item;
+                });
+                data.forEach(item => {
+                let parent = map[item.pId];
+                if (parent) {
+                    (parent.children || (parent.children = [])).push(item);
+                } else {
+                    result.push(item);
+                }
+                });
+                return result;
+            }
+            // var tree = toTree(data);
+            console.log(data)
+            makeTree($("#tree_ul"),data)
+        
+            $(function(){
+                $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+                $('.tree li.parent_li > span').on('click', function (e) {
+                    var children = $(this).parent('li.parent_li').find(' > ul > li');
+                    if (children.is(":visible")) {
+                        children.hide('fast');
+                        $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+                    } else {
+                        children.show('fast');
+                        $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+                    }
+                    e.stopPropagation();
+                });
+            });
 
                 
-            });
          
          
             return  data;

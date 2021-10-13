@@ -4,16 +4,16 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Optical_View.Class
 {
-    
+
     class Appsettings
     {
         private static ConfigurationBuilder builder;
         private static IConfiguration configuration;
-        public Appsettings() {
+        public Appsettings()
+        {
             //判断文件的存在
             if (!File.Exists("appsettings.json"))
             {
@@ -24,7 +24,8 @@ namespace Optical_View.Class
                     fs.WriteLine("{}");
                 }
             }
-            void init() {
+            void init()
+            {
 
                 builder = (ConfigurationBuilder)new ConfigurationBuilder()
                   .SetBasePath(Directory.GetCurrentDirectory()) // <== compile failing here
@@ -44,10 +45,11 @@ namespace Optical_View.Class
                 }
                 init();
             }
-           
+
         }
 
-        public JArray GetKeys(string key) {
+        public JArray GetKeys(string key)
+        {
             string txt = null;
             using (StreamReader sr = new StreamReader("appsettings.json"))
             {
@@ -65,12 +67,13 @@ namespace Optical_View.Class
             {
                 return JsonConvert.DeserializeObject<JArray>(JsonConvert.SerializeObject(new object[0]));
             }
-            else {
+            else
+            {
                 return JsonConvert.DeserializeObject<JArray>(job[key].ToString());
             }
         }
 
-        public bool SetKeys(string key , JObject value)
+        public bool SetKeys(string key, JObject value)
         {
             string txt = null;
             using (StreamReader sr = new StreamReader("appsettings.json"))
@@ -86,20 +89,21 @@ namespace Optical_View.Class
             List<JToken> L = new List<JToken>();
             L.Add(value);
             var job = JsonConvert.DeserializeObject<JObject>(txt);
-            if (job[key] != null) {
+            if (job[key] != null)
+            {
                 foreach (var item in job[key])
                 {
                     if (value.ToString() != item.ToString())
                     {
                         L.Add(item);
                     }
-                    
+
                 }
             }
 
             job[key] = JsonConvert.DeserializeObject<JArray>(JsonConvert.SerializeObject(L.ToArray()));
 
-            using (StreamWriter sw = new StreamWriter("appsettings.json",false))
+            using (StreamWriter sw = new StreamWriter("appsettings.json", false))
             {
                 sw.Write(JsonConvert.SerializeObject(job));
 

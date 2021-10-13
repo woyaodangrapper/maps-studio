@@ -15,26 +15,24 @@ namespace Optical_View
     {
         public MainWindow()
         {
-        
+
 
             #region 初始化用户控件 扔入公共控件类
             Window w = this;
-                MainForm.control = w;
+            MainForm.control = w;
             #endregion
             InitializeComponent();
 
             #region 初始化用户控件 扔入公共控件类
-            
+
             #endregion
 
         }
 
 
-
-
         #region 关闭按钮，最大化按钮鼠标悬浮事件
-            //关闭按钮，最大化按钮鼠标悬浮事件
-         private void ExpandBox_MouseUp(object sender, MouseButtonEventArgs e)
+        //关闭按钮，最大化按钮鼠标悬浮事件
+        private void ExpandBox_MouseUp(object sender, MouseButtonEventArgs e)
         {
 
             if (WindowState == WindowState.Maximized)
@@ -111,7 +109,7 @@ namespace Optical_View
             CircleExpandBord.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 45, 45, 48));
             //Monitor.Foreground = new SolidColorBrush(Color.FromArgb(255, 241, 241, 241));
         }
-     
+
         private void MinimizeBox_MouseEnter(object sender, MouseEventArgs e)
         {
             MinimizeBord.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 63, 63, 63));
@@ -120,13 +118,13 @@ namespace Optical_View
         {
             WindowState = WindowState.Minimized;
         }
-       
+
         private void MinimizeBox_MouseLeave(object sender, MouseEventArgs e)
         {
             MinimizeBord.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 45, 45, 48));
             //Monitor.Foreground = new SolidColorBrush(Color.FromArgb(255, 241, 241, 241));
         }
-       
+
 
         #endregion
         #region 首页快捷键
@@ -137,7 +135,7 @@ namespace Optical_View
             {
                 case "F12":
 
-                   
+
                     break;
                 default:
                     return;

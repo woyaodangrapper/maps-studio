@@ -18,32 +18,31 @@ namespace Core
             #region 初始化LOG日志
             Web_Server_Config.Port = SystemOperation.PortIsUsed();
             {
-                Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Information()
-                .WriteTo.Console()
-                .MinimumLevel.Debug()
-                .WriteTo.File(Path.Combine("Core", DateTime.Now.ToString("yyyyMMdd") + $".txt"),
-                    rollingInterval: RollingInterval.Day,
-                    rollOnFileSizeLimit: true)
-                .CreateLogger();
+                //Log.Logger = new LoggerConfiguration()
+                //.MinimumLevel.Information()
+                //.WriteTo.Console()
+                //.MinimumLevel.Debug()
+                //.WriteTo.File(Path.Combine("Core", DateTime.Now.ToString("yyyyMMdd") + $".txt"),
+                //    rollingInterval: RollingInterval.Day,
+                //    rollOnFileSizeLimit: true)
+                //.CreateLogger();
                 Log.Debug("Core - Init");
             }
             #endregion
         }
      
         public static string GIS_json { get; set; } = "{}";
-        public static object GetDataModel(JObject rb) {
+        public static object GetDataModel(String path) {
             Server.stop();
-            JToken data = rb["json"]["path"];
            
             try
             {
-                Server.start(IPAddress.Parse("127.0.0.1"), Optical_View.Model.Web_Server_Config.Port, 1, data.ToString());
-                GIS_json = Windows_Gis.Getjson(data.ToString());
+                Server.start(IPAddress.Parse("127.0.0.1"), Optical_View.Model.Web_Server_Config.Port, 1, path);
+                GIS_json = Windows_Gis.Getjson(path);
                 return (new
                 {
                     list = JsonConvert.DeserializeObject<JObject>(GIS_json)
-            });
+                });
             }
             catch (Exception ex)
             {

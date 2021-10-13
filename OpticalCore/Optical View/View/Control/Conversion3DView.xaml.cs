@@ -1,24 +1,13 @@
-﻿using MaterialDesignThemes.Wpf;
-using Microsoft.WindowsAPICodePack.Dialogs;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
 using Optical_View.Class;
 using Optical_View.Model;
-using Serilog;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Interop;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using static Optical_View.Model.View_static_control;
 
 namespace Optical_View.View.Control
@@ -40,7 +29,8 @@ namespace Optical_View.View.Control
             load();
         }
 
-        private void load() {
+        private void load()
+        {
 
             ConversionText.Text = Launch.Startupz_type.Path.Split("\\")[Launch.Startupz_type.Path.Split("\\").Length - 1];
             Path_Lab.Text = Launch.Startupz_type.Path; int count = 0;
@@ -67,7 +57,8 @@ namespace Optical_View.View.Control
                             case ".b3dm":
                             case ".osgb":
                                 count++;
-                                ListViewItem lvi = new ListViewItem() {
+                                ListViewItem lvi = new ListViewItem()
+                                {
                                     Height = 69
                                 };
                                 var grid = new Grid()
@@ -75,7 +66,7 @@ namespace Optical_View.View.Control
                                     Width = 618,
                                     Height = 29
                                 };
-                              
+
                                 var progressBar = new ProgressBar()
                                 {
                                     //MaterialDesignThemes.Wpf.TransitionAssist.DisableTransitions = true,
@@ -83,7 +74,8 @@ namespace Optical_View.View.Control
                                     Margin = new Thickness(-8, -21, 0, -19),
                                     Foreground = new SolidColorBrush(Color.FromArgb(100, 81, 45, 168)),
                                     Value = 0,
-                                    Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)), BorderBrush = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0))
+                                    Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)),
+                                    BorderBrush = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0))
                                 };
                                 var textBlock_name = new TextBlock()
                                 {
@@ -161,7 +153,7 @@ namespace Optical_View.View.Control
 
         private void ConversionStart_Button_Click(object sender, RoutedEventArgs e)
         {
-          
+
             void FindFile(string dirPath) //参数dirPath为指定的目录
             {
                 //在指定目录及子目录下查找文件,在listBox1中列出子目录及文件
@@ -204,10 +196,11 @@ namespace Optical_View.View.Control
                 }
 
             }
-           
+
             FindFile(Launch.Startupz_type.Path);
         }
-        string cache_Copy(string path,string file) {
+        string cache_Copy(string path, string file)
+        {
 
             var pathName = System.IO.Path.GetFileNameWithoutExtension(path);
             if (!Directory.Exists(@"WebGL\.cache\" + pathName))

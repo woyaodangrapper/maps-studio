@@ -1,18 +1,8 @@
 ﻿using Microsoft.Web.WebView2.Core;
-using Newtonsoft.Json.Linq;
 using Optical_View.Model;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using static Optical_View.Model.View_static_control;
 
 namespace Optical_View.View.Control
@@ -48,7 +38,8 @@ namespace Optical_View.View.Control
             BrowserContainer.control = this;
             #endregion
         }
-        private void _extract_Loaded() {
+        private void _extract_Loaded()
+        {
             if (webView != null && webView.CoreWebView2 != null)
             {
                 TimeSpan ts = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0);
@@ -65,7 +56,7 @@ namespace Optical_View.View.Control
                     _ = Dispatcher.BeginInvoke(new Action(delegate
                     {
                         webView.Visibility = Visibility.Visible;
-
+                        Progress.control.Visibility = Visibility.Visible;
                     }));
                 });
                 //webView.CoreWebView2.Navigate("http://127.0.0.1:" + Model.Web_Server_Config.Port.ToString());
@@ -89,6 +80,7 @@ namespace Optical_View.View.Control
                     _ = Dispatcher.BeginInvoke(new Action(delegate
                     {
                         webView.Visibility = Visibility.Visible;
+                        Progress.control.Visibility = Visibility.Visible;
 
                     }));
                 });
@@ -113,7 +105,7 @@ namespace Optical_View.View.Control
                     _ = Dispatcher.BeginInvoke(new Action(delegate
                     {
                         webView.Visibility = Visibility.Visible;
-
+                        Progress.control.Visibility = Visibility.Visible;
                     }));
                 });
                 //webView.CoreWebView2.Navigate("http://127.0.0.1:" + Model.Web_Server_Config.Port.ToString());
@@ -123,7 +115,7 @@ namespace Optical_View.View.Control
         {
             webView.CoreWebView2.ExecuteScriptAsync($" var s = setInterval(() => {{if (Logic.WebSocketint('{Model.Web_Server_Config.Web_WebsocketServer_Port.ToString()}')){{ clearInterval(s)}}}}, 1000);");
 
-        }  
+        }
 
     }
 }

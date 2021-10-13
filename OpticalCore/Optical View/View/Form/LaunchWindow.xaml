@@ -68,7 +68,7 @@
             </Border>
 
             <ListView x:Name="FileTree" Margin="505,89,0,0" Foreground="#FF007ACC" Width="292" Height="265" VerticalAlignment="Top" HorizontalAlignment="Left" >
-                <ListViewItem Height="62" x:Name="_extract" Cursor="Hand"  MouseUp="_extract_MouseUp">
+                <ListViewItem Height="62" x:Name="_extract" Cursor="Hand"  MouseUp="_extract_MouseUp" IsEnabled="False">
                     <Grid Height="51" Width="261">
                         <TextBlock
                                 TextWrapping="Wrap"
@@ -79,7 +79,7 @@
                                 Text="打开本地含有通用模型文件夹或含有树结构文件夹" Margin="48,27,1,12" Foreground="#CCFFFFFF" FontSize="9" />
                     </Grid>
                 </ListViewItem>
-                <ListViewItem Height="62" x:Name="_ov" Cursor="Hand">
+                <ListViewItem Height="62" x:Name="_ov" Cursor="Hand" IsEnabled="False">
                     <Grid Height="51" Width="261">
                         <TextBlock
                                 TextWrapping="Wrap"
@@ -91,7 +91,7 @@
                     </Grid>
                 </ListViewItem>
 
-                <ListViewItem Height="62"  x:Name="_file" >
+                <ListViewItem Height="62"  x:Name="_file" IsEnabled="False" >
                     <Grid Height="51" Width="261">
                         <TextBlock
                                 TextWrapping="Wrap"

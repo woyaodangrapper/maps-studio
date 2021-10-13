@@ -237,22 +237,24 @@
             <TextBox  x:Name="textBox" HorizontalAlignment="Center" Height="23" Margin="0,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" Background="#193F3F46" BorderBrush="#FF007ACC" Foreground="#FF878787" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="  搜索" TextChanged="textBox_TextChanged" Cursor="IBeam"/>
         </Grid>
         <Border BorderThickness="0" BorderBrush="#FF007ACC"/>
-        <Border x:Name="BorderT1" Margin="0,38,0,0" RenderTransformOrigin="0.5,0.5" Height="143" VerticalAlignment="Top" HorizontalAlignment="Center" Width="28" DragEnter="Border_DragEnter" MouseEnter="BorderT1_MouseEnter" MouseLeave="BorderT1_MouseLeave"  Cursor="Hand">
-            <Border.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleY="-1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Border.RenderTransform>
-            <Border.Effect>
-                <!--阴影部分-->
-                <DropShadowEffect BlurRadius="9" ShadowDepth="0" Opacity="0" />
-            </Border.Effect>
-            <Border x:Name="FaceButton" Grid.Row="3" Grid.Column="2" Margin="0,7,24,10" RenderTransformOrigin="0.5,0.5" Background="#FF3F3F46"/>
-        </Border>
-        <view:LabelEx x:Name="Monitor" HorizontalAlignment="Left" Height="135" Margin="10,41,0,0" VerticalAlignment="Top" Width="20" TextOrientation="ClockwiseVertical" Text="三维模型资源管理器" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" BorderThickness="3" FontSpace="2" Foreground="#FFB6B6B6" FontFamily="Haettenschweiler" MouseEnter="BorderT1_MouseEnter" MouseLeave="BorderT1_MouseLeave"  MouseUp="Monitor_MouseUp" Cursor="Hand"/>
+        <Grid IsEnabled="False">
+            <Border x:Name="BorderT1" Margin="0,38,0,0" RenderTransformOrigin="0.5,0.5" Height="143" VerticalAlignment="Top" HorizontalAlignment="Center" Width="28" DragEnter="Border_DragEnter" MouseEnter="BorderT1_MouseEnter" MouseLeave="BorderT1_MouseLeave"  Cursor="Hand">
+                <Border.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Border.RenderTransform>
+                <Border.Effect>
+                    <!--阴影部分-->
+                    <DropShadowEffect BlurRadius="9" ShadowDepth="0" Opacity="0" />
+                </Border.Effect>
+                <Border x:Name="FaceButton" Grid.Row="3" Grid.Column="2" Margin="0,7,24,10" RenderTransformOrigin="0.5,0.5" Background="#FF3F3F46"/>
+            </Border>
+            <view:LabelEx x:Name="Monitor" HorizontalAlignment="Left" Height="135" Margin="10,41,0,0" VerticalAlignment="Top" Width="20" TextOrientation="ClockwiseVertical" Text="三维模型资源管理器" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" BorderThickness="3" FontSpace="2" Foreground="#FFB6B6B6" FontFamily="Haettenschweiler" MouseEnter="BorderT1_MouseEnter" MouseLeave="BorderT1_MouseLeave"  MouseUp="Monitor_MouseUp" Cursor="Hand"/>
+        </Grid>
 
     </Grid>
 </UserControl>

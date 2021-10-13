@@ -1,10 +1,12 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Web.WebView2.Core;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Optical_View.Class;
 using Optical_View.Model;
+using Serilog;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +27,17 @@ namespace Optical_View.View.Form
         public Launch_Window()
         {
             InitializeComponent();
+            if (!CheckWebView())
+            {
+                MessageBox.Show("检测到当前未安装运行环境，正在启动安装程序，请稍后...");
+                InstallWebView();
+                Stopwatch.StartNew();
+                while (!CheckWebView())
+                {
+                    System.Threading.Thread.Sleep(3000);
+                }
+            }
+
             ListView.Items.Clear();
 
             foreach (var item in appsettings.GetKeys("record"))
@@ -44,7 +57,8 @@ namespace Optical_View.View.Form
                     HorizontalAlignment = HorizontalAlignment.Left,
                     Margin = new Thickness(86, 0, 0, 0)
                 };
-                TextBlock textBlock_path = new TextBlock() {
+                TextBlock textBlock_path = new TextBlock()
+                {
                     TextTrimming = TextTrimming.CharacterEllipsis,
                     Style = (Style)this.FindResource("textBlockStyle"),
                     Text = item["path"].ToString(),
@@ -76,6 +90,68 @@ namespace Optical_View.View.Form
             }
             Loaded += new RoutedEventHandler(this.Window_Loaded);
         }
+
+        private static bool CheckWebView()
+        {
+            try
+            {
+                string str = CoreWebView2Environment.GetAvailableBrowserVersionString();
+                if (!string.IsNullOrWhiteSpace(str))
+                {
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return false;
+        }
+        private void InstallWebView()
+        {
+            string path = Environment.CurrentDirectory + @"\check\MicrosoftEdgeWebview2Setup.exe";
+            if (File.Exists(path))
+            {
+                Process p = new Process();
+                p.StartInfo.FileName = "cmd.exe";
+                p.StartInfo.UseShellExecute = false;
+                p.StartInfo.RedirectStandardInput = true;
+                p.StartInfo.RedirectStandardOutput = true;
+                p.StartInfo.RedirectStandardError = true;
+                p.StartInfo.CreateNoWindow = true;
+                p.StartInfo.WorkingDirectory = Environment.CurrentDirectory + @"\check\";
+                p.Start();
+                p.StandardInput.WriteLine("MicrosoftEdgeWebview2Setup.exe");
+                p.StandardInput.WriteLine("exit");
+            }
+            else
+            {
+                //Log.Debug($"Launched from {Environment.CurrentDirectory}");
+                //Log.Debug($"Physical location {AppDomain.CurrentDomain.BaseDirectory}");
+                //Log.Debug($"AppContext.BaseDir {AppContext.BaseDirectory}");
+                //Log.Debug($"Runtime Call {Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName)}");
+                //调用系统默认的浏览器
+                MessageBox.Show("非常抱歉,程序关键缺少程序。接下来会打开微软官方。请根据网站提示安装[常青版引导程序]");
+                string url = "https://developer.microsoft.com/zh-cn/microsoft-edge/webview2/#download-section";
+                System.Diagnostics.Process p = new System.Diagnostics.Process();
+                p.StartInfo.FileName = "cmd.exe";
+                p.StartInfo.UseShellExecute = false;    //不使用shell启动
+                p.StartInfo.RedirectStandardInput = true;//喊cmd接受标准输入
+                p.StartInfo.RedirectStandardOutput = false;//不想听cmd讲话所以不要他输出
+                p.StartInfo.RedirectStandardError = true;//重定向标准错误输出
+                p.StartInfo.CreateNoWindow = true;//不显示窗口
+                p.Start();
+                //向cmd窗口发送输入信息 后面的&exit告诉cmd运行好之后就退出
+                p.StandardInput.WriteLine("start " + url + "&exit");
+                p.StandardInput.AutoFlush = true;
+                p.WaitForExit();//等待程序执行完退出进程
+                p.Close();
+
+
+                System.Environment.Exit(0);
+            }
+
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             HwndSource hwndSource = PresentationSource.FromVisual(this) as HwndSource;
@@ -84,12 +160,13 @@ namespace Optical_View.View.Form
                 var handle = hwndSource.Handle;
                 new GroundGlass().EnableBlur(handle);
             }
-            MouseMove += new System.Windows.Input.MouseEventHandler(_MouseMove);
+            MouseMove += new MouseEventHandler(_MouseMove);
 
         }
         void _MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            _=Dispatcher.BeginInvoke(new Action(() => {
+            _ = Dispatcher.BeginInvoke(new Action(() =>
+            {
                 if (e.LeftButton == MouseButtonState.Pressed)
                 {
                     DragMove();
@@ -103,12 +180,11 @@ namespace Optical_View.View.Form
         {
             WindowCloseBord.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(180, 224, 100, 100));
         }
-      
+
         private void CloseBox_MouseUp(object sender, MouseButtonEventArgs e)
         {
-
-            Application.Current.Shutdown();
             System.Environment.Exit(0);
+            //Application.Current.Shutdown();
         }
         private void CloseBox_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
@@ -144,7 +220,7 @@ namespace Optical_View.View.Form
             Launch.Startupz_type.Type = "Hyperlinks";
             Close();
         }
-        
+
         #endregion
         #region 最大化按钮单击事件
         private void ExpandBox_MouseDown(object sender, MouseButtonEventArgs e)
@@ -181,7 +257,11 @@ namespace Optical_View.View.Form
             if (result == CommonFileDialogResult.Ok)
             {
                 var file = dialog.FileName;
-
+                appsettings.SetKeys("record", JsonConvert.DeserializeObject<JObject>(JsonConvert.SerializeObject(new
+                {
+                    path = file,
+                    type = "_folder"
+                })));
                 Launch.Startupz_type.Path = file;
                 Launch.Startupz_type.Type = "_folder";
 
@@ -200,9 +280,14 @@ namespace Optical_View.View.Form
             if (result == CommonFileDialogResult.Ok)
             {
                 var file = dialog.FileName;
-
+                appsettings.SetKeys("record", JsonConvert.DeserializeObject<JObject>(JsonConvert.SerializeObject(new
+                {
+                    path = file,
+                    type = "_extract"
+                })));
                 Launch.Startupz_type.Path = file;
                 Launch.Startupz_type.Type = "_extract";
+
 
                 new MainWindow().Show();
                 Close();
@@ -213,22 +298,27 @@ namespace Optical_View.View.Form
         private void _record_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Grid grid = (Grid)sender;
-           
+
             var path = ((TextBlock)grid.Children[1]).Text;
-            var type = ((TextBlock)grid.Children[2]).Text.Replace(".","").ToLower();
+            var type = ((TextBlock)grid.Children[2]).Text.Replace(".", "").ToLower();
 
-            Launch.Startupz_type.Path = path;
-            Launch.Startupz_type.Type = type;
-
-            new MainWindow().Show();
-            Close();
-
+            if (Directory.Exists(path))
+            {
+                Launch.Startupz_type.Path = path;
+                Launch.Startupz_type.Type = type;
+                new MainWindow().Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("目录不存在");
+            }
         }
 
         /// <summary>
         /// 选择文件
         /// </summary>
-        string SelectFile(String Title,String type)
+        string SelectFile(String Title, String type)
         {
             CommonOpenFileDialog dialog = new CommonOpenFileDialog(Title);
 
@@ -250,7 +340,7 @@ namespace Optical_View.View.Form
                     dialog.Filters.Add(new CommonFileDialogFilter("OBJ Files", "*.glb"));
                     break;
             }
-         
+
             dialog.AllowNonFileSystemItems = true;
             dialog.Multiselect = true;
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
@@ -269,8 +359,9 @@ namespace Optical_View.View.Form
         }
         private void OBJ_BUT_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            string path = SelectFile("请打开一个或多个OBJ","obj");
-            if (path != null) {
+            string path = SelectFile("请打开一个或多个OBJ", "obj");
+            if (path != null)
+            {
                 Launch.Startupz_type.Path = path;
                 Launch.Startupz_type.Type = "obj";
 
@@ -332,7 +423,7 @@ namespace Optical_View.View.Form
 
         }
 
-       
+
 
     }
 }

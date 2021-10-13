@@ -81,7 +81,7 @@
 
         var Logic = new Logic()
         Logic.example_Init();
-        Logic.BuildPull_out()
+        // Logic.BuildPull_out()
         // new OpticalCore().example_addBaseLayer(1,1)
         
         function _water(){
@@ -96,13 +96,16 @@
         }
         Logic.example_addBaseLayer();_water();
         function treeOnclick(v) {
-            OpticalCore.QueryModel_Scene_x(window.GIS,{'id':$(v).attr("id")}).show = ($(v).html() == "可视" ? false : true)
+            var model = OpticalCore.QueryModel_Scene_x(window.GIS,{'id':$(v).attr("id")});
+            model.forEach(element => {
+                element.show = ($(v).html() == "可视" ? false : true)
+            });
             if($(v).html() == "可视")
                 $(v).html('不可视')
             else
                 $(v).html('可视')
         }
-      
+        // Logic.example_BuildingStratification('vs')
        
     </script>
 </html>

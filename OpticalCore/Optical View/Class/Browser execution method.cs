@@ -4,14 +4,13 @@ using Newtonsoft.Json.Linq;
 using Optical_View.Model;
 using Serilog;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using static Optical_View.Model.View_static_control;
 
 namespace Optical_View.Class
 {
-    public class BrowserMessageModel {
+    public class BrowserMessageModel
+    {
         public string name { get; set; }
         public string value { get; set; }
 
@@ -21,13 +20,20 @@ namespace Optical_View.Class
 
         WebsocketServer a = new WebsocketServer();
         //初始化模型
-        private static void _buildinge_Stratification() {
+        private static void _buildinge_Stratification()
+        {
+            //JObject j = JsonConvert.DeserializeObject<JObject>(JsonConvert.SerializeObject(Core.Main.GetDataModel(Launch.Startupz_type.Path)));
+            String data = JsonConvert.SerializeObject(Core.Main.GetDataModel(Launch.Startupz_type.Path));
+            BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"GIS.Socket_Response=" + data);
+
             BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"Logic.example_BuildingStratification('{Launch.Startupz_type.Path.Replace("\\", "\\\\")}')");
         }
-        private static void _extract_Loaded() { 
+        private static void _extract_Loaded()
+        {
             BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"Logic.example_addBaseLayer();_water();");
         }
-        private static void _obj_Three_add() {
+        private static void _obj_Three_add()
+        {
             if (!Directory.Exists(@"WebGL\.cache"))
             {
                 Directory.CreateDirectory(@"WebGL\.cache");
@@ -62,16 +68,19 @@ namespace Optical_View.Class
                     {
                         var file = dialogs.FileName;
 
-                       
+
                         DirectoryInfo root = new DirectoryInfo(file);
                         FileInfo[] dics = root.GetFiles();
                         foreach (var f in dics)
                         {
                             switch (Path.GetExtension(f.FullName).ToLower())
                             {
-                                case ".png":  case ".jpg":
-                                case ".PNG": case ".JPG":
-                                case ".gif": case ".GIF":
+                                case ".png":
+                                case ".jpg":
+                                case ".PNG":
+                                case ".JPG":
+                                case ".gif":
+                                case ".GIF":
                                     File.Copy(f.FullName, Img_Path + Path.GetFileName(f.FullName), isrewrite);
                                     break;
                             }
@@ -86,6 +95,7 @@ namespace Optical_View.Class
         }
         public static void WebSocketInit()
         {
+            new Core.Main().Init(new object[0]);
             new WebsocketServer().WebSocketInit(_Message_processing);
         }
 
@@ -132,8 +142,8 @@ namespace Optical_View.Class
                   }
 
               }));
-            
+
         }
-      
+
     }
 }

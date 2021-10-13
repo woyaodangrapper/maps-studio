@@ -1,8 +1,6 @@
 ﻿using Arctron.Obj23dTiles;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Optical_View.Class
 {
@@ -11,7 +9,7 @@ namespace Optical_View.Class
         //文件(F)编辑(E) 格式(O) 查看(M) 帮助(H)
         //ENU: 30. 294856.120.266620
         //[Obsolete]
-        public string Obj_WriteTileset(String ObjFile,String outputDir = "tileset")
+        public string Obj_WriteTileset(String ObjFile, String outputDir = "tileset")
         {
             if (!Directory.Exists(outputDir))
             {

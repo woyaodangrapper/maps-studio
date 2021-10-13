@@ -24,6 +24,11 @@ namespace Optical_View.Model
         {
             public static View.Control.Conversion3DView control { get; set; }
         }
+        //容器页面的进度条
+        public partial class Progress
+        {
+            public static ProgressBar control { get; set; }
+        }
     }   
     
 }

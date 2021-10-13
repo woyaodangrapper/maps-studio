@@ -1,6 +1,5 @@
 ﻿using ConsoleServer.IInterFace;
 using InterFace;
-using Microsoft.Extensions.Configuration;
 using OpticalCore.MQTT;
 using Serilog;
 using System;
@@ -10,7 +9,6 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Timers;
-using static InterFace.IG_OV;
 
 namespace OpticalCore
 {

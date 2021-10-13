@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterFace", "Other\InterFac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Other\Core\Core.csproj", "{612E366C-A0DA-4DE3-9C45-F697C9ACF984}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optical Core", "Optical Core\Optical Core.csproj", "{7FA65088-2729-421A-A9DC-E207437875B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optical Server", "Optical Server\Optical Server.csproj", "{E200D165-287A-4299-B89E-E601C013ADCF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,30 @@ Global
 		{612E366C-A0DA-4DE3-9C45-F697C9ACF984}.Release|x64.Build.0 = Release|Any CPU
 		{612E366C-A0DA-4DE3-9C45-F697C9ACF984}.Release|x86.ActiveCfg = Release|Any CPU
 		{612E366C-A0DA-4DE3-9C45-F697C9ACF984}.Release|x86.Build.0 = Release|Any CPU
+		{7FA65088-2729-421A-A9DC-E207437875B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FA65088-2729-421A-A9DC-E207437875B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FA65088-2729-421A-A9DC-E207437875B0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7FA65088-2729-421A-A9DC-E207437875B0}.Debug|x64.Build.0 = Debug|Any CPU
+		{7FA65088-2729-421A-A9DC-E207437875B0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7FA65088-2729-421A-A9DC-E207437875B0}.Debug|x86.Build.0 = Debug|Any CPU
+		{7FA65088-2729-421A-A9DC-E207437875B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FA65088-2729-421A-A9DC-E207437875B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FA65088-2729-421A-A9DC-E207437875B0}.Release|x64.ActiveCfg = Release|Any CPU
+		{7FA65088-2729-421A-A9DC-E207437875B0}.Release|x64.Build.0 = Release|Any CPU
+		{7FA65088-2729-421A-A9DC-E207437875B0}.Release|x86.ActiveCfg = Release|Any CPU
+		{7FA65088-2729-421A-A9DC-E207437875B0}.Release|x86.Build.0 = Release|Any CPU
+		{E200D165-287A-4299-B89E-E601C013ADCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E200D165-287A-4299-B89E-E601C013ADCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E200D165-287A-4299-B89E-E601C013ADCF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E200D165-287A-4299-B89E-E601C013ADCF}.Debug|x64.Build.0 = Debug|Any CPU
+		{E200D165-287A-4299-B89E-E601C013ADCF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E200D165-287A-4299-B89E-E601C013ADCF}.Debug|x86.Build.0 = Debug|Any CPU
+		{E200D165-287A-4299-B89E-E601C013ADCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E200D165-287A-4299-B89E-E601C013ADCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E200D165-287A-4299-B89E-E601C013ADCF}.Release|x64.ActiveCfg = Release|Any CPU
+		{E200D165-287A-4299-B89E-E601C013ADCF}.Release|x64.Build.0 = Release|Any CPU
+		{E200D165-287A-4299-B89E-E601C013ADCF}.Release|x86.ActiveCfg = Release|Any CPU
+		{E200D165-287A-4299-B89E-E601C013ADCF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 
 namespace Optical_View.Class
 {
@@ -83,7 +82,7 @@ namespace Optical_View.Class
                         Log.Debug("重新设置本机IP地址：");
 
                         Log.Debug("等待....");
-                        server = new WebSocketServer($"ws://127.0.0.1:" +potr);//34.203.114.7
+                        server = new WebSocketServer($"ws://127.0.0.1:" + potr);//34.203.114.7
                         server.Start(socket =>
                         {
                             socket.OnOpen = () =>

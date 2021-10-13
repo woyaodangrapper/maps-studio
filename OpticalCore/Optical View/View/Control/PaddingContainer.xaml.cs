@@ -1,24 +1,10 @@
-﻿using Newtonsoft.Json.Linq;
-using Optical_View.Model;
-using Serilog;
+﻿using Optical_View.Model;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using static Optical_View.Model.View_static_control;
 
 namespace Optical_View.View.Control
@@ -42,7 +28,7 @@ namespace Optical_View.View.Control
         {
             InitializeComponent();
             @this = MainForm.control;
-
+            LoadProgressBar.Visibility = Visibility.Visible;
             switch (Launch.Startupz_type.Type)
             {
                 case "obj":
@@ -79,6 +65,7 @@ namespace Optical_View.View.Control
 
             #region 初始化用户控件 扔入公共控件类
             ConversionView.control = _Conversion3D;
+            Progress.control = LoadProgressBar;
             #endregion
 
             #region logo
@@ -177,7 +164,7 @@ namespace Optical_View.View.Control
         //大标题点击事件
         private void MainTitle_MouseUp(object sender, MouseButtonEventArgs e)
         {
-          
+
             #region 打开GITHUB网页
             string url = "https://github.com/light-come/Cesium-OpticalCore";
             System.Diagnostics.Process p = new System.Diagnostics.Process();

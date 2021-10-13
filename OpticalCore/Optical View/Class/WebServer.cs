@@ -55,9 +55,10 @@ namespace Optical_View.Class
                 running = true;
                 Windows_ImWebServer.contentPath = contentPath;//contentPath;
             }
-            catch (System.Exception e) { 
-                System.Console.WriteLine($"start webserver error({e.Message})");  
-                return false; 
+            catch (System.Exception e)
+            {
+                System.Console.WriteLine($"start webserver error({e.Message})");
+                return false;
             }
 
             // Our thread that will listen connection requests
@@ -97,7 +98,7 @@ namespace Optical_View.Class
             {
                 running = false;
                 try { serverSocket.Close(); }
-                catch(System.Exception e) { System.Console.WriteLine("serverSocket 关闭失败-" + e.Message); }
+                catch (System.Exception e) { System.Console.WriteLine("serverSocket 关闭失败-" + e.Message); }
                 serverSocket = null;
             }
         }
@@ -167,7 +168,7 @@ namespace Optical_View.Class
                 else
                     notFound(clientSocket);
             }
-          
+
 
         }
         private static void notImplemented(Socket clientSocket)

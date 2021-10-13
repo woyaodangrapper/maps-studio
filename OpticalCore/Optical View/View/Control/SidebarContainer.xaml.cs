@@ -1,16 +1,10 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Serilog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using Optical_View.Model;
 using static Optical_View.Model.View_static_control;
 
 namespace Optical_View.View.Control
@@ -28,13 +22,13 @@ namespace Optical_View.View.Control
 
             SideUnfoldingGrid.Opacity = 0;
         }
-      
+
         List<TreeViewItem> treeBox = new List<TreeViewItem>();
         static TreeViewItem mtrNode = new TreeViewItem();
 
 
         #region 界面动态逻辑
-       
+
         private void Border_DragEnter(object sender, DragEventArgs e)
         {
             ////FaceButton
@@ -94,14 +88,15 @@ namespace Optical_View.View.Control
                 SideUnfoldingGrid.Opacity = 0;
                 if (BrowserContainer.control != null)
                 {
-                   
-                   
+
+
                     double left = BrowserContainer.control.Margin.Left - 405;
                     if (BrowserContainer.control.Name != "_")
                         BrowserContainer.control.Margin = new Thickness(left, 102, 0, 0);
                 }
             }
-            else {
+            else
+            {
                 if (BrowserContainer.control != null)
                 {
                     double left = BrowserContainer.control.Margin.Left + 405;
@@ -110,7 +105,7 @@ namespace Optical_View.View.Control
                 }
                 SideUnfoldingGrid.Opacity = 100;
             }
-            
+
         }
 
         private void ENDBox_MouseDown(object sender, MouseButtonEventArgs e)
@@ -123,14 +118,14 @@ namespace Optical_View.View.Control
                     BrowserContainer.control.Margin = new Thickness(left, 102, 0, 0);
             }
         }
-     
-      
-      
+
+
+
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             List<TreeViewItem> cc = new List<TreeViewItem>();
             FileTree.Items.Clear();
-            var treeBoxs =  treeBox.Where(x => x.Header.ToString().Contains(textBox.Text == "  搜索" ? "" : textBox.Text)).ToList();//查询列表name
+            var treeBoxs = treeBox.Where(x => x.Header.ToString().Contains(textBox.Text == "  搜索" ? "" : textBox.Text)).ToList();//查询列表name
             foreach (var item in treeBoxs)
             {
                 FileTree.Items.Add(item);
@@ -148,7 +143,7 @@ namespace Optical_View.View.Control
                         }
                     }
                 }
-               
+
                 foreach (var item in cc)
                 {
                     TreeViewItem tvi = (TreeViewItem)item;
@@ -160,7 +155,7 @@ namespace Optical_View.View.Control
                     });
                 }
             }
-          
+
         }
         #endregion
         private void FileTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
