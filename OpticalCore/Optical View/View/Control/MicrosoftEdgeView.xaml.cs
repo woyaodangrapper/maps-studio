@@ -17,6 +17,7 @@ namespace Optical_View.View.Control
             InitializeComponent();
             InitializeAsync();
             webView.Visibility = Visibility.Hidden;
+            Progress.control.Visibility = Visibility.Visible;
         }
         async void InitializeAsync()
         {
@@ -56,7 +57,7 @@ namespace Optical_View.View.Control
                     _ = Dispatcher.BeginInvoke(new Action(delegate
                     {
                         webView.Visibility = Visibility.Visible;
-                        Progress.control.Visibility = Visibility.Visible;
+                        Progress.control.Visibility = Visibility.Hidden;
                     }));
                 });
                 //webView.CoreWebView2.Navigate("http://127.0.0.1:" + Model.Web_Server_Config.Port.ToString());
@@ -80,7 +81,7 @@ namespace Optical_View.View.Control
                     _ = Dispatcher.BeginInvoke(new Action(delegate
                     {
                         webView.Visibility = Visibility.Visible;
-                        Progress.control.Visibility = Visibility.Visible;
+                        Progress.control.Visibility = Visibility.Hidden;
 
                     }));
                 });
@@ -105,7 +106,7 @@ namespace Optical_View.View.Control
                     _ = Dispatcher.BeginInvoke(new Action(delegate
                     {
                         webView.Visibility = Visibility.Visible;
-                        Progress.control.Visibility = Visibility.Visible;
+                        Progress.control.Visibility = Visibility.Hidden;
                     }));
                 });
                 //webView.CoreWebView2.Navigate("http://127.0.0.1:" + Model.Web_Server_Config.Port.ToString());

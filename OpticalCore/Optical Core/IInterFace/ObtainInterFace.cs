@@ -165,9 +165,7 @@ namespace ConsoleServer.IInterFace
                     }
                     catch (Exception ex)
                     {
-
-                        //Log.Error(filename.Split('\\')[filename.Split('\\').Length - 1] + "不是有效插件" + ex.Message);
-
+                       Log.Error(filename.Split('\\')[filename.Split('\\').Length - 1] + "不是有效插件" + ex.Message);
                     }
                 }
                 

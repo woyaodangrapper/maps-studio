@@ -99,14 +99,14 @@
                         <materialDesign:PackIcon Kind="File" Margin="14,12,0,0" Foreground="White" Height="24" Width="24" />
                         <TextBlock
                                 TextWrapping="Wrap"
-                                Text="查看单个fbx，gltf，glb，obj，3dtileset" Margin="48,27,1,11" Foreground="#CCFFFFFF" FontSize="9" />
+                                Text="查看单个fbx，gltf，glb，obj，b3dm" Margin="48,27,1,11" Foreground="#CCFFFFFF" FontSize="9" />
                         <Grid Width="260" Height="50" >
                             <materialDesign:PopupBox  x:Name="PopupBox"  HorizontalAlignment="Stretch" DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" Height="50" Width="260" UnfurlOrientation="Vertical" Foreground="{x:Null}">
                                 <ListBox>
                                     <ListBoxItem x:Name="Tiles_BUT" MouseUp="Tiles_BUT_MouseUp">
                                         <TextBlock FontWeight="Normal"
   Style="{StaticResource MaterialDesignCaptionTextBlock}"
-  Text="  3D-Tiles  " FontSize="12" />
+  Text="  B3DM  " FontSize="12" />
                                     </ListBoxItem>
                                     <ListBoxItem x:Name="GLTF_BUT" MouseUp="GLTF_BUT_MouseUp">
                                         <TextBlock FontWeight="Normal"

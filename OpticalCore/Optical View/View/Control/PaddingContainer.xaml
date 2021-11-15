@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:Optical_View="clr-namespace:Optical_View.View"
              xmlns:Optical_View_Control="clr-namespace:Optical_View.View.Control"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
@@ -19,7 +18,6 @@
             <GradientStop Color="#FF000000" Offset="1"/>
             <GradientStop Color="#FF000000" Offset="1"/>
         </LinearGradientBrush>
-
         <LinearGradientBrush x:Key="Brush" StartPoint="0.5,0" EndPoint="0.5,1">
             <GradientStop Color="#FF000000" Offset="1"/>
             <GradientStop Color="#FF000000" Offset="0"/>
@@ -36,7 +34,7 @@
         <Border BorderBrush="#FF007ACC" BorderThickness="1">
             <Grid x:Name="我来组成头部" >
                 <Border  BorderThickness="2"  Height="102" VerticalAlignment="Top" BorderBrush="#FF007ACC"/>
-                <Border x:Name="TopBder" BorderThickness="2" Height="104" VerticalAlignment="Top" Margin="-2,-2,-2,0" Background="#02FFFFFF"></Border>
+                <Border x:Name="TopBder" BorderThickness="2" Height="104" VerticalAlignment="Top" Margin="-2,-2,-2,0" Background="#00000000"></Border>
 
                 <materialDesign:ColorZone
   Mode="PrimaryMid"
@@ -117,9 +115,10 @@
                 </Border>
                 <Label Content="Optical View or Cesium" HorizontalAlignment="Left" Margin="6,58,0,0" VerticalAlignment="Top" Width="316" Height="42" Foreground="#FFEAEAEA" FontSize="22" FontWeight="Bold" Cursor="Hand"/>
                 <Image  HorizontalAlignment="Left" Height="50" Margin="10,8,0,0" VerticalAlignment="Top" Width="56" x:Name="ICON" MouseUp="ICON_MouseUp" Cursor="Hand" Source="/Resources/ov.png"/>
+
             </Grid>
         </Border>
-        <!--<Optical_View_Control:GoogleCore x:Name="Browser" Margin="0,102,0,0"/>-->
+
         <Optical_View_Control:HeaderContainer x:Name="Header" Margin="70,14,1009,0" Height="27" VerticalAlignment="Top"/>
         <Grid x:Name="Control">
             <ProgressBar
@@ -130,7 +129,5 @@
         <!--控件页面容器-->
         <Optical_View_Control:SidebarContainer x:Name="Sidebar" HorizontalAlignment="Left" Margin="0,102,0,0"  />
         <!--<Optical_View_Control:Conversion3DView x:Name="_Conversion3D" HorizontalAlignment="Stretch" Height="Auto" />-->
-
-
     </Grid>
 </UserControl>

@@ -27,8 +27,15 @@ namespace Optical_View.View.Control
         public PaddingContainer()
         {
             InitializeComponent();
+
+            #region 初始化用户控件 扔入公共控件类
+            ConversionView.control = _Conversion3D;
+            Progress.control = LoadProgressBar;
+            #endregion
+
             @this = MainForm.control;
-            LoadProgressBar.Visibility = Visibility.Visible;
+            //加载条
+            //LoadProgressBar.Visibility = Visibility.Visible;
             switch (Launch.Startupz_type.Type)
             {
                 case "obj":
@@ -56,17 +63,13 @@ namespace Optical_View.View.Control
                     break;
 
                 default:
+                    
                     break;
 
 
             }
 
-
-
-            #region 初始化用户控件 扔入公共控件类
-            ConversionView.control = _Conversion3D;
-            Progress.control = LoadProgressBar;
-            #endregion
+            //LoadProgressBar.Visibility = Visibility.Hidden;
 
             #region logo
 
@@ -135,6 +138,7 @@ namespace Optical_View.View.Control
                 }
             }
             #endregion
+            
         }
         public static string extractLoad(string path)
         {

@@ -5,6 +5,7 @@ using MQTTnet.Client.Disconnecting;
 using MQTTnet.Client.Options;
 using MQTTnet.Client.Receiving;
 using MQTTnet.Diagnostics;
+using MQTTnet.Diagnostics.Logger;
 using MQTTnet.Extensions;
 using MQTTnet.Protocol;
 using Newtonsoft.Json;
@@ -84,7 +85,8 @@ namespace OpticalServer.MQTT
         {
             try
             {
-                MqttNetConsoleLogger.ForwardToConsole();
+                var logger = new MqttNetEventLogger();
+                MqttNetConsoleLogger.ForwardToConsole(logger);
 
 
                 clientOptions = new MqttClientOptions
@@ -382,15 +384,16 @@ namespace OpticalServer.MQTT
 
         }
     }
-
     public static class MqttNetConsoleLogger
     {
         static readonly object _lock = new object();
 
-        public static void ForwardToConsole()
+        public static void ForwardToConsole(MqttNetEventLogger logger)
         {
-            MqttNetGlobalLogger.LogMessagePublished -= PrintToConsole;
-            MqttNetGlobalLogger.LogMessagePublished += PrintToConsole;
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
+            logger.LogMessagePublished -= PrintToConsole;
+            logger.LogMessagePublished += PrintToConsole;
         }
 
         public static void PrintToConsole(string message, ConsoleColor color)
@@ -433,4 +436,5 @@ namespace OpticalServer.MQTT
             PrintToConsole(output.ToString(), color);
         }
     }
+
 }

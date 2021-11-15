@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31624.102
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31903.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optical View", "Optical View\Optical View.csproj", "{FDE8FEEC-15D0-4FE8-A8AF-B41A23059A0B}"
 EndProject
@@ -17,9 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterFace", "Other\InterFac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Other\Core\Core.csproj", "{612E366C-A0DA-4DE3-9C45-F697C9ACF984}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optical Core", "Optical Core\Optical Core.csproj", "{7FA65088-2729-421A-A9DC-E207437875B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optical Core", "Optical Core\Optical Core.csproj", "{7FA65088-2729-421A-A9DC-E207437875B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optical Server", "Optical Server\Optical Server.csproj", "{E200D165-287A-4299-B89E-E601C013ADCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optical Server", "Optical Server\Optical Server.csproj", "{E200D165-287A-4299-B89E-E601C013ADCF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "数据库插销", "数据库插销", "{F1CC13AF-75E8-4B36-89A8-D0E8ABEDD668}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrandSql", "GrandSql\GrandSql.csproj", "{7295D92E-A822-4451-B380-445A528FE2CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +119,18 @@ Global
 		{E200D165-287A-4299-B89E-E601C013ADCF}.Release|x64.Build.0 = Release|Any CPU
 		{E200D165-287A-4299-B89E-E601C013ADCF}.Release|x86.ActiveCfg = Release|Any CPU
 		{E200D165-287A-4299-B89E-E601C013ADCF}.Release|x86.Build.0 = Release|Any CPU
+		{7295D92E-A822-4451-B380-445A528FE2CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7295D92E-A822-4451-B380-445A528FE2CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7295D92E-A822-4451-B380-445A528FE2CD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7295D92E-A822-4451-B380-445A528FE2CD}.Debug|x64.Build.0 = Debug|Any CPU
+		{7295D92E-A822-4451-B380-445A528FE2CD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7295D92E-A822-4451-B380-445A528FE2CD}.Debug|x86.Build.0 = Debug|Any CPU
+		{7295D92E-A822-4451-B380-445A528FE2CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7295D92E-A822-4451-B380-445A528FE2CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7295D92E-A822-4451-B380-445A528FE2CD}.Release|x64.ActiveCfg = Release|Any CPU
+		{7295D92E-A822-4451-B380-445A528FE2CD}.Release|x64.Build.0 = Release|Any CPU
+		{7295D92E-A822-4451-B380-445A528FE2CD}.Release|x86.ActiveCfg = Release|Any CPU
+		{7295D92E-A822-4451-B380-445A528FE2CD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,6 +141,8 @@ Global
 		{BFED1225-C53A-44F7-A097-B13DB249CE98} = {5708790C-08F1-44A9-A9EC-14EF4D53829F}
 		{0017E47C-7CED-4A82-8863-9CF446BA7D3A} = {F035A3F3-6C86-4E82-9D87-9A73ADE8AF2B}
 		{612E366C-A0DA-4DE3-9C45-F697C9ACF984} = {F035A3F3-6C86-4E82-9D87-9A73ADE8AF2B}
+		{F1CC13AF-75E8-4B36-89A8-D0E8ABEDD668} = {F035A3F3-6C86-4E82-9D87-9A73ADE8AF2B}
+		{7295D92E-A822-4451-B380-445A528FE2CD} = {F1CC13AF-75E8-4B36-89A8-D0E8ABEDD668}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F0986D2C-AF40-4FE3-9E81-F684D3F5F2D5}

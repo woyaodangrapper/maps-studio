@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.IO;
 using System.Threading.Tasks;
@@ -49,7 +51,26 @@ namespace OpticalServer
                 //配置返回Json
                 services.AddControllersWithViews().AddNewtonsoftJson();
             }
-
+            {
+                // STEP1: 設定用哪種方式驗證 HTTP Request 是否合法
+                services
+                    // 檢查 HTTP Header 的 Authorization 是否有 JWT Bearer Token
+                    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    // 設定 JWT Bearer Token 的檢查選項
+                    .AddJwtBearer(options =>
+                    {
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidIssuer = Configuration["Jwt:Issuer"],
+                            ValidateAudience = true,
+                            ValidAudience = Configuration["Jwt:Issuer"],
+                            ValidateLifetime = true,
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("db3OIsj+BXE9NZDy0t8W3TcNekrF+2d/1sFnWG4HnV8TZY30iTOdtVWJG8abWvB1GlOgJuQZdcF2Luqm/hccMw=="))
+                        };
+                    });
+            }
 
         }
         public class CorsMiddleware
@@ -89,6 +110,8 @@ namespace OpticalServer
             {
                 app.UseDeveloperExceptionPage();
             }
+            // STEP2: 使用驗證權限的 Middleware
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
             //设置远程

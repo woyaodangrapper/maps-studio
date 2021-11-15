@@ -216,8 +216,8 @@ namespace Optical_View.View.Form
 
         private void Hyperlinks_MouseUp(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            new MainWindow().Show();
             Launch.Startupz_type.Type = "Hyperlinks";
+            new MainWindow().Show();
             Close();
         }
 

@@ -2,8 +2,10 @@
 using MQTTnet;
 using MQTTnet.Client.Receiving;
 using MQTTnet.Diagnostics;
+using MQTTnet.Diagnostics.Logger;
 using MQTTnet.Protocol;
 using MQTTnet.Server;
+using MQTTnet.Server.Internal;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Serilog;
@@ -44,7 +46,8 @@ namespace OpticalCore.MQTT
         {
             try
             {
-                MqttNetConsoleLogger.ForwardToConsole();
+                var logger = new MqttNetEventLogger();
+                MqttNetConsoleLogger.ForwardToConsole(logger);
                 //var options = new MqttServerOptions();
                 //options.DefaultEndpointOptions.Port = int.Parse(ServerPort.Text);
                 var options = new MqttServerOptions
@@ -247,10 +250,12 @@ namespace OpticalCore.MQTT
     {
         static readonly object _lock = new object();
 
-        public static void ForwardToConsole()
+        public static void ForwardToConsole(MqttNetEventLogger logger)
         {
-            MqttNetGlobalLogger.LogMessagePublished -= PrintToConsole;
-            MqttNetGlobalLogger.LogMessagePublished += PrintToConsole;
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
+            logger.LogMessagePublished -= PrintToConsole;
+            logger.LogMessagePublished += PrintToConsole;
         }
 
         public static void PrintToConsole(string message, ConsoleColor color)
