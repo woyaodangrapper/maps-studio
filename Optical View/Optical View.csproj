@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Arctron.Obj23dTiles" Version="1.1.2" />
     <PackageReference Include="Fleck" Version="1.2.0" />
     <PackageReference Include="MaterialDesignColors" Version="2.0.3" />
     <PackageReference Include="MaterialDesignThemes" Version="4.2.1" />
@@ -31,11 +32,6 @@
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     <PackageReference Include="System.Runtime.Extensions" Version="4.3.1" />
     <PackageReference Include="WindowsAPICodePack" Version="1.1.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Other\Core\Core.csproj" />
-    <ProjectReference Include="..\Other\Obj2Gltf\src\Obj23dTiles\Obj23dTiles.csproj" />
   </ItemGroup>
 
   <ItemGroup>
