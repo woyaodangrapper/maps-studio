@@ -17,16 +17,14 @@ namespace Optical_View.Class
     }
     public class Browser_execution_method
     {
+       
 
-        WebsocketServer a = new WebsocketServer();
         //初始化模型
         private static void _buildinge_Stratification()
         {
-            //JObject j = JsonConvert.DeserializeObject<JObject>(JsonConvert.SerializeObject(Core.Main.GetDataModel(Launch.Startupz_type.Path)));
-            //String data = JsonConvert.SerializeObject(Core.Main.GetDataModel(Launch.Startupz_type.Path));
-            //BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"GIS.Socket_Response=" + data);
-
-            //BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"Logic.example_BuildingStratification('{Launch.Startupz_type.Path.Replace("\\", "\\\\")}')");
+            String data = JsonConvert.SerializeObject(new Optical_Core().GetStructure(Launch.Startupz_type.Path));
+            BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"GIS.Socket_Response=" + data);
+            BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"Logic.example_BuildingStratification('{Launch.Startupz_type.Path.Replace("\\", "\\\\")}')");
         }
         private static void _extract_Loaded()
         {
@@ -95,8 +93,7 @@ namespace Optical_View.Class
         }
         public static void WebSocketInit()
         {
-            //new Core.Main().Init(new object[0]);
-            //new WebsocketServer().WebSocketInit(_Message_processing);
+            new WebsocketServer().WebSocketInit(_Message_processing);
         }
 
         private static void _Message_processing(BrowserMessageModel bmm)

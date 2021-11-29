@@ -80,7 +80,7 @@ namespace Optical_View
             InitializeCefSharp();//Cef内核 因wpf webgl刷新问题不使用/但无法解决 除win10以下版本使用本工具
             InitializeWebServer(); //初始化内置的代理服务器
             InitializeWebsocketServer();
-            //new WebsocketServer().WebSocketInit();//WebSocketInit
+
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
