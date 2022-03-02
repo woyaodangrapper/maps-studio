@@ -1,17 +1,37 @@
-<p align="center">
-<img src="https://github.com/light-come/Cesium-OpticalCore/blob/main/logos/Logo_Color.png" width="60%" />
+<h1>
+    <center>铯工具</center>
+</h1>
+
+
+
+## 🌏更新日志
+
+[日志](CHANGELOG.md)
+
+* `2021/11/02` v0.0.1
+  1. [添加可视化] _3dtiles模型查看功能。
+
+
+
+### :clap: 窗体
+
+<p>
+<center><a href="https://zy.crcr.top/github/OpticalForms/img/qido.png"><img src="https://zy.crcr.top/github/OpticalForms/img/qido.png" width="30%" /></a></center>&nbsp;
+<a href="https://zy.crcr.top/github/OpticalForms/img/zhuchuangti.png"><img src="https://zy.crcr.top/github/OpticalForms/img/zhuchuangti.png" width="30%" /></a>&nbsp;
+<a href="https://cesium.com/blog/2018/02/05/historic-pharsalia-cabin-point-cloud/"><img src="https://images.prismic.io/cesium/2018-02-05-cover.jpg" width="30%" /></a>&nbsp;<a href="https://zy.crcr.top/github/OpticalForms/img/form3d.png"><img src="https://zy.crcr.top/github/OpticalForms/img/form3d.png" width="30%" /></a>&nbsp;
+<br/>
+<br/>
 </p>
 
-# [官网](https://taoistcore.com/)
-[CesiumJS 友链](https://github.com/CesiumGS/cesium)
 
-铯容器是一款数据处理及围绕Cesium应用程序。它就像Cesium一样工作，您可以在自己的PC电脑上运行它。它可用于Windows 10。
-ps:此处公告第一版总进度 当前:（20211017 公示）欢迎大家加群共同推动或划水群号请看爱发电，如是开发共同协助请留一个issues
+
 
 ## 👏 资助
+
 如果您希望支持此项目，不想白嫖请点亮⭐或 [💕 进行捐赠行动](https://afdian.net/@taoistcore).
 
-## 📗 帮助
+## 👏 帮助
+
 你可以通过很多方式做贡献。就像对待大多数开源软件一样,贡献代码:
 
 * 文档（代码和功能）
@@ -24,21 +44,20 @@ ps:此处公告第一版总进度 当前:（20211017 公示）欢迎大家加群
 * 示例应用程序
 
 
-## 贡献者
-### 代码贡献者
-这个项目的存在要感谢所有做出贡献的人.
-<a href=”https://github.com/light-come/Cesium-OpticalCore/graphs/contributors“>
+## 
 
-## 集成索引
+### ❤️代码贡献者
 
-| 名称                  | 友链                                                                                                                                  |
-|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-|  (.NET & .NET Core) | (https://docs.microsoft.com/zh-cn/aspnet/core/?view=aspnetcore-3.1) |
-|  (CesiumJS) | (https://github.com/CesiumGS/cesium) |
+我.🤡
+
+------
 
 
-## 版权所有
+
+## ©版权所有
+
 版权所有©2021 铯容器 作者和贡献者 以及你 :)
 
-### 开源协议: 
+### (👉ﾟヮﾟ)👉开源协议: 
 [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html). 可免费用于商业和非商业用途。
+
