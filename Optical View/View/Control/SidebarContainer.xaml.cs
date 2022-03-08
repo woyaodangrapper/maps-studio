@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using static Optical_View.Model.ViewStaticMod;
+using static Optical_View.Model.StaticViewMod;
 
 namespace Optical_View.View.Control
 {
@@ -86,22 +86,22 @@ namespace Optical_View.View.Control
             if (SideUnfoldingGrid.Opacity == 100)
             {
                 SideUnfoldingGrid.Opacity = 0;
-                if (BrowserContainer.control != null)
+                if (EdgeView.Assembly != null)
                 {
 
 
-                    double left = BrowserContainer.control.Margin.Left - 405;
-                    if (BrowserContainer.control.Name != "_")
-                        BrowserContainer.control.Margin = new Thickness(left, 102, 0, 0);
+                    double left = EdgeView.Assembly.Margin.Left - 405;
+                    if (EdgeView.Assembly.Name != "_")
+                        EdgeView.Assembly.Margin = new Thickness(left, 102, 0, 0);
                 }
             }
             else
             {
-                if (BrowserContainer.control != null)
+                if (EdgeView.Assembly != null)
                 {
-                    double left = BrowserContainer.control.Margin.Left + 405;
-                    if (BrowserContainer.control.Name != "_")
-                        BrowserContainer.control.Margin = new Thickness(left, 102, 0, 0);
+                    double left = EdgeView.Assembly.Margin.Left + 405;
+                    if (EdgeView.Assembly.Name != "_")
+                        EdgeView.Assembly.Margin = new Thickness(left, 102, 0, 0);
                 }
                 SideUnfoldingGrid.Opacity = 100;
             }
@@ -111,11 +111,11 @@ namespace Optical_View.View.Control
         private void ENDBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
             SideUnfoldingGrid.Opacity = 0;
-            if (BrowserContainer.control != null)
+            if (EdgeView.Assembly != null)
             {
-                double left = BrowserContainer.control.Margin.Left - 405;
-                if (BrowserContainer.control.Name != "_")
-                    BrowserContainer.control.Margin = new Thickness(left, 102, 0, 0);
+                double left = EdgeView.Assembly.Margin.Left - 405;
+                if (EdgeView.Assembly.Name != "_")
+                    EdgeView.Assembly.Margin = new Thickness(left, 102, 0, 0);
             }
         }
 

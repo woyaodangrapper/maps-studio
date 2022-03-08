@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using static Optical_View.Model.ViewStaticMod;
+using static Optical_View.Model.StaticViewMod;
 
 namespace Optical_View.View.Control
 {
@@ -29,11 +29,11 @@ namespace Optical_View.View.Control
             InitializeComponent();
 
             #region 初始化用户控件 扔入公共控件类
-            ConversionView.control = _Conversion3D;
-            Progress.control = LoadProgressBar;
+            ConversionView.Assembly = _Conversion3D;
+            Progress.Assembly = LoadProgressBar;
             #endregion
 
-            @this = MainForm.control;
+            @this = Main.Assembly;
             //加载条
             //LoadProgressBar.Visibility = Visibility.Visible;
             switch (ProjectMod.HistoricalProject.Type)

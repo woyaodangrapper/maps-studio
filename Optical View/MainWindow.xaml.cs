@@ -4,7 +4,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using static Optical_View.Model.ViewStaticMod;
+using static Optical_View.Model.StaticViewMod;
 
 namespace Optical_View
 {
@@ -19,7 +19,7 @@ namespace Optical_View
 
             #region 初始化用户控件 扔入公共控件类
             Window w = this;
-            MainForm.control = w;
+            Main.Assembly = w;
             #endregion
             InitializeComponent();
 

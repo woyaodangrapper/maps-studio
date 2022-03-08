@@ -30,8 +30,8 @@ namespace Optical_View.Class
                 if (ipa.AddressFamily == AddressFamily.InterNetwork)
                     ipv4.Add(ipa);
             }
-            Model.WebServerMod.Web_WebsocketServer_Port = Class.SystemCS.PortIsUsed();
-            String potr = Model.WebServerMod.Web_WebsocketServer_Port.ToString();
+            Model.NetworkAgentMod.Web_WebsocketServer_Port = Class.SystemCS.PortIsUsed();
+            String potr = Model.NetworkAgentMod.Web_WebsocketServer_Port.ToString();
             //server = new WebSocketServer($"ws://{ipv4[0]}:4649");//34.203.114.7
             Log.Information($"WebSocketInit: ws://127.0.0.1:{potr}");
             server = new WebSocketServer($"ws://127.0.0.1:{potr}");

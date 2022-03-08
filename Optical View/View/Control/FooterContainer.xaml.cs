@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using static Optical_View.Model.ViewStaticMod;
+using static Optical_View.Model.StaticViewMod;
 
 namespace Optical_View.View.Control
 {
@@ -20,11 +20,11 @@ namespace Optical_View.View.Control
             #region 全屏拓展
             if ((Boolean)openBox.IsChecked)
             {
-                MainForm.control.WindowState = WindowState.Maximized;
+                Main.Assembly.WindowState = WindowState.Maximized;
             }
             else
             {
-                MainForm.control.WindowState = WindowState.Normal;
+                Main.Assembly.WindowState = WindowState.Normal;
             }
 
             #endregion

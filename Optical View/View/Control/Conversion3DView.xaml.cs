@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using static Optical_View.Model.ViewStaticMod;
+using static Optical_View.Model.StaticViewMod;
 
 namespace Optical_View.View.Control
 {
@@ -183,7 +183,7 @@ namespace Optical_View.View.Control
 
                                     Dispatcher.BeginInvoke(new Action(delegate
                                     {
-                                        BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"Logic.add3DTiles('..{tileset.Replace("\\", "/").Replace("WebGL", "")}');");
+                                        EdgeView.Assembly.webView.CoreWebView2.ExecuteScriptAsync($"Logic.add3DTiles('..{tileset.Replace("\\", "/").Replace("WebGL", "")}');");
                                     }));
                                 });
                                 break;
@@ -219,7 +219,7 @@ namespace Optical_View.View.Control
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             _.Visibility = Visibility.Hidden;
-            var @this = MainForm.control;
+            var @this = Main.Assembly;
 
             TopBder.MouseMove += new MouseEventHandler(_MouseMove);
             void _MouseMove(object sender, MouseEventArgs e)

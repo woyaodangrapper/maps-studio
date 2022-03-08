@@ -5,7 +5,7 @@ using Optical_View.Model;
 using Serilog;
 using System;
 using System.IO;
-using static Optical_View.Model.ViewStaticMod;
+using static Optical_View.Model.StaticViewMod;
 
 namespace Optical_View.Class
 {
@@ -27,7 +27,7 @@ namespace Optical_View.Class
         /// </summary>
         private static void _CesiumGS_buildinge_Stratification()
         {
-            String data = JsonConvert.SerializeObject(new Optical_Core().GetStructure(LaunchMod.HistoricalProject.Path));
+            String data = JsonConvert.SerializeObject(new Optical_Core().GetStructure(ProjectMod.HistoricalProject.Path));
             //BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"GIS.Socket_Response=" + data);
             //BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"Logic.example_BuildingStratification('{Launch.HistoricalProject.Path.Replace("\\", "\\\\")}')");
         }
@@ -42,7 +42,7 @@ namespace Optical_View.Class
                 Directory.CreateDirectory(@"WebGL\.cache");
             }
 
-            var obj = LaunchMod.HistoricalProject.Path;
+            var obj = ProjectMod.HistoricalProject.Path;
             {
                 bool isrewrite = true; // true=覆盖已存在的同名文件,false则反之
                 File.Copy(obj, @"WebGL\.cache\" + Path.GetFileNameWithoutExtension(obj) + ".obj", isrewrite);
@@ -89,7 +89,7 @@ namespace Optical_View.Class
                             }
                         }
                         Log.Information($"Loaded_Obj('{Path.GetFileNameWithoutExtension(obj)}','{Path.GetFileNameWithoutExtension(mtl.FileName)}','{URI_}')");
-                        BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"Loaded_Obj('{Path.GetFileNameWithoutExtension(obj)}','{Path.GetFileNameWithoutExtension(mtl.FileName)}','{URI_}')");
+                        EdgeView.Assembly.webView.CoreWebView2.ExecuteScriptAsync($"Loaded_Obj('{Path.GetFileNameWithoutExtension(obj)}','{Path.GetFileNameWithoutExtension(mtl.FileName)}','{URI_}')");
 
                     }
 
@@ -112,7 +112,7 @@ namespace Optical_View.Class
         /// <param name="bmm"></param>
         private static void _Message_processing(BrowserMessageModel bmm)
         {
-            _ = MainForm.control.Dispatcher.BeginInvoke(new Action(delegate
+            _ = Main.Assembly.Dispatcher.BeginInvoke(new Action(delegate
               {
                   switch (bmm.name)
                   {
@@ -124,7 +124,7 @@ namespace Optical_View.Class
                                   switch (J["msg"].ToString())
                                   {
                                       case "success":
-                                          switch (LaunchMod.HistoricalProject.Type)
+                                          switch (ProjectMod.HistoricalProject.Type)
                                           {
                                               case "obj":
                                                   try
@@ -146,7 +146,7 @@ namespace Optical_View.Class
                                   break;
                               case "error":
                                   Log.Error("webView : " + J["msg"].ToString());
-                                  BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"alert('{J["msg"].ToString()}')");
+                                  EdgeView.Assembly.webView.CoreWebView2.ExecuteScriptAsync($"alert('{J["msg"].ToString()}')");
                                   break;
                           }
                           break;

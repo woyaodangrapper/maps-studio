@@ -51,9 +51,9 @@ namespace Optical_View.Class
         public static void SetWebServer(string coreName)
         {
             stop();
-            Model.WebServerMod.Web_Server_Port = Class.SystemCS.PortIsUsed();
-            Log.Debug("Model.Web_Server_Config.Port =>" + Model.WebServerMod.Web_Server_Port);
-            _ = start(IPAddress.Parse("127.0.0.1"), Model.WebServerMod.Web_Server_Port, 1, "WebGL\\" + coreName ?? "CesiumGS");
+            Model.NetworkAgentMod.Web_Server_Port = Class.SystemCS.PortIsUsed();
+            Log.Debug("Model.Web_Server_Config.Port =>" + Model.NetworkAgentMod.Web_Server_Port);
+            _ = start(IPAddress.Parse("127.0.0.1"), Model.NetworkAgentMod.Web_Server_Port, 1, "WebGL\\" + coreName ?? "CesiumGS");
         }
         public static bool start(IPAddress ipAddress, int port, int maxNOfCon, string contentPath)
         {
