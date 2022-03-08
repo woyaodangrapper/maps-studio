@@ -78,7 +78,7 @@ namespace Optical_View
             //Any CefSharp references have to be in another method with NonInlining
             // attribute so the assembly rolver has time to do it's thing.
             InitializeCefSharp();//Cef内核 因wpf webgl刷新问题不使用/但无法解决 除win10以下版本使用本工具
-            InitializeWebServer(); //初始化内置的代理服务器
+          
             InitializeWebsocketServer();
 
         }
@@ -101,11 +101,12 @@ namespace Optical_View
             //Cef.Initialize(settings, performDependencyCheck: false, browserProcessHandler: null);
         }
        
-        private static void InitializeWebServer()
+        private static void InitializeWebServer(string coreName)
         {
+            Windows_ImWebServer.stop();
             Model.Web_Server_Config.Web_Server_Port = Class.SystemOperation.PortIsUsed();
             Log.Debug("Model.Web_Server_Config.Port =>" + Model.Web_Server_Config.Web_Server_Port);
-            _ = Class.Windows_ImWebServer.start(IPAddress.Parse("127.0.0.1"), Model.Web_Server_Config.Web_Server_Port, 1,"WebGL");
+            _ = Windows_ImWebServer.start(IPAddress.Parse("127.0.0.1"), Model.Web_Server_Config.Web_Server_Port, 1,"WebGL\\" + coreName ?? "CesiumGS");
         }
 
         private static void InitializeWebsocketServer() {

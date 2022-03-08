@@ -39,7 +39,6 @@ namespace Optical_View.View.Form
             }
 
             ListView.Items.Clear();
-
             foreach (var item in appsettings.GetKeys("record"))
             {
                 Grid grid = new Grid();
@@ -91,6 +90,10 @@ namespace Optical_View.View.Form
             Loaded += new RoutedEventHandler(this.Window_Loaded);
         }
 
+        /// <summary>
+        /// 检测是否安装了符合条件的web浏览器
+        /// </summary>
+        /// <returns></returns>
         private static bool CheckWebView()
         {
             try
@@ -107,6 +110,10 @@ namespace Optical_View.View.Form
             }
             return false;
         }
+
+        /// <summary>
+        /// 运行MicrosoftEdgeWebview2Setup安装三维环境
+        /// </summary>
         private void InstallWebView()
         {
             string path = Environment.CurrentDirectory + @"\check\MicrosoftEdgeWebview2Setup.exe";
@@ -152,6 +159,8 @@ namespace Optical_View.View.Form
             }
 
         }
+
+        #region 鼠标控件 关闭 最大化 最小化 移动 处理
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             HwndSource hwndSource = PresentationSource.FromVisual(this) as HwndSource;
@@ -247,6 +256,11 @@ namespace Optical_View.View.Form
         }
 
         #endregion
+
+
+        #endregion
+
+        ///////////////////按钮点击以及拖动展示时处理//////////////////////////////////////////////////////////
 
         private void _folder_MouseUp(object sender, MouseButtonEventArgs e)
         {

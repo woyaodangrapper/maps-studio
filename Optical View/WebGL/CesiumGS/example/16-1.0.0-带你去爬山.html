@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌏I code and sometimes paint when I have time.🌏</title>
+    <!--加载样式动画-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/loader-spinners/style.css" />
+    <!-- 实列 -->
+    <script type="text/javascript" src="./16-1.0.0-带你去爬山.js"></script>
+  </head>
+
+  <body>
+    <div id="toolbar" style="width: 100%; text-align: center; display: flex; justify-content: center; position: absolute; bottom: 50px; z-index: 999; color: #fff; box-shadow: 0 1px 10px 1px rgb(0 0 0 / 12%); backdrop-filter: blur(20px); border-radius: 4px">
+      <table>
+        <tbody>
+          <tr>
+            <td><a style="color: #232323; padding: 10px" href="#">第一人称</a></td>
+            <td><a style="color: #232323; padding: 10px" href="#">第三人称</a></td>
+            <td><a style="color: #232323; padding: 10px" href="#">上帝视角</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="file-page-container" style="width: 100%; position: absolute; height: 100%; z-index: 1; background-color: #181818c2">
+      <span class="loader-119" style="color: #fff;position: absolute; top: 50%; left: 47%;text-shadow: 2px 2px 2px #000;">Loading...</span>
+      <span id="file-page-percent" style="color: #fff; position: absolute; top: 53%; left: 48%; text-shadow: 2px 2px 2px #000">0%</span>
+    </div>
+    <div class="map-container" style="z-index: -1" id="mapBox"></div>
+  </body>
+</html>
+<script>
+  var a_arr = $("a")
+  for (let index = 0; index < a_arr.length; index++) {
+    const element = a_arr[index];
+    var multiplier = 1
+    element.onclick = function () {
+      var params
+      var options = {}
+      switch (this.innerHTML) {
+          case "第一人称":
+            params = "IntelligentRoaming_Visual"
+            options = {
+              visual:{
+                type : 1,
+                height:10.4 * 2,
+                direction : -35 * 2.5,
+              }
+            }//视角 0是无绑定 1是第一人称 3是第三人称 2是跟随
+          break;  
+          case "第三人称":
+            params = "IntelligentRoaming_Visual"
+            options = {
+              visual:{
+                type : 3,
+                height:10.4 * 2,
+                direction : -35 * 2.5,
+              }
+            }//视角 0是无绑定 1是第一人称 3是第三人称 2是跟随
+          break;
+          case "上帝视角":
+            params = "IntelligentRoaming_Visual"
+            options = {
+              visual:{
+                type : 0,
+                height:10.4 * 2,
+                direction : -35 * 2.5,
+              }
+            }//视角 0是无绑定 1是第一人称 3是第三人称 2是跟随
+          break;
+        default:
+          break;
+      }
+
+      new Gear(viewer)[params](options)
+    }
+  }
+  setTimeout(() => {
+    var by = document.getElementById("travelscope");
+    if (by) by.setAttribute("class", "visible");
+  }, 1000);
+</script>

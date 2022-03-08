@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌏I code and sometimes paint when I have time.🌏</title>
+    <!-- 实列 -->
+    <script type="text/javascript" src="./12-1.0.0-绘制.js"></script>
+  </head>
+
+  <body>
+
+    <div id="top-overlay">
+      <div class="background"></div>
+      <h2 id="travelscope">
+        介绍
+        <div class="notes">
+          操作指引
+          <br />
+          <p style="font-weight: 700">鼠标 + 左键|鼠标 + 右键</p>
+          可以控制拖动地图.
+          <br />
+          <br />
+          <p style="font-weight: 700">鼠标 + 中键/鼠标 + 滚轮</p>
+          旋转视角及缩放操作
+        </div>
+      </h2>
+    </div>
+
+    <div id="toolbar" style="width: 100%; text-align: center; display: flex; justify-content: center; position: absolute; bottom: 50px; z-index: 999; color: #fff; box-shadow: 0 1px 10px 1px rgb(0 0 0 / 12%); backdrop-filter: blur(20px); border-radius: 4px">
+      <table>
+        <tbody>
+          <tr>
+            <td><a style="color: #e6e6e6; padding: 10px" href="#">测高</a></td>
+            <td><a style="color: #e6e6e6; padding: 10px" href="#">测距</a></td>
+            <td><a style="color: #e6e6e6; padding: 10px" href="#">测范围</a></td>   
+            <td><a style="color: #e6e6e6; padding: 10px" href="#">清除全部测量</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="map-container" style="z-index: 999" id="mapBox"></div>
+  </body>
+</html>
+<script>
+  var a_arr = $("a")
+  for (let index = 0; index < a_arr.length; index++) {
+    const element = a_arr[index];
+    var multiplier = 1
+    element.onclick = function () {
+      console.log(this.innerHTML)
+      var params
+      var options = {}
+      switch (this.innerHTML) {
+          case "测高":
+            params = "example_measureLineFlat"
+          break;
+          case "测距":
+            params = "example_measureDraw"
+            options = "measurePolyline"
+          break;
+          case "测范围":
+            params = "example_measureDraw"
+            options = "measurePolygon"
+          break;
+          case "清除全部测量":
+            params = "example_edit_release"
+          break;
+        default:
+          break;
+      }
+      console.log(Gear_X)
+      Gear_X[params](options)
+    }
+  }
+ setTimeout(() => {
+    var by = document.getElementById("travelscope");
+    if (by) by.setAttribute("class", "visible");
+  }, 1000);
+</script>

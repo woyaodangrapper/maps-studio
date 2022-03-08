@@ -12,6 +12,7 @@ namespace Optical_View.View.Control
     /// </summary>
     public partial class MicrosoftEdgeView : UserControl
     {
+
         public MicrosoftEdgeView()
         {
             InitializeComponent();
@@ -29,7 +30,7 @@ namespace Optical_View.View.Control
                     _obj_Loaded();
                     break;
                 case "_folder":
-                    _folder_Loaded();
+                    _folder_CesiumGS_Loaded();
                     break;
                 case "_extract":
                     _extract_Loaded();
@@ -45,7 +46,7 @@ namespace Optical_View.View.Control
             {
                 TimeSpan ts = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0);
                 webView.CoreWebView2.ContentLoading += CoreWebView2_ContentLoading;
-                webView.Source = new Uri("http://127.0.0.1:" + Model.Web_Server_Config.Web_Server_Port.ToString() + "/index.html?time:" + Convert.ToInt64(ts.TotalSeconds).ToString());
+                webView.Source = new Uri("http://127.0.0.1:" + Web_Server_Config.Web_Server_Port.ToString() + "/index.html?time:" + Convert.ToInt64(ts.TotalSeconds).ToString());
                 _ = System.Threading.Tasks.Task.Factory.StartNew(() =>
                 {
                     int i = 0;
@@ -63,13 +64,17 @@ namespace Optical_View.View.Control
                 //webView.CoreWebView2.Navigate("http://127.0.0.1:" + Model.Web_Server_Config.Port.ToString());
             }
         }
-        private void _folder_Loaded()
+
+        /// <summary>
+        /// 初始化CesiumGS项目
+        /// </summary>
+        private void _folder_CesiumGS_Loaded()
         {
             if (webView != null && webView.CoreWebView2 != null)
             {
                 TimeSpan ts = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0);
                 webView.CoreWebView2.ContentLoading += CoreWebView2_ContentLoading;
-                webView.Source = new Uri("http://127.0.0.1:" + Model.Web_Server_Config.Web_Server_Port.ToString() + "/index.html?time:" + Convert.ToInt64(ts.TotalSeconds).ToString());
+                webView.Source = new Uri("http://127.0.0.1:" + Model.Web_Server_Config.Web_Server_Port.ToString() + "/CesiumGS/index.html?time:" + Convert.ToInt64(ts.TotalSeconds).ToString());
                 _ = System.Threading.Tasks.Task.Factory.StartNew(() =>
                 {
                     int i = 0;

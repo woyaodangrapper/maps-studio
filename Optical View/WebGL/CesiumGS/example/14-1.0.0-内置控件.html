@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌏I code and sometimes paint when I have time.🌏</title>
+    <!-- 实列 -->
+    <script type="text/javascript" src="./14-1.0.0-内置控件.js"></script>
+
+    <!-- 控件 -->
+    
+    <!-- flaticon css -->
+    <link rel="stylesheet" href="/assets/font/flaticon.css" />
+
+    <!-- main style css link -->
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <!-- Styles -->
+    <link href="/assets/root/static/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Theme Styles -->
+    <link href="/assets/root/static/css/main.min.css" rel="stylesheet" />
+    <!--加载样式动画-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/loader-spinners/style.css" />
+
+  </head>
+
+  <body class="pace-done page-sidebar-collapsed no-loader">
+
+    <div class="page_cover" style="opacity: 0; pointer-events: none;">
+      <div id="file-page-container" style="border-top: 0 px solid #262635;margin: 0 47px;display: none;">
+        <div class="page-footer" style="margin: 0 0px;height: 70px;">
+          <a href="#0" style="width: auto;color:#fff;font-size:16px;font-weight:600;" class="page-footer-item page-footer-item-left"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left footer-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>返回</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-container" style="z-index: 1" id="mapBox"></div>
+
+    <div class="pace pace-inactive">
+      <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px)">
+        <div class="pace-progress-inner"></div>
+      </div>
+      <div class="pace-activity"></div>
+    </div>
+    <style>
+      body {
+        background-color: #171744;
+      } 
+      .third {
+        backdrop-filter: blur(30px) brightness(150%);
+      }
+      .fourth {
+        backdrop-filter: brightness(150%) saturate(150%) blur(15px);
+      }
+    </style>
+
+    <!-- /preloader -->
+    <div class="cursor" style="top: 95px; left: 1596px; transform: matrix(1, 0, 0, 1, 0, 0)"></div>
+    <!-- header-section start -->
+    <header class="header-section" style="background-color: #1c1d5500">
+      <div class="header">
+          <style>
+            .mars_now {
+              height: auto;
+              border-radius: 2px;
+              padding: 0;
+              border: none;
+              display: inline-block;
+              cursor: pointer;
+              height: auto;
+              border-top-left-radius: 2px;
+              border-top-right-radius: 2px;
+              white-space: nowrap;
+              margin-right: 0.8em;
+              box-sizing: border-box;
+            }
+            .nav_title {
+              font-weight: 600;
+              display: block;
+              position: relative;
+              line-height: 1.4em;
+              font-weight: 700;
+              margin-bottom: 0;
+              height: 100%;
+              cursor: pointer;
+              letter-spacing: -0.02em;
+              box-sizing: border-box;
+              letter-spacing: -0.02em;
+            }
+            .nav_li {
+              padding: 0;
+              border: none;
+              display: inline-block;
+              cursor: pointer;
+              height: auto;
+              border-top-left-radius: 2px;
+              border-top-right-radius: 2px;
+              white-space: nowrap;
+            }
+            .main_nav_item {
+              padding: 0.5em 0.8em;
+              font-size: 0.9rem;
+              display: block;
+              font-weight: 600;
+              padding: 0.5em 6px;
+              color: white;
+            }
+            .arrow_expand {
+              display: inline-block;
+              width: 28px;
+              height: 22px;
+              pointer-events: none;
+            }
+            .site_nav {
+              padding-top: 18px;
+              width: 100%;
+              padding: 0;
+              position: relative;
+              overflow-y: visible;
+              min-height: 0;
+              height: 82px;
+              top: auto;
+              left: auto;
+              padding-top: 15px;
+              text-align: right;
+            }
+            .icon {
+              content: "";
+              display: block;
+              width: 6.25em;
+              height: 5.6875em;
+              background-image: url(https://mars.nasa.gov//assets/mars.svg);
+              background-repeat: no-repeat;
+              background-size: contain;
+              position: absolute;
+              transform: translate(-60%, -50%);
+              box-sizing: border-box;
+            }
+            .page_cover {
+              position: absolute;
+              background-color: rgba(0, 0, 0, 0.5);
+              width: 100%;
+              height: 100%;
+              z-index: 1;
+            }
+            .magic_shell_subnav {
+              font-weight: 300;
+              font-size: 104%;
+              text-align: right;
+              display: block;
+              margin-top: 7px;
+              padding-top: 0.9em;
+              transition: padding 200ms;
+              box-sizing: border-box;
+            }
+            .pullout_subnav {
+              display: inline-block;
+              position: relative;
+              border: 0;
+              vertical-align: middle;
+              color: white;
+              padding: 0.5em 0.7em 0.5em 0.3em;
+            }
+            .nav_toggle {
+              background: url(https://mars.nasa.gov//assets/nav_toggle.png) no-repeat center;
+              background-size: 32px;
+              border: 1px solid #565656;
+              transition: border 200ms;
+              display: inline-block;
+              cursor: pointer;
+              margin-right: 1em;
+              height: 33px;
+              width: 47px;
+              text-align: center;
+              vertical-align: middle;
+            }
+            .arrow {
+              width: 0;
+              height: 0;
+              border-top: 6px solid transparent !important;
+              border-bottom: 6px solid transparent !important;
+              border-left: 8px solid gray;
+              display: inline-block;
+              transform: rotate(-90deg);
+              position: relative;
+              top: calc(50% - 14px);
+              transition: border 200ms;
+            }
+
+            .fit {
+              display: none;
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 80px;
+              border-right: 1px solid #ffffff36;
+              width: 320px;
+              height: 100%;
+              background: #ffffff36;
+              backdrop-filter: blur(40px);
+              box-shadow: 2px 0px 10px rgb(0 0 0 / 15%);
+            }
+          </style>
+          <div class="page-header" id="header-control" style="margin: 0px">
+            <nav class="navbar navbar-expand-lg d-flex justify-content-between" style="top: 17px; background-image: -webkit-linear-gradient(0deg, rgba(255, 255, 255, 0) 0px, rgba(255, 255, 255, 0)); border-bottom: 0px solid rgba(255, 255, 255, 0)">
+              <div class="flex-fill" id="headerNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link profile-dropdown" href="#" id="profileDropDown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img
+                        src="data:image/png;base64,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"
+                        alt=""
+                      />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+
+            <div id="magic_shell_subnav" style="width: 100%; height: 100%; float: right; bottom: 0px; right: 0px; position: absolute; text-align: right; z-index: 50; display: block !important">
+              <nav data-react-class="Meganav" data-react-props="" data-react-cache-id="Meganav-0" class="site_nav insight_site_nav">
+                <span style="visibility: visible; display: initial">
+                  <ul class="nav" style="margin-bottom: 0; display: inline-block; margin-right: 0.6em; padding-top: 9px; border-bottom: 1px solid#2F2F2F; height: 100%; list-style: none; list-style-image: none">
+                    <li class="mars_now">
+                      <div class="nav_title" id="li_261">
+                        <a class="main_nav_item icon" href="/explore/mars-now" title="Mars Now"></a>
+                      </div>
+                    </li>
+                    <li class="nav_li">
+                      <div class="nav_title" id="li_3">
+                        <a class="main_nav_item" href="#" target="_self">
+                          <span>模型场景管理</span>
+                        </a>
+                      </div>
+                    </li>
+                    <li class="nav_li">
+                      <div class="nav_title" id="li_2">
+                        <a class="main_nav_item" href="#" target="_self">
+                          <span>设备管理</span>
+                        </a>
+                      </div>
+                    </li>
+                    <li class="nav_li">
+                      <div class="nav_title" id="li_4">
+                        <a class="main_nav_item" href="#" target="_self">
+                          <span>事件 &amp; 预案</span>
+                        </a>
+                      </div>
+                    </li>
+                    <li class="nav_li">
+                      <div class="nav_title" id="li_5">
+                        <a class="main_nav_item" href="#" target="_self">
+                          <span>系统配置</span>
+                        </a>
+                      </div>
+                    </li>
+                    <li class="nav_li">
+                      <div class="nav_title" id="li_6">
+                        <a class="main_nav_item">
+                          <span>其他</span>
+                          <img class="arrow_expand" src="/assets/images/arrow_down.png" alt="expand arrow" />
+                        </a>
+                      </div>
+                    </li>
+                    <li class="nav_li">
+                      <div class="nav_title">
+                        <a class="main_nav_item" href="#" target="_self">
+                          <span>统计</span>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </span>
+              </nav>
+              <nav class="magic_shell_subnav" style="height: 0px; text-align: right; padding-top: 0; display: block; margin-top: 7px; padding-top: 0.9em; transition: padding 200ms">
+                <div class="pullout_subnav"></div>
+                <div class="" id="nav_toggle" style="display: inline-block; cursor: pointer; margin-right: 1em; height: 33px; width: 47px; text-align: center; vertical-align: middle; border: 1px solid rgba(86, 86, 86, 0)">
+                  <span
+                    class="arrow"
+                    style="
+                      width: 0px;
+                      height: 0px;
+                      border-left: 8px solid gray;
+                      display: inline-block;
+                      transform: rotate(-90deg);
+                      position: relative;
+                      top: calc(50% - 14px);
+                      transition: border 200ms ease 0s;
+                      border-top: 6px solid transparent !important;
+                      border-bottom: 6px solid transparent !important;
+                    "
+                  ></span>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  </body>
+
+
+</html>
+<script>
+  //标题栏
+  function nav_toggle() {
+    $($($("#nav_toggle")[0])).css({"border":"1px solid #56565600"});
+    
+    if($($(".arrow")[0]).is(":visible")){
+        $("#magic_shell_subnav").animate({bottom:'83px'},200);
+        $($("#nav_toggle")[0]).addClass("nav_toggle")
+        $($(".arrow")[0]).hide()
+        
+        $($(".navbar")[0]).animate({"top":"17px"},200)
+
+    }else{
+        $("#magic_shell_subnav").animate({bottom:'0px'},200);
+        $($("#nav_toggle")[0]).removeClass("nav_toggle")
+        $($(".arrow")[0]).show()
+        $($(".navbar")[0]).animate({"top":"100px"},200)
+    }
+  }
+  nav_toggle()
+  setTimeout(() => {
+    var by = document.getElementById("travelscope");
+    if (by) by.setAttribute("class", "visible");
+  }, 1000);
+</script>
+<script>
+  $("#magic_shell_subnav").animate({ bottom: "83px" }, 10);
+  $($("#nav_toggle")[0]).addClass("nav_toggle");
+  $($(".arrow")[0]).hide();
+
+  $("#nav_toggle")[0].onclick = nav_toggle;
+  $($(".insight_site_nav")[0]).mouseenter(function (e) {
+    $($(".page_cover")[0]).animate({ opacity: 1 }, 400);
+  });
+  $($(".insight_site_nav")[0]).mouseleave(function (e) {
+    $($(".page_cover")[0]).animate({ opacity: 0 }, 400);
+  });
+
+  $($("#nav_toggle")[0]).mouseenter(function (e) {
+    if (!$($(".arrow")[0]).is(":visible")) {
+      $($($("#nav_toggle")[0])).css({ border: "1px solid #ffffffb8" });
+    }
+    $($($("#nav_toggle")[0]).find(".arrow")[0]).css({ "border-left": "8px solid #ffffffb8" });
+  });
+  $($("#nav_toggle")[0]).mouseleave(function (e) {
+    if (!$($(".arrow")[0]).is(":visible")) {
+      $($($("#nav_toggle")[0])).css({ border: "1px solid #565656" });
+    }
+    $($($("#nav_toggle")[0]).find(".arrow")[0]).css({ "border-left": "8px solid gray" });
+  });
+
+  //标题栏
+  function nav_toggle() {
+    $($($("#nav_toggle")[0])).css({ border: "1px solid #56565600" });
+
+    if ($($(".arrow")[0]).is(":visible")) {
+      $("#magic_shell_subnav").animate({ bottom: "83px" }, 200);
+      $($("#nav_toggle")[0]).addClass("nav_toggle");
+      $($(".arrow")[0]).hide();
+
+      $($(".navbar")[0]).animate({ top: "17px" }, 200);
+    } else {
+      $("#magic_shell_subnav").animate({ bottom: "0px" }, 200);
+      $($("#nav_toggle")[0]).removeClass("nav_toggle");
+      $($(".arrow")[0]).show();
+      $($(".navbar")[0]).animate({ top: "100px" }, 200);
+    }
+  }
+  // nav_toggle()
+</script>

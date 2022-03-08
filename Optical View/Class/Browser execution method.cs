@@ -17,20 +17,22 @@ namespace Optical_View.Class
     }
     public class Browser_execution_method
     {
-       
 
-        //初始化模型
-        private static void _buildinge_Stratification()
+
+        /// <summary>
+        /// CesiumGS添加建筑模型
+        /// </summary>
+        private static void _CesiumGS_buildinge_Stratification()
         {
             String data = JsonConvert.SerializeObject(new Optical_Core().GetStructure(Launch.Startupz_type.Path));
-            BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"GIS.Socket_Response=" + data);
-            BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"Logic.example_BuildingStratification('{Launch.Startupz_type.Path.Replace("\\", "\\\\")}')");
+            //BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"GIS.Socket_Response=" + data);
+            //BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"Logic.example_BuildingStratification('{Launch.Startupz_type.Path.Replace("\\", "\\\\")}')");
         }
-        private static void _extract_Loaded()
-        {
-            BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"Logic.example_addBaseLayer();_water();");
-        }
-        private static void _obj_Three_add()
+
+        /// <summary>
+        /// Three添加模型
+        /// </summary>
+        private static void _Three_add()
         {
             if (!Directory.Exists(@"WebGL\.cache"))
             {
@@ -91,11 +93,20 @@ namespace Optical_View.Class
                 }
             }
         }
+
+
+        /// <summary>
+        /// 初始化WebSocket
+        /// </summary>
         public static void WebSocketInit()
         {
             new WebsocketServer().WebSocketInit(_Message_processing);
         }
 
+        /// <summary>
+        /// 消息处理
+        /// </summary>
+        /// <param name="bmm"></param>
         private static void _Message_processing(BrowserMessageModel bmm)
         {
             _ = MainForm.control.Dispatcher.BeginInvoke(new Action(delegate
@@ -115,16 +126,16 @@ namespace Optical_View.Class
                                               case "obj":
                                                   try
                                                   {
-                                                      _obj_Three_add();
+                                                      _Three_add();
                                                   }
                                                   catch { }
                                                   break;
                                               case "_folder":
-                                                  _buildinge_Stratification();
+                                                  _CesiumGS_buildinge_Stratification();
                                                   break;
 
                                               case "_extract":
-                                                  _extract_Loaded();
+
                                                   break;
                                           }
                                           break;
