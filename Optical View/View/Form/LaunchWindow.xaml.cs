@@ -21,7 +21,7 @@ namespace Optical_View.View.Form
     /// </summary>
     public partial class Launch_Window : Window
     {
-        static Appsettings appsettings = new Appsettings();
+        static AppsettingsCS appsettings = new AppsettingsCS();
 
 
         public Launch_Window()
@@ -225,7 +225,7 @@ namespace Optical_View.View.Form
 
         private void Hyperlinks_MouseUp(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            Launch.Startupz_type.Type = "Hyperlinks";
+            ProjectMod.HistoricalProject.Type = "Hyperlinks";
             new MainWindow().Show();
             Close();
         }
@@ -276,8 +276,8 @@ namespace Optical_View.View.Form
                     path = file,
                     type = "_folder"
                 })));
-                Launch.Startupz_type.Path = file;
-                Launch.Startupz_type.Type = "_folder";
+                ProjectMod.HistoricalProject.Path = file;
+                ProjectMod.HistoricalProject.Type = "_folder";
 
                 new MainWindow().Show();
                 Close();
@@ -299,8 +299,8 @@ namespace Optical_View.View.Form
                     path = file,
                     type = "_extract"
                 })));
-                Launch.Startupz_type.Path = file;
-                Launch.Startupz_type.Type = "_extract";
+                ProjectMod.HistoricalProject.Path = file;
+                ProjectMod.HistoricalProject.Type = "_extract";
 
 
                 new MainWindow().Show();
@@ -318,8 +318,8 @@ namespace Optical_View.View.Form
 
             if (Directory.Exists(path))
             {
-                Launch.Startupz_type.Path = path;
-                Launch.Startupz_type.Type = type;
+                ProjectMod.HistoricalProject.Path = path;
+                ProjectMod.HistoricalProject.Type = type;
                 new MainWindow().Show();
                 Close();
             }
@@ -376,8 +376,8 @@ namespace Optical_View.View.Form
             string path = SelectFile("请打开一个或多个OBJ", "obj");
             if (path != null)
             {
-                Launch.Startupz_type.Path = path;
-                Launch.Startupz_type.Type = "obj";
+                ProjectMod.HistoricalProject.Path = path;
+                ProjectMod.HistoricalProject.Type = "obj";
 
                 new MainWindow().Show();
                 Close();
@@ -389,8 +389,8 @@ namespace Optical_View.View.Form
             string path = SelectFile("请选择文件", "glb");
             if (path != null)
             {
-                Launch.Startupz_type.Path = path;
-                Launch.Startupz_type.Type = "glb";
+                ProjectMod.HistoricalProject.Path = path;
+                ProjectMod.HistoricalProject.Type = "glb";
 
                 new MainWindow().Show();
                 Close();
@@ -402,8 +402,8 @@ namespace Optical_View.View.Form
             string path = SelectFile("请选择文件", "fbx");
             if (path != null)
             {
-                Launch.Startupz_type.Path = path;
-                Launch.Startupz_type.Type = "fbx";
+                ProjectMod.HistoricalProject.Path = path;
+                ProjectMod.HistoricalProject.Type = "fbx";
 
                 new MainWindow().Show();
                 Close();
@@ -415,8 +415,8 @@ namespace Optical_View.View.Form
             string path = SelectFile("请选择文件", "gltf");
             if (path != null)
             {
-                Launch.Startupz_type.Path = path;
-                Launch.Startupz_type.Type = "gltf";
+                ProjectMod.HistoricalProject.Path = path;
+                ProjectMod.HistoricalProject.Type = "gltf";
 
                 new MainWindow().Show();
                 Close();
@@ -428,8 +428,8 @@ namespace Optical_View.View.Form
             string path = SelectFile("请选择文件", "3d-tiles");
             if (path != null)
             {
-                Launch.Startupz_type.Path = path;
-                Launch.Startupz_type.Type = "3dtiles";
+                ProjectMod.HistoricalProject.Path = path;
+                ProjectMod.HistoricalProject.Type = "3dtiles";
 
                 new MainWindow().Show();
                 Close();

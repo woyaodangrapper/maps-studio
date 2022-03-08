@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using static Optical_View.Model.View_static_control;
+using static Optical_View.Model.ViewStaticMod;
 
 namespace Optical_View.View.Control
 {
@@ -32,8 +32,8 @@ namespace Optical_View.View.Control
         private void load()
         {
 
-            ConversionText.Text = Launch.Startupz_type.Path.Split("\\")[Launch.Startupz_type.Path.Split("\\").Length - 1];
-            Path_Lab.Text = Launch.Startupz_type.Path; int count = 0;
+            ConversionText.Text = ProjectMod.HistoricalProject.Path.Split("\\")[ProjectMod.HistoricalProject.Path.Split("\\").Length - 1];
+            Path_Lab.Text = ProjectMod.HistoricalProject.Path; int count = 0;
             void FindFile(string dirPath) //参数dirPath为指定的目录
             {
                 //在指定目录及子目录下查找文件,在listBox1中列出子目录及文件
@@ -145,7 +145,7 @@ namespace Optical_View.View.Control
                 }
 
             }
-            FindFile(Launch.Startupz_type.Path);
+            FindFile(ProjectMod.HistoricalProject.Path);
             ConversionText.Text += $"({count})";
 
         }
@@ -178,7 +178,7 @@ namespace Optical_View.View.Control
                                     }
                                     string copy_path = @"WebGL\.cache\" + pathName + @"\";
 
-                                    string tileset = new objTob3dm().Obj_WriteTileset(f.FullName, copy_path);
+                                    string tileset = new Tob3dmCS().Obj_WriteTileset(f.FullName, copy_path);
                                     string b3dm = $"{copy_path}\\{ System.IO.Path.GetFileNameWithoutExtension(f.FullName)}.b3dm";
 
                                     Dispatcher.BeginInvoke(new Action(delegate
@@ -197,7 +197,7 @@ namespace Optical_View.View.Control
 
             }
 
-            FindFile(Launch.Startupz_type.Path);
+            FindFile(ProjectMod.HistoricalProject.Path);
         }
         string cache_Copy(string path, string file)
         {

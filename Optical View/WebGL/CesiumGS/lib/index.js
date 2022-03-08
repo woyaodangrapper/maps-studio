@@ -67,10 +67,10 @@
       var key = arrInclude[i];
       inputLibs(libsConfig[key]);
     }
-
+    console.log(123)
     window.WEBGL_DEBUG = true; //是否为调试模式
     window.local = "http://127.0.0.1:8077";
-    window.server = "http://121.40.42.254:8008/";
+    window.server = "http://127.0.0.1:8077";
   }
   load();
 })();

@@ -4,7 +4,10 @@ using System.IO;
 
 namespace Optical_View.Class
 {
-    class objTob3dm
+    /// <summary>
+    /// WEB GL 数据转换类
+    /// </summary>
+    class Tob3dmCS
     {
         //文件(F)编辑(E) 格式(O) 查看(M) 帮助(H)
         //ENU: 30. 294856.120.266620

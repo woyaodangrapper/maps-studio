@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Optical_View.Model
 {
-    public class TreeModel : INotifyPropertyChanged
+    public class ViewTreeModel : INotifyPropertyChanged
     {
         #region 私有变量
         /// <summary>
@@ -33,19 +33,19 @@ namespace Optical_View.Model
         /// <summary>
         /// 子项
         /// </summary>
-        private IList<TreeModel> _children;
+        private IList<ViewTreeModel> _children;
         /// <summary>
         /// 父项
         /// </summary>
-        private TreeModel _parent;
+        private ViewTreeModel _parent;
         #endregion 
 
         /// <summary>
         /// 构造
         /// </summary>
-        public TreeModel()
+        public ViewTreeModel()
         {
-            Children = new List<TreeModel>();
+            Children = new List<ViewTreeModel>();
             _isChecked = false;
             IsExpanded = false;
             _icon = @"icon\model.png";
@@ -116,7 +116,7 @@ namespace Optical_View.Model
                     else
                     {
                         //如果取消选中子项也应该取消选中
-                        foreach (TreeModel child in Children)
+                        foreach (ViewTreeModel child in Children)
                         {
                             child.IsChecked = false;
                         }
@@ -145,7 +145,7 @@ namespace Optical_View.Model
         /// <summary>
         /// 父项
         /// </summary>
-        public TreeModel Parent
+        public ViewTreeModel Parent
         {
             get { return _parent; }
             set { _parent = value; }
@@ -154,7 +154,7 @@ namespace Optical_View.Model
         /// <summary>
         /// 子项
         /// </summary>
-        public IList<TreeModel> Children
+        public IList<ViewTreeModel> Children
         {
             get { return _children; }
             set { _children = value; }
@@ -166,7 +166,7 @@ namespace Optical_View.Model
         /// <param name="isChecked"></param>
         public void SetChildrenChecked(bool isChecked)
         {
-            foreach (TreeModel child in Children)
+            foreach (ViewTreeModel child in Children)
             {
                 child.IsChecked = IsChecked;
                 child.SetChildrenChecked(IsChecked);
@@ -179,7 +179,7 @@ namespace Optical_View.Model
         /// <param name="isExpanded"></param>
         public void SetChildrenExpanded(bool isExpanded)
         {
-            foreach (TreeModel child in Children)
+            foreach (ViewTreeModel child in Children)
             {
                 child.IsExpanded = isExpanded;
                 child.SetChildrenExpanded(isExpanded);

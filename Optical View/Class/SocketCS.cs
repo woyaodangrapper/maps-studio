@@ -8,7 +8,10 @@ using System.Net.Sockets;
 
 namespace Optical_View.Class
 {
-    public class WebsocketServer
+    /// <summary>
+    /// 通信类
+    /// </summary>
+    public class SocketCS
     {
         static List<IWebSocketConnection> allSockets = new List<IWebSocketConnection>();
         static WebSocketServer server;
@@ -27,8 +30,8 @@ namespace Optical_View.Class
                 if (ipa.AddressFamily == AddressFamily.InterNetwork)
                     ipv4.Add(ipa);
             }
-            Model.Web_Server_Config.Web_WebsocketServer_Port = Class.SystemOperation.PortIsUsed();
-            String potr = Model.Web_Server_Config.Web_WebsocketServer_Port.ToString();
+            Model.WebServerMod.Web_WebsocketServer_Port = Class.SystemCS.PortIsUsed();
+            String potr = Model.WebServerMod.Web_WebsocketServer_Port.ToString();
             //server = new WebSocketServer($"ws://{ipv4[0]}:4649");//34.203.114.7
             Log.Information($"WebSocketInit: ws://127.0.0.1:{potr}");
             server = new WebSocketServer($"ws://127.0.0.1:{potr}");

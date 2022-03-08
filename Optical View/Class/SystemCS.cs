@@ -1,11 +1,32 @@
-﻿using System;
+﻿using System.Net;
+using System.Net.Sockets;
+using System;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
-
 namespace Optical_View.Class
 {
+    /// <summary>
+    /// 系统调用类
+    /// </summary>
+    class SystemCS
+    {
+        /// <summary>        
+        /// 获取操作系统已用的端口号        
+        /// </summary>        
+        /// <returns></returns>        
+        public static int PortIsUsed()
+        {
+            var listener = new TcpListener(IPAddress.Any, 0);
+            listener.Start();
+            var port = ((IPEndPoint)listener.LocalEndpoint).Port;
+            listener.Stop();
+            return port;
+        }
+    }
+
+    //窗体高斯模糊 win32
     public class GroundGlass
     {
         [DllImport("user32.dll")]
@@ -104,5 +125,5 @@ namespace Optical_View.Class
         }
 
     }
-}
 
+}

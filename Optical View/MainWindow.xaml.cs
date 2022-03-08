@@ -4,7 +4,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using static Optical_View.Model.View_static_control;
+using static Optical_View.Model.ViewStaticMod;
 
 namespace Optical_View
 {

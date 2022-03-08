@@ -6,7 +6,7 @@ using System.Windows.Controls;
 
 namespace Optical_View.Model
 {
-    class View_static_control
+    class ViewStaticMod
     {
         //MainWindow
         public partial class MainForm

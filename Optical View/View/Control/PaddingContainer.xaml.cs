@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using static Optical_View.Model.View_static_control;
+using static Optical_View.Model.ViewStaticMod;
 
 namespace Optical_View.View.Control
 {
@@ -36,12 +36,12 @@ namespace Optical_View.View.Control
             @this = MainForm.control;
             //加载条
             //LoadProgressBar.Visibility = Visibility.Visible;
-            switch (Launch.Startupz_type.Type)
+            switch (ProjectMod.HistoricalProject.Type)
             {
                 case "obj":
                     //_HelixToolkit = new HelixToolkitView();
                     //_HelixToolkit.Margin = new Thickness(31, 104, 2, 1);
-                    //foreach (var item in Launch.Startupz_type.Paths)
+                    //foreach (var item in Launch.HistoricalProject.Paths)
                     //{
                     //    Model3DGroup group = Load(item);
                     //    _HelixToolkit.HelixToolkit_ModelVisual3D.Content = group;

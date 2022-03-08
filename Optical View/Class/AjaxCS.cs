@@ -5,7 +5,10 @@ using Serilog;
 
 namespace Optical_View.Class
 {
-    public static class HTTP
+    /// <summary>
+    /// 互联网请求类
+    /// </summary>
+    public static class AjaxCS
     {
         public static JObject Post(string url, string body)
         {

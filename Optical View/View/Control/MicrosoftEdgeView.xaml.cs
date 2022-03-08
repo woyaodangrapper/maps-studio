@@ -3,7 +3,7 @@ using Optical_View.Model;
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using static Optical_View.Model.View_static_control;
+using static Optical_View.Model.ViewStaticMod;
 
 namespace Optical_View.View.Control
 {
@@ -24,7 +24,7 @@ namespace Optical_View.View.Control
         {
             await webView.EnsureCoreWebView2Async(null);
 
-            switch (Launch.Startupz_type.Type)
+            switch (ProjectMod.HistoricalProject.Type)
             {
                 case "obj":
                     _obj_Loaded();
@@ -46,7 +46,7 @@ namespace Optical_View.View.Control
             {
                 TimeSpan ts = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0);
                 webView.CoreWebView2.ContentLoading += CoreWebView2_ContentLoading;
-                webView.Source = new Uri("http://127.0.0.1:" + Web_Server_Config.Web_Server_Port.ToString() + "/index.html?time:" + Convert.ToInt64(ts.TotalSeconds).ToString());
+                webView.Source = new Uri("http://127.0.0.1:" + NetworkAgentMod.Web_Server_Port.ToString() + "/index.html?time:" + Convert.ToInt64(ts.TotalSeconds).ToString());
                 _ = System.Threading.Tasks.Task.Factory.StartNew(() =>
                 {
                     int i = 0;
@@ -74,7 +74,7 @@ namespace Optical_View.View.Control
             {
                 TimeSpan ts = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0);
                 webView.CoreWebView2.ContentLoading += CoreWebView2_ContentLoading;
-                webView.Source = new Uri("http://127.0.0.1:" + Model.Web_Server_Config.Web_Server_Port.ToString() + "/CesiumGS/index.html?time:" + Convert.ToInt64(ts.TotalSeconds).ToString());
+                webView.Source = new Uri("http://127.0.0.1:" + Model.NetworkAgentMod.Web_Server_Port.ToString() + "/CesiumGS/index.html?time:" + Convert.ToInt64(ts.TotalSeconds).ToString());
                 _ = System.Threading.Tasks.Task.Factory.StartNew(() =>
                 {
                     int i = 0;
@@ -99,7 +99,7 @@ namespace Optical_View.View.Control
             {
                 TimeSpan ts = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0);
                 webView.CoreWebView2.ContentLoading += CoreWebView2_ContentLoading;
-                webView.Source = new Uri("http://127.0.0.1:" + Web_Server_Config.Web_Server_Port.ToString() + "/three/editor/index.html?time:" + Convert.ToInt64(ts.TotalSeconds).ToString());
+                webView.Source = new Uri("http://127.0.0.1:" + NetworkAgentMod.Web_Server_Port.ToString() + "/three/editor/index.html?time:" + Convert.ToInt64(ts.TotalSeconds).ToString());
                 _ = System.Threading.Tasks.Task.Factory.StartNew(() =>
                 {
                     int i = 0;
@@ -119,7 +119,7 @@ namespace Optical_View.View.Control
         }
         private void CoreWebView2_ContentLoading(object sender, CoreWebView2ContentLoadingEventArgs e)
         {
-            webView.CoreWebView2.ExecuteScriptAsync($" var s = setInterval(() => {{if (Logic.WebSocketint('{Model.Web_Server_Config.Web_WebsocketServer_Port.ToString()}')){{ clearInterval(s)}}}}, 1000);");
+            webView.CoreWebView2.ExecuteScriptAsync($" var s = setInterval(() => {{if (Logic.WebSocketint('{Model.NetworkAgentMod.Web_WebsocketServer_Port.ToString()}')){{ clearInterval(s)}}}}, 1000);");
 
         }
 

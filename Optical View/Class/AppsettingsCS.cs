@@ -7,12 +7,14 @@ using System.IO;
 
 namespace Optical_View.Class
 {
-
-    class Appsettings
+    /// <summary>
+    /// 配置文件类
+    /// </summary>
+    class AppsettingsCS
     {
         private static ConfigurationBuilder builder;
         private static IConfiguration configuration;
-        public Appsettings()
+        public AppsettingsCS()
         {
             //判断文件的存在
             if (!File.Exists("appsettings.json"))

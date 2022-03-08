@@ -9,7 +9,7 @@ var script = [
 // ,'<script src="/lib/plugins/codemirror-5.14.2/addon/hint/javascript-hint.js"></script>'
 // ,'<script src="/lib/plugins/codemirror-5.14.2/mode/javascript/javascript.js"></script>'
 // ,'<script src="/lib/plugins/codemirror-5.14.2/mode/markdown/markdown.js"></script>'
-
+//<!-- 初始化三维库 -->  <!-- 实列 -->
 ,'<script src="./example/1-1.0.0-你好地球.js"></script>'
 ];
 script.forEach(element => {

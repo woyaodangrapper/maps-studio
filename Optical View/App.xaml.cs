@@ -101,16 +101,10 @@ namespace Optical_View
             //Cef.Initialize(settings, performDependencyCheck: false, browserProcessHandler: null);
         }
        
-        private static void InitializeWebServer(string coreName)
-        {
-            Windows_ImWebServer.stop();
-            Model.Web_Server_Config.Web_Server_Port = Class.SystemOperation.PortIsUsed();
-            Log.Debug("Model.Web_Server_Config.Port =>" + Model.Web_Server_Config.Web_Server_Port);
-            _ = Windows_ImWebServer.start(IPAddress.Parse("127.0.0.1"), Model.Web_Server_Config.Web_Server_Port, 1,"WebGL\\" + coreName ?? "CesiumGS");
-        }
+
 
         private static void InitializeWebsocketServer() {
-            Browser_execution_method.WebSocketInit();
+            BrowserCS.WebSocketInit();
         }
         // Will attempt to load missing assembly from either x86 or x64 subdir
         // Required by CefSharp to load the unmanaged dependencies when running using AnyCPU

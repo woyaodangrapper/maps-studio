@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using static Optical_View.Model.View_static_control;
+using static Optical_View.Model.ViewStaticMod;
 
 namespace Optical_View.View.Control
 {

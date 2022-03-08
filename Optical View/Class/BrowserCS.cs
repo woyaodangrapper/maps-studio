@@ -5,7 +5,7 @@ using Optical_View.Model;
 using Serilog;
 using System;
 using System.IO;
-using static Optical_View.Model.View_static_control;
+using static Optical_View.Model.ViewStaticMod;
 
 namespace Optical_View.Class
 {
@@ -15,7 +15,10 @@ namespace Optical_View.Class
         public string value { get; set; }
 
     }
-    public class Browser_execution_method
+    /// <summary>
+    /// WBB GL 交互类
+    /// </summary>
+    public class BrowserCS
     {
 
 
@@ -24,9 +27,9 @@ namespace Optical_View.Class
         /// </summary>
         private static void _CesiumGS_buildinge_Stratification()
         {
-            String data = JsonConvert.SerializeObject(new Optical_Core().GetStructure(Launch.Startupz_type.Path));
+            String data = JsonConvert.SerializeObject(new Optical_Core().GetStructure(LaunchMod.HistoricalProject.Path));
             //BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"GIS.Socket_Response=" + data);
-            //BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"Logic.example_BuildingStratification('{Launch.Startupz_type.Path.Replace("\\", "\\\\")}')");
+            //BrowserContainer.control.webView.CoreWebView2.ExecuteScriptAsync($"Logic.example_BuildingStratification('{Launch.HistoricalProject.Path.Replace("\\", "\\\\")}')");
         }
 
         /// <summary>
@@ -39,7 +42,7 @@ namespace Optical_View.Class
                 Directory.CreateDirectory(@"WebGL\.cache");
             }
 
-            var obj = Launch.Startupz_type.Path;
+            var obj = LaunchMod.HistoricalProject.Path;
             {
                 bool isrewrite = true; // true=覆盖已存在的同名文件,false则反之
                 File.Copy(obj, @"WebGL\.cache\" + Path.GetFileNameWithoutExtension(obj) + ".obj", isrewrite);
@@ -100,7 +103,7 @@ namespace Optical_View.Class
         /// </summary>
         public static void WebSocketInit()
         {
-            new WebsocketServer().WebSocketInit(_Message_processing);
+            new SocketCS().WebSocketInit(_Message_processing);
         }
 
         /// <summary>
@@ -121,7 +124,7 @@ namespace Optical_View.Class
                                   switch (J["msg"].ToString())
                                   {
                                       case "success":
-                                          switch (Launch.Startupz_type.Type)
+                                          switch (LaunchMod.HistoricalProject.Type)
                                           {
                                               case "obj":
                                                   try
