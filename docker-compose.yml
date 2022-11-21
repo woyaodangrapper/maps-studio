@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  packerai.gateway.ocelot:
+    image: ${DOCKER_REGISTRY-}packeraigatewayocelot
+    build:
+      context: .
+      dockerfile: src/Application Services/PackerAI.Gateway.Ocelot/Dockerfile
+
+  packerai.wechat.apiservice:
+    image: ${DOCKER_REGISTRY-}packeraiwechatapiservice
+    build:
+      context: .
+      dockerfile: src/Application Services/PackerAI.Wechat.ApiService/Dockerfile
+  packerai.user.apiservice:
+    image: ${DOCKER_REGISTRY-}packeraiuserapiservice
+    ports:
+      - 50010:50010
+    build:
+      context: .
+      dockerfile: src/Application Services/PackerAI.User.ApiService/Dockerfile
+

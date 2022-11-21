@@ -1,0 +1,24 @@
+﻿<Project>
+	<Import Project="version.props" />
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<TieredPGO>true</TieredPGO>
+		<LangVersion>preview</LangVersion>
+		<Nullable>enable</Nullable>
+		<!--<RuntimeIdentifiers>win-x86;win-x64;linux-x64;osx-x64</RuntimeIdentifiers>-->
+		<ImplicitUsings>enable</ImplicitUsings>
+		<EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
+		<Authors></Authors>
+		<Product>PackerAI</Product>
+		<PackagePrefix>PackerAI</PackagePrefix>
+		<PackageIcon>http://nwzimg.wezhan.cn/contents/sitefiles2026/10134911/images/5367573.png</PackageIcon>
+		<RepositoryUrl>http://www.peckerai.com/</RepositoryUrl>
+		<PackageProjectUrl>http://www.peckerai.com/</PackageProjectUrl>
+		<RepositoryType>git</RepositoryType>
+		<SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>
+		<SatelliteResourceLanguages>zh-Hant</SatelliteResourceLanguages>
+		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+		<NoWarn>$(NoWarn);1591;0436</NoWarn>
+		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+	</PropertyGroup>
+</Project>

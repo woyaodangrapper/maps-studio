@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "test": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "packerai.gateway.ocelot": "DoNotStart",
+        "packerai.user.apiservice": "StartDebugging",
+        "packerai.wechat.apiservice": "DoNotStart"
+      }
+    }
+  }
+}
