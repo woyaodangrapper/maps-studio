@@ -3,47 +3,47 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "map-studio", "map-studio\map-studio.csproj", "{89AE61E7-8044-40A9-A258-F5163E1338C8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{E130CF91-9291-46A9-87F7-435D37741B00}"
+	ProjectSection(SolutionItems) = preProject
+		build\common.props = build\common.props
+		build\version.props = build\version.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "maps", "maps", "{94AB8C5A-E66F-4EA3-B7BD-A20ABF69AB7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{160D5668-6AE5-4A5A-B189-E84201782056}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1318D54A-F065-4F86-8D65-B0B24CAAFC59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application Core", "Application Core", "{2A81E188-B87A-4618-BE57-C9F5E0770F3F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application Services", "Application Services", "{085D5796-5E62-4FB0-8DE3-7E7E1F0AA6D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructures", "Infrastructures", "{5D3F83E1-B7C7-4C8F-8B17-9BA0877F3863}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{08E9FA25-F117-4451-950F-DCD784201699}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{34B4B3DC-22C5-4E8B-BAD2-FCDB3500F15A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{F86DBDF0-876E-4BAB-9153-8BBAE6A3EBD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Support", "Support", "{5F232A6B-7F08-4263-8133-93710A5BF78F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{661F5F8A-1CD1-463B-BB71-7DCD051AE971}"
 EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Debug|arm64 = Debug|arm64
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|Any CPU = Release|Any CPU
-		Release|arm64 = Release|arm64
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Debug|Any CPU.Build.0 = Debug|x64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Debug|Any CPU.Deploy.0 = Debug|x64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Debug|arm64.ActiveCfg = Debug|arm64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Debug|arm64.Build.0 = Debug|arm64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Debug|arm64.Deploy.0 = Debug|arm64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Debug|x64.ActiveCfg = Debug|x64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Debug|x64.Build.0 = Debug|x64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Debug|x64.Deploy.0 = Debug|x64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Debug|x86.ActiveCfg = Debug|x86
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Debug|x86.Build.0 = Debug|x86
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Debug|x86.Deploy.0 = Debug|x86
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Release|Any CPU.ActiveCfg = Release|x64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Release|Any CPU.Build.0 = Release|x64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Release|Any CPU.Deploy.0 = Release|x64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Release|arm64.ActiveCfg = Release|arm64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Release|arm64.Build.0 = Release|arm64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Release|arm64.Deploy.0 = Release|arm64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Release|x64.ActiveCfg = Release|x64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Release|x64.Build.0 = Release|x64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Release|x64.Deploy.0 = Release|x64
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Release|x86.ActiveCfg = Release|x86
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Release|x86.Build.0 = Release|x86
-		{89AE61E7-8044-40A9-A258-F5163E1338C8}.Release|x86.Deploy.0 = Release|x86
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2A81E188-B87A-4618-BE57-C9F5E0770F3F} = {160D5668-6AE5-4A5A-B189-E84201782056}
+		{085D5796-5E62-4FB0-8DE3-7E7E1F0AA6D5} = {160D5668-6AE5-4A5A-B189-E84201782056}
+		{5D3F83E1-B7C7-4C8F-8B17-9BA0877F3863} = {160D5668-6AE5-4A5A-B189-E84201782056}
+		{08E9FA25-F117-4451-950F-DCD784201699} = {5D3F83E1-B7C7-4C8F-8B17-9BA0877F3863}
+		{34B4B3DC-22C5-4E8B-BAD2-FCDB3500F15A} = {2A81E188-B87A-4618-BE57-C9F5E0770F3F}
+		{F86DBDF0-876E-4BAB-9153-8BBAE6A3EBD2} = {2A81E188-B87A-4618-BE57-C9F5E0770F3F}
+		{5F232A6B-7F08-4263-8133-93710A5BF78F} = {2A81E188-B87A-4618-BE57-C9F5E0770F3F}
+		{661F5F8A-1CD1-463B-BB71-7DCD051AE971} = {08E9FA25-F117-4451-950F-DCD784201699}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3E23AADD-5ACE-43DB-A3FB-94D6B10BE16D}

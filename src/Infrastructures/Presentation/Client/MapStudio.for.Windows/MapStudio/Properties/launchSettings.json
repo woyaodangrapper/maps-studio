@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MapStudio (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "MapStudio (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

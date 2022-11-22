@@ -9,8 +9,8 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
 		<Authors></Authors>
-		<Product>PackerAI</Product>
-		<PackagePrefix>PackerAI</PackagePrefix>
+		<Product>Maps Studio 2022</Product>
+		<PackagePrefix>God's Map Studio 2022</PackagePrefix>
 		<PackageIcon>http://nwzimg.wezhan.cn/contents/sitefiles2026/10134911/images/5367573.png</PackageIcon>
 		<RepositoryUrl>http://www.peckerai.com/</RepositoryUrl>
 		<PackageProjectUrl>http://www.peckerai.com/</PackageProjectUrl>
