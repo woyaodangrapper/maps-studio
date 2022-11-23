@@ -8,8 +8,8 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/maps-studio?svg=true)](https://ci.appveyor.com/project/woyaodangrapper/maps-studio)
 [![codecov](https://codecov.io/gh/woyaodangrapper/maps-studio/branch/master/graph/badge.svg)](https://codecov.io/gh/woyaodangrapper/maps-studio)
-[![GitHub stars](https://img.shields.io/github/stars/woyaodangrapper/maps-studio.svg)](https://github.com/stefanprodan/woyaodangrapper/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/woyaodangrapper/maps-studio.svg)](https://github.com/stefanprodan/woyaodangrapper/network)
+[![GitHub stars](https://img.shields.io/github/stars/woyaodangrapper/maps-studio.svg)](https://github.com/woyaodangrapper/woyaodangrapper/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/woyaodangrapper/maps-studio.svg)](https://github.com/woyaodangrapper/woyaodangrapper/network)
 [![License: Apache Licence 2.0](https://img.shields.io/github/license/woyaodangrapper/maps-studio.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![Chat](https://img.shields.io/badge/QQ-Team-blue.svg "QQTeam")](https://jq.qq.com/?_wv=1027&k=MiQ2cjOu "QQTeam")
 
