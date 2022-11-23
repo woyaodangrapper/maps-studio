@@ -3,26 +3,21 @@
 </p>
 # Maps Studio - Cesium 2022 (Tool)
 
-## 🌏 开源改变世界
+地图果真是是围绕开源三维引擎设计的工具链解决方案,预计暂定发布里程碑有数据处理,发布切片全球广域网代理服务器包,模型动作录制,地理基金会开放数据下载,所见即所得三维引擎集成开发环境编译器
+
+[![Build status](https://ci.appveyor.com/api/projects/status/maps-studio?svg=true)](https://ci.appveyor.com/project/stefanprodan/maps-studio)
+[![GitHub stars](https://img.shields.io/github/stars/stefanprodan/maps-studio.svg)](https://github.com/stefanprodan/AspNetCoreRateLimit/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/stefanprodan/maps-studio.svg)](https://github.com/stefanprodan/AspNetCoreRateLimit/network)
+
+[![License: Apache Licence 2.0](https://img.shields.io/github/license/stefanprodan/maps-studio.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+
+[![Chat](https://img.shields.io/badge/QQ-Team-blue.svg "QQTeam")](https://jq.qq.com/?_wv=1027&k=MiQ2cjOu "QQTeam")
+
 
 ### :clap: 窗体
 
 
-## 👏 帮助
 
-你可以通过很多方式做贡献。就像对待大多数开源软件一样,贡献代码:
-
-* 文档（代码和功能）
-* 错误报告
-* 错误修复
-* 功能请求
-* 功能实现
-* 测试覆盖率
-* 代码质量
-* 示例应用程序
-
-
-## 
 
 ### ❤️代码贡献者
 
