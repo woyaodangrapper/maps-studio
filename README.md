@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://github.com/woyaodangrapper/maps-studio/docs/images/maps-studio-high-resolution-logo-color-on-transparent-background.svg" width="80%" />
+<img src="https://raw.githubusercontent.com/woyaodangrapper/maps-studio/9a84adaa3eecec48357bfe01c8f77fb44d0188de/docs/images/maps-studio-high-resolution-logo-color-on-transparent-background.svg" width="80%" />
 </p>
 # Maps Studio - Cesium 2022 (Tool)
 
