@@ -1,3 +1,6 @@
+<p align="center">
+<img src="https://github.com/woyaodangrapper/maps-studio/docs/images/maps-studio-high-resolution-logo-color-on-transparent-background.svg" width="80%" />
+</p>
 # Maps Studio - Cesium 2022 (Tool)
 
 ## 🌏 开源改变世界
