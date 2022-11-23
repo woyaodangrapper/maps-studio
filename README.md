@@ -4,7 +4,7 @@
 
 # Maps Studio - Cesium 2022 (Tool)
 
-地图果真是是围绕开源三维引擎设计的工具链解决方案,预计暂定发布里程碑有数据处理,发布切片全球广域网代理服务器包,模型动作录制,地理基金会开放数据下载,所见即所得三维引擎集成开发环境编译器
+地图工作室是围绕开源三维引擎设计的工具链解决方案,预计暂定发布里程碑有数据处理,发布切片全球广域网代理服务器包,模型动作录制,地理基金会开放数据下载,所见即所得三维引擎集成开发环境编译器
 
 [![Build status](https://ci.appveyor.com/api/projects/status/maps-studio?svg=true)](https://ci.appveyor.com/project/woyaodangrapper/maps-studio)
 [![codecov](https://codecov.io/gh/woyaodangrapper/maps-studio/branch/master/graph/badge.svg)](https://codecov.io/gh/woyaodangrapper/maps-studio)
