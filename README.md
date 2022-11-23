@@ -6,12 +6,11 @@
 
 地图果真是是围绕开源三维引擎设计的工具链解决方案,预计暂定发布里程碑有数据处理,发布切片全球广域网代理服务器包,模型动作录制,地理基金会开放数据下载,所见即所得三维引擎集成开发环境编译器
 
-[![Build status](https://ci.appveyor.com/api/projects/status/maps-studio?svg=true)](https://ci.appveyor.com/project/stefanprodan/maps-studio)
-[![GitHub stars](https://img.shields.io/github/stars/stefanprodan/maps-studio.svg)](https://github.com/stefanprodan/AspNetCoreRateLimit/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/stefanprodan/maps-studio.svg)](https://github.com/stefanprodan/AspNetCoreRateLimit/network)
-
-[![License: Apache Licence 2.0](https://img.shields.io/github/license/stefanprodan/maps-studio.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
-
+[![Build status](https://ci.appveyor.com/api/projects/status/maps-studio?svg=true)](https://ci.appveyor.com/project/woyaodangrapper/maps-studio)
+[![codecov](https://codecov.io/gh/woyaodangrapper/maps-studio/branch/master/graph/badge.svg)](https://codecov.io/gh/woyaodangrapper/maps-studio)
+[![GitHub stars](https://img.shields.io/github/stars/woyaodangrapper/maps-studio.svg)](https://github.com/stefanprodan/AspNetCoreRateLimit/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/woyaodangrapper/maps-studio.svg)](https://github.com/stefanprodan/AspNetCoreRateLimit/network)
+[![License: Apache Licence 2.0](https://img.shields.io/github/license/woyaodangrapper/maps-studio.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![Chat](https://img.shields.io/badge/QQ-Team-blue.svg "QQTeam")](https://jq.qq.com/?_wv=1027&k=MiQ2cjOu "QQTeam")
 
 
