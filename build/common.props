@@ -11,9 +11,9 @@
 		<Authors></Authors>
 		<Product>Maps Studio 2022</Product>
 		<PackagePrefix>God's Map Studio 2022</PackagePrefix>
-		<PackageIcon>http://nwzimg.wezhan.cn/contents/sitefiles2026/10134911/images/5367573.png</PackageIcon>
-		<RepositoryUrl>http://www.peckerai.com/</RepositoryUrl>
-		<PackageProjectUrl>http://www.peckerai.com/</PackageProjectUrl>
+		<PackageIcon>https://github.com/woyaodangrapper/maps-studio/blob/dev/docs/images/maps-studio-logo.png</PackageIcon>
+		<RepositoryUrl>https://github.com/woyaodangrapper/maps-studio</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/woyaodangrapper/maps-studio</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
 		<SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>
 		<SatelliteResourceLanguages>zh-Hant</SatelliteResourceLanguages>
