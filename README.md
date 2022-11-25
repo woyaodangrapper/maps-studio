@@ -11,7 +11,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/woyaodangrapper/maps-studio.svg)](https://github.com/woyaodangrapper/maps-studio/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/woyaodangrapper/maps-studio.svg)](https://github.com/woyaodangrapper/maps-studio/network)
 [![License: Apache Licence 2.0](https://img.shields.io/github/license/woyaodangrapper/maps-studio.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
-[![Chat](https://img.shields.io/badge/QQ-Team-blue.svg "QQTeam")](https://jq.qq.com/?_wv=1027&k=MiQ2cjOu "QQTeam")
+[![Chat](https://img.shields.io/badge/QQ-Group-blue.svg "QQGroupChat")](https://jq.qq.com/?_wv=1027&k=MiQ2cjOu "QQGroupChat")
 
 
 ### :clap: 窗体
