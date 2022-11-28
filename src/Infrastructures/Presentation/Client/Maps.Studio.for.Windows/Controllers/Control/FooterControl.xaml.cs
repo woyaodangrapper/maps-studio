@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace Maps.Studio.Themes.Controls
+﻿namespace Maps.Studio.Themes.Controls
 {
     /// <summary>
     /// FooterContainer.xaml 的交互逻辑

@@ -68,7 +68,7 @@ namespace Maps.Studio
 
         private void Hyperlinks_MouseUp(object sender, MouseEventArgs e)
         {
-            new MapsWindow().Show();
+            new StudioWindow().Show();
             Close();
         }
 

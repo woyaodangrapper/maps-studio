@@ -117,7 +117,7 @@
             </Grid>
         </Border>
 
-        <Optical_View_Control:HeaderContainer x:Name="Header" Margin="89,14,1009,0" Height="27" VerticalAlignment="Top" />
+        <Optical_View_Control:HeaderContainer x:Name="Header" Margin="92,14,1006,0" Height="27" VerticalAlignment="Top" />
         <Grid x:Name="Control">
             <ProgressBar
   Style="{StaticResource MaterialDesignCircularProgressBar}"

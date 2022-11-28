@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ViewBottom="clr-namespace:Maps.Studio.Themes.Controls"
+        xmlns:ViewControls="clr-namespace:Maps.Studio.Themes.Controls"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Maps Studio 2022"  Height="900" Width="1700" BorderThickness="0" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" WindowStartupLocation="CenterScreen">
@@ -37,7 +37,9 @@
                    CanExecute="F12_CanExecute" />
         <!--CanExecute触发事件-->
     </Window.CommandBindings>
+
     <Grid x:Name="Min"  Margin="0,0,0,0">
+
         <Grid x:Name="BackgroundMongolia" Grid.RowSpan="2">
             <Border Background="#33007ACC" CornerRadius="0">
                 <Border.Effect>
@@ -46,22 +48,8 @@
             </Border>
             <Border   CornerRadius="0" BorderBrush="#FF004370" BorderThickness="1" />
         </Grid>
-
-        <ViewBottom:FooterContainer x:Name="FooterContainer" VerticalAlignment="Bottom" />
-        <ViewBottom:PaddingContainer x:Name="PaddingContainer" Margin="0,0,0,25" />
-
-        <!--关闭放大缩小按钮-->
-        <Border x:Name="QuickControl" BorderThickness="1" HorizontalAlignment="Right" Width="158" Height="28" VerticalAlignment="Top" Margin="0,4,2,0">
-            <Grid Margin="-1,-1,-1,-1">
-
-                <Border BorderThickness="1" x:Name="CircleExpandBord" Background="#FF2D2D30" HorizontalAlignment="Center" Width="52" MouseEnter="ExpandBox_MouseEnter" MouseLeave="ExpandBox_MouseLeave"   MouseUp="ExpandBox_MouseUp" />
-                <materialDesign:PackIcon x:Name="ExpandBox" Kind="CircleExpand" Margin="71,0,71,0" Height="18" Foreground="#FFF1F2F7" HorizontalAlignment="Stretch" MouseEnter="ExpandBox_MouseEnter" MouseLeave="ExpandBox_MouseLeave" VerticalAlignment="Center"  MouseUp="ExpandBox_MouseUp" />
-                <Border BorderThickness="1" x:Name="WindowCloseBord" Margin="105,0,0,0" Background="#FF2D2D30" MouseEnter="CloseBox_MouseEnter" MouseLeave="CloseBox_MouseLeave" MouseUp="CloseBox_MouseUp" Width="53" HorizontalAlignment="Right" />
-                <materialDesign:PackIcon MouseUp="CloseBox_MouseUp" x:Name="CloseBox" Kind="WindowClose" Margin="121,0,0,0" Width="22" Height="18" Foreground="#FFF1F2F7" MouseEnter="CloseBox_MouseEnter" MouseLeave="CloseBox_MouseLeave" VerticalAlignment="Center" />
-
-                <Border BorderThickness="1" x:Name="MinimizeBord" Background="#FF2D2D30" HorizontalAlignment="Left" Width="53" MouseEnter="MinimizeBox_MouseEnter" MouseLeave="MinimizeBox_MouseLeave"   MouseUp="MinimizeBox_MouseUp" />
-                <materialDesign:PackIcon x:Name="MinimizeBox" Kind="WindowMinimize" Margin="18,0,124,0" Height="18" Foreground="#FFF1F2F7" HorizontalAlignment="Stretch" MouseEnter="MinimizeBox_MouseEnter" MouseLeave="MinimizeBox_MouseLeave" VerticalAlignment="Center" MouseUp="MinimizeBox_MouseUp" />
-            </Grid>
-        </Border>
+        <ViewControls:FooterContainer x:Name="FooterContainer" VerticalAlignment="Bottom" />
+        <ViewControls:PaddingContainer x:Name="PaddingContainer" Margin="0,0,0,25" />
+        <ViewControls:QuickControl x:Name="QuickControl" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="0,3,3,0" />
     </Grid>
 </Window>
