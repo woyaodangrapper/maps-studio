@@ -46,7 +46,7 @@
                     <BlurEffect Radius="2" KernelType="Box"  RenderingBias="Quality" />
                 </Border.Effect>
             </Border>
-            <Border   CornerRadius="0" BorderBrush="#FF004370" BorderThickness="1" />
+            <Border CornerRadius="0" BorderBrush="#FF004370" BorderThickness="1" />
         </Grid>
         <ViewControls:FooterContainer x:Name="FooterContainer" VerticalAlignment="Bottom" />
         <ViewControls:PaddingContainer x:Name="PaddingContainer" Margin="0,0,0,25" />

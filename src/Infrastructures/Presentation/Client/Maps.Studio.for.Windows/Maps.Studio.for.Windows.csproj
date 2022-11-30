@@ -16,7 +16,6 @@
 		<Content Include="maps-studio-logo.ico" />
 	</ItemGroup>
 	<ItemGroup>
-		<Folder Include="Endpoints\" />
 		<Folder Include="Converters\" />
 	</ItemGroup>
 	<ItemGroup>

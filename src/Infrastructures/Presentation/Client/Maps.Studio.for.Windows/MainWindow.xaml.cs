@@ -1,5 +1,4 @@
-﻿using Maps.Studio.Themes;
-using Themes.Effects;
+﻿using Themes.Effects;
 
 namespace Maps.Studio
 {
@@ -12,7 +11,8 @@ namespace Maps.Studio
         {
             InitializeComponent();
             Loaded += OnLoaded;
-            MouseMove += new MouseEventHandler(_MouseMove);
+            ContentRendered += OnRendered;
+            MouseMove += new MouseEventHandler(OnMouseMove);
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -24,7 +24,35 @@ namespace Maps.Studio
             };
         }
 
-        private void _MouseMove(object sender, MouseEventArgs e)
+        private void OnRendered(object? s, EventArgs e)
+        {
+            var bps = VisualExtension.FindVisualChildren<Border, PackIcon>(QuickControl.QuickGrid).ToList()
+                .FindAll(x => (x as FrameworkElement)?.Name is not null and not "")
+                .Select(x => x as FrameworkElement).ToList();
+
+            foreach (var item in bps.FindAll(x => x is not null && x.Name.Contains("Close")))
+            {
+                item!.MouseUp += (s, e) => Close();
+            }
+
+            foreach (var item in bps.FindAll(x => x is not null && x.Name.Contains("Mini")))
+            {
+                item!.Visibility = Visibility.Hidden;
+            }
+
+            foreach (var item in bps.FindAll(x => x is not null && x.Name.Contains("Expand")))
+            {
+                item!.MouseUp += (s, e) =>
+                {
+                    if (WindowState == WindowState.Maximized)
+                        WindowState = WindowState.Normal;
+                    else
+                        WindowState = WindowState.Maximized;
+                };
+            }
+        }
+
+        private void OnMouseMove(object sender, MouseEventArgs e)
         {
             _ = Dispatcher.BeginInvoke(new Action(() =>
             {
@@ -35,97 +63,20 @@ namespace Maps.Studio
             }));
         }
 
-        //关闭按钮，最大化按钮鼠标悬浮事件
-
-        private void CloseBox_MouseEnter(object sender, MouseEventArgs e)
-        {
-        }
-
-        private void CloseBox_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            Close();
-        }
-
-        private void CloseBox_MouseLeave(object sender, MouseEventArgs e)
-        {
-        }
-
-        private void ExpandBox_MouseEnter(object sender, MouseEventArgs e)
-        {
-        }
-
-        private void ExpandBox_MouseLeave(object sender, MouseEventArgs e)
-        {
-        }
-
         private void Hyperlinks_MouseEnter(object sender, MouseEventArgs e)
         {
+            HyperlinksLabel.Foreground = new SolidColorBrush(Color.FromArgb(200, 0, 122, 204));
         }
 
         private void Hyperlinks_MouseLeave(object sender, MouseEventArgs e)
         {
+            HyperlinksLabel.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
         }
 
         private void Hyperlinks_MouseUp(object sender, MouseEventArgs e)
         {
             new StudioWindow().Show();
             Close();
-        }
-
-        private void ExpandBox_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            ExpandBox_Click();
-        }
-
-        private void ExpandBox_Click()
-        {
-            if (WindowState == WindowState.Maximized)
-            {
-                WindowState = WindowState.Normal;
-                BorderThickness = new Thickness(1, 1, 1, 1);
-            }
-            else
-            {
-                WindowState = WindowState.Maximized;
-                BorderThickness = new Thickness(4, 4, 4, 4);
-            }
-        }
-
-        private void ExpandBox_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            ExpandBox_Click();
-        }
-
-        private void _folder_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-        }
-
-        private void _extract_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-        }
-
-        private void _record_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-        }
-
-        private void OBJ_BUT_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-        }
-
-        private void GLB_BUT_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-        }
-
-        private void FBX_BUT_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-        }
-
-        private void GLTF_BUT_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-        }
-
-        private void Tiles_BUT_MouseUp(object sender, MouseButtonEventArgs e)
-        {
         }
     }
 }
